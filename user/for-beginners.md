@@ -1,83 +1,53 @@
 ---
-title: Core Concepts for Beginners
+title: 給初學者的核心概念
 layout: en
 
 ---
 
 <div id="toc"></div>
 
-Welcome to Travis CI! This page provides some contexts and terminologies used
-throughout the platform and documentation, which might be helpful if you are new
-here or new to Continuous Integration (CI).
+歡迎來到 Travis CI！這篇文章提供了本平台或本文件的情境以及專業術語，如果你是持續整合 Continuous Integration（CI）的新手，這篇將會非常有用。
 
-## What is Continuous Integration (CI)?
+## 什麼是持續整合（CI）？
 
-Continuous Integration is the practice of merging in small code changes
-frequently - rather than merging in a large change at the end of a development
-cycle. The goal is to build healthier software by developing and testing in smaller
-increments. This is where Travis CI comes in.
+持續整合是頻繁整合小片段程式碼的一種作法，而不是在開發週期的最後整合大量的更改。這麼做的目標是通過較小增量的開發和測試來建立一個更為健康的軟體，這就是 Travis CI 的出現目的。
 
-As a continuous integration platform, Travis CI supports your development
-process by automatically building and testing code changes, providing immediate
-feedback on the success of the change. Travis CI can also automate other parts
-of your development process by managing deployments and notifications.  
+作為一個持續整合的平台，Travis CI 通過自動化建造和測試來協助你的開發流程，來為更改成功提供即時的反饋。Travis CI 還能通過管理部屬和通知來自動化開發流程。
 
-## CI builds and automation: building, testing, deploying
+## CI 的構建與自動化：建造，測試，部屬
 
-When you run a build, Travis CI clones your GitHub repository into a brand new
-virtual environment, and carries out a series of tasks to build and test your
-code. If one or more of those tasks fails, the build is considered
-[*broken*](#Breaking-the-Build). If none of the tasks fail, the build is
-considered [*passed*](#Breaking-the-Build), and Travis CI can deploy your code
-to a web server, or application host.
+當你運行構建時，Travis CI 會 clone 你的 GitHub 儲存庫到一個全新的虛擬環境，並執行一系列的任務來建造及測試你的程式碼。如果其中一項或多項任務失敗，則這次構建會視為是[*損壞的*](#損毀的建造)。如果沒有任何任務失敗，則這次的構建會視為是[*通過的*](#損毀的建造)，Travis CI 還能部屬你的程式碼到 Web 伺服器或是應用程式的主機。
 
-CI builds can also automate other parts of your delivery workflow. This means
-you can have jobs depend on each other with [Build Stages](/user/build-stages/),
-setup [notifications](/user/notifications/), prepare
-[deployments](/user/deployment/) after builds, and many other tasks.
+CI 構建也可以自動化你的交付流程的其他地方。這表示說你可以使用相互依賴的工作[建立階段](/user/build-stages/)，設定[通知](/user/notifications/)，在建構之後準備[部屬](/user/deployment/)，和其他許多任務。
 
-## Builds, Jobs, Stages and Phases
+## 構建，工作，時期與階段
 
-In the Travis CI documentation, some common words have specific meanings:
+在 Travis CI 的文件中，有一些常見的詞有特定的含意：
 
-* *job* - an automated process that clones your repository into a virtual
-  environment and then carries out a series of *phases* such as compiling your
-  code, running tests, etc. A job fails if the return code of the `script` *phase*
-  is non zero.
-* *phase* - the [sequential steps](/user/customizing-the-build/#The-Build-Lifecycle)
-  of a job. For example, the `install` phase, comes before the `script` phase,
-  which comes before the optional `deploy` phase.
-* *build* - a group of *jobs*. For example, a build might have two *jobs*, each
-  of which tests a project with a different version of a programming language.
-  A *build* finishes when all of its jobs are finished.
-* *stage* - a group of *jobs* that run in parallel as part of sequential build
-  process composed of multiple [stages](/user/build-stages/).
+* *任務* — 表示一個自動化的過程將你的儲存庫 clone 到一個虛擬環境中，然後執行一系列的*階段*，像是說編譯你的程式碼，運行測試等。一個*任務*失敗就是 `script` *階段* 的返回碼不是零。
+* *階段* — 一個[連續步驟](/user/customizing-the-build/#The-Build-Lifecycle)的工作。舉例來說，`install` 階段出現在 `script` 階段之前，而它又出現在可選的 `deploy` 階段之前。
+* *構建* — 一組 *任務*。舉例來說，一個構件可能有兩個*任務*，在專案中的每個測試都用不同版本的程式語言。所有的任務完成後，*構建完成*。
+* *時期* — 一組可並行的*任務*作為多個組成的連續構建作業[階段](/user/build-stages/)的一部分。
 
-## Breaking the Build
+## 損毀的建造
 
-The build is considered *broken* when one or more of its jobs completes with a
-state that is not *passed*:
+當一個或多個任務不是*通過的*則被視為是*損毀的*：
 
- * *errored* - a command in the `before_install`, `install`, or `before_script`
-   phase returned a non-zero exit code. The job stops immediately.
- * *failed* - a command in the `script` phase returned a non-zero exit code. The
-   job continues to run until it completes.
- * *canceled* - a user cancels the job before it completes.
+ * *錯誤的* — 一個指令在 `before_install`，`install`，或 `before_script`
+   階段回傳一個非零的返回碼，該任務會立即停止。
+ * *失敗的* — 一個指令在 `script` 階段回傳一個非零的返回碼，該任務會繼續執行直到完成。
+ * *取消的* — 任務在結束前被一個使用者取消。
 
-Our [Common Builds Problems](/user/common-build-problems/) page is a good place
-to start troubleshooting why your build is broken.
+我們的[構建時常見問題](/user/common-build-problems/)頁面是一個排除你為什麼會構建失敗的好地方。
 
-## Infrastructure and environment notes
+## 基礎建設以及環境說明
 
-Travis CI offers a few different infrastructure environments, so you can select
-the setup that suits your project best:
+Travis CI 提供了一些不同的基礎建設環境，你可以選擇最適合你專案的設定：
 
-* *Container-based* - is the default for new projects. It is a Linux Ubuntu environment running in a container. It starts faster than the sudo-enabled environment, but has less resources and does not support the use of `sudo`, `setuid`, or `setgid`.
-* *Sudo-enabled* - this Linux Ubuntu environment runs on full virtual machine. It starts a little slower, but it has more computational resources, and supports the use of `sudo`, `setuid`, and `setgid`.
-* *OS X* - uses one of several versions of the OS X operating system. This environment is useful for building projects that require the OS X software, such as projects written in Swift. It is not a requirement to use the OS X environment if you develop on a macOS machine.
+* *基於容器* — 是新專案的預設值。它是一個運行在容器中的 Linux Ubuntu 環境，比啟用 Sudo 的環境更快開始，但是擁有的資源比較少還有不支援使用 `sudo`，`setuid` 或者 `setgid`。
+* *啟用 Sudo* — 這是跑在完全是虛擬機上的 Linux Ubuntu 環境。它開始會比較慢，但是有更多的計算資源，還支援使用`sudo`，`setuid` 和 `setgid`。
+* *OS X* — 使用其中一個 OS X 版本的作業系統。當你在建造需要 OS X 軟體的專案上這個環境會非常有用，例如專案是用 Swift 寫的。當你在 macOS 機器上開發，使用這個 OS X 環境並不是一個必要條件。
 
-More details are on our environments are available in our [CI Environment](/user/ci-environment/) documentation.
+更多可運用的環境在我們的[CI 環境](/user/ci-environment/)文件中。
 
-Now you've read the basics, head over to our [Getting
-Started](/user/getting-started/) guide for details on setting up your first
-build!
+現在你閱讀了基礎知識，請參閱我們的[入門指南](/user/getting-started/)引導你設定第一個構建!
