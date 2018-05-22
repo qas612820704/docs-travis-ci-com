@@ -1,60 +1,53 @@
 ---
-title: Getting started
+title: 入門指南
 layout: en
 
 ---
 
-This is a very short guide to using Travis CI with your GitHub hosted code repository.
-If you're new to continuous integration or would like some more information on
-what Travis CI does, start with [Core Concepts for Beginners](/user/for-beginners)
-instead.
+這是一篇相當簡短的指南關於使用 Travis CI 在你 GitHub 托管的代碼庫。如果你是持續整合的新手或是想了解更多有關 Travis CI 的訊息，請從[給初學者的核心概念](/user/for-beginners)開始。
 
 <div id="toc"></div>
 
-## Prerequisites
+## 必備條件
 
-To start using Travis CI, make sure you have *all* of the following:
+在開始使用 Travis CI 之前，請確保你有下列*所有*的東西：
 
- * [GitHub](https://github.com/) login
- * Project [hosted as a repository](https://help.github.com/categories/importing-your-projects-to-github/) on GitHub
- * Working code in your project
- * Working build or test script
+ * 登入[GitHub](https://github.com/)
+ * 在 Github [托管儲存庫](https://help.github.com/categories/importing-your-projects-to-github/) 的專案
+ * 在你的專案有可運作的代碼
+ * 可運作的建構或測試腳本
 
-## To get started with Travis CI
+## 開始使用 Travis CI
 
-1. Using your GitHub account, sign in to [GitHub](https://github.com/marketplace/travis-ci) and add the Travis CI app to the repository you want to activate.
+1. 使用你的 Github 帳號，登入至 [GitHub](https://github.com/marketplace/travis-ci)，然後將 Travis CI 應用程式新增到你想啟動的儲存庫。
 
-2. Once you're signed in to Travis CI, and we've synchronized your GitHub
-   repositories, go to your profile page and enable the repository
-   you want to build: ![enable button](/images/enable.png "enable button")
+2. 一旦你登入了 Travis CI，我們就已經同步你 Github 儲存庫。到你的個人資料頁面並啟用想建構的專案： ![enable button](/images/enable.png "enable button")
 
-3. Add a `.travis.yml` file to your repository to tell Travis CI what to do.
+3. 新增 `.travis.yml` 到你的儲存庫來告訴 Travis CI 該做什麼。
 
-   The following example tells Travis CI that this is a Ruby project that should
-   be built with Ruby 2.2, and the latest versions of JRuby and Rubinius 2.X.
+  以下的範例告訴 Travis CI 這是一個 Ruby 的專案，並且應該使用 Ruby 2.2，最新版的 JRuby 和 Rubinius 2.X 構建。
 
-   ```yaml
-   language: ruby
-   rvm:
-    - 2.2
-    - jruby
-    - rbx-3
-   ```
-   {: data-file=".travis.yml"}
+  ```yaml
+  language: ruby
+  rvm:
+  - 2.2
+  - jruby
+  - rbx-3
+  ```
+  {: data-file=".travis.yml"}
 
-   The defaults for Ruby projects are `bundle install` to [install dependencies](/user/customizing-the-build/#Customizing-the-Installation-Step),
-   and `rake` to build the project.
+  Ruby 專案的預設值是用 `bundle install` [安裝相依套件](/user/customizing-the-build/#Customizing-the-Installation-Step)和 `rake` 建構專案。
 
-4. Add the `.travis.yml` file to git, commit and push, to trigger a Travis CI build:
+4. 新增 `.travis.yml` 到 git，提交並推送，觸發 Travis CI 建構：
 
-   > Travis only runs builds on the commits you push *after* you've enabled the repository in Travis CI.
+  > Travis 只會建構在你啟用 Travis CI 儲存庫之後的提交。
 
-5. Check the build status page to see if your build [passes or fails](/user/customizing-the-build/#Breaking-the-Build), according to the return status of the build command by visiting [Travis CI .com build status](https://travis-ci.com/auth) and selecting your repository.
+5. 檢查建構頁面，看看你的建構[通過或是失敗](/user/customizing-the-build/#Breaking-the-Build)，根據建構指令的回傳狀態去訪問[Travis CI .com 建構狀態](https://travis-ci.com/auth)並選擇你的儲存庫。
 
 
-## Selecting a different programming language
+## 選擇不同的程式語言
 
-Use one of these common languages:
+使用其中一個常見的程式語言
 
 ```yaml
 language: ruby
@@ -81,50 +74,44 @@ language: php
 ```
 {: data-file=".travis.yml"}
 
-Or pick one from the [full list](/user/languages/).
+或者從[完整列表](/user/languages/)選一個.
 
-## Selecting infrastructure (optional)
+## 選擇基礎設施 (可選的)
 
-The best way to determine what infrastructure your build runs on
-is to set the `language`. If you do this your build runs on the default
-infrastructure (with a few exceptions), which is Container Based Ubuntu 14.04.
-You can explicitly select the default infrastructure by adding `sudo: false` to your `.travis.yml`.
+最好判斷你在什麼基礎上建構的方法是設定 `lauguage`。如果你這麼做你的建構會跑在預設的基礎上(除了少數的例外)，Ubuntu 14.04 的容器。你可以更加明確的選擇預設的基礎，藉由新增 `sudo: false` 到你你的 `.travis.yml`。
 
-* If you need a more customizable environment running in a virtual machine, use the Sudo
-Enabled infrastructure:
+* 如果你想要在虛擬機中跑更多自定義的環境，使用啟用 Sudo 的基礎架構。
 
   ```yaml
   sudo: enabled
   ```
   {: data-file=".travis.yml"}
 
-* If you have tests that need to run on macOS, or your project uses Swift or
-Objective-C, use our OS X environment:
+* 如果你的測試是需要跑在 macOS 上，或是專案用到 Swift 或 Objective-C，使用我們的 OS X 環境：
 
   ```yaml
   os: osx
   ```
   {: data-file=".travis.yml"}
 
-  > You do *not* necessarily need to use OS X if you develop on a Mac, only if
-  > you need Swift, Objective-C or other macOS-specific software.
+  > 你在 Mac 上開發*不一定*需要用 OS X 環境， 只有當你需要 Swift，Objective-C 或是其他限定 macOS 的軟體時候使用。
 
-## More than running tests
+## 不只是運行測試
 
-Travis CI isn't just for running tests, there are many others things you can do with your code:
+Travis CI 不只是能幫你跑測試而已，它還有其他很多能在你代碼上做的事：
 
-* deploy to [GitHub pages](/user/deployment/pages/)
-* run apps on [Heroku](/user/deployment/heroku/)
-* upload [RubyGems](/user/deployment/rubygems/)
-* send [notifications](/user/notifications/)
+* 部屬到 [GitHub pages](/user/deployment/pages/)
+* 運行應用程式在 [Heroku](/user/deployment/heroku/)
+* 上傳到 [RubyGems](/user/deployment/rubygems/)
+* 發布 [通知](/user/notifications/)
 
-## Further Reading
+## 延伸閱讀
 
-Read more about
+閱讀更多關於
 
-* [customizing your build](/user/customizing-the-build)
-* [security best practices](/user/best-practices-security/)
-* [build stages](/user/build-stages/)
-* [build matrixes](/user/customizing-the-build/#Build-Matrix)
-* [installing dependencies](/user/installing-dependencies)
-* [setting up databases](/user/database-setup/)
+* [自定義你的建構](/user/customizing-the-build)
+* [安全性最佳實踐](/user/best-practices-security/)
+* [建立階段](/user/build-stages/)
+* [建立矩陣](/user/customizing-the-build/#Build-Matrix)
+* [安裝相依套件](/user/installing-dependencies)
+* [配置資料庫](/user/database-setup/)
