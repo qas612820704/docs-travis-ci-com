@@ -1,5 +1,5 @@
 ---
-title: Customizing the Build
+title: 自定義你的建構
 layout: en
 
 redirect_from:
@@ -20,7 +20,7 @@ kind of information your `.travis.yml` file may have:
 - What command is used to run your test suite
 - Emails, Campfire and IRC rooms to notify about build failures
 
-## The Build Lifecycle
+## 建構的生命週期
 
 A build on Travis CI is made up of two steps:
 
@@ -48,7 +48,7 @@ The complete build lifecycle, including three optional deployment steps and afte
 1. OPTIONAL `after_deploy`
 1. `after_script`
 
-## Customizing the Installation Step
+## 自定義安裝步驟
 
 The default dependency installation commands depend on the project language. For instance, Java builds either use Maven or Gradle, depending on which build file is present in the repository. Ruby projects use Bundler when a Gemfile is present in the repository.
 
@@ -72,7 +72,7 @@ install:
 
 When one of the steps fails, the build stops immediately and is marked as [errored](#Breaking-the-Build).
 
-### Skipping the Installation Step
+### 略過安裝步驟
 
 You can skip the installation step entirely by adding the following to your `.travis.yml`:
 
@@ -81,7 +81,7 @@ install: true
 ```
 {: data-file=".travis.yml"}
 
-## Customizing the Build Step
+## 自定義建構步驟
 
 The default build command depends on the project language. Ruby projects use `rake`, the common denominator for most Ruby projects.
 
@@ -116,7 +116,7 @@ script: bundle exec rake build && bundle exec rake builddoc
 
 This example (note the `&&`) fails immediately when `bundle exec rake build` fails.
 
-### Note on $?
+### 注意 $?
 
 Each command in `script` is processed by a special bash function.
 This function manipulates `$?` to produce logs suitable for display.
@@ -125,7 +125,7 @@ alter the build behavior.
 See [this GitHub issue](https://github.com/travis-ci/travis-ci/issues/3771)
 for a more technical discussion.
 
-## Breaking the Build
+## 破壞建構
 
 If any of the commands in the first four stages of the build lifecycle return a non-zero exit code, the build is broken:
 
@@ -136,7 +136,7 @@ If any of the commands in the first four stages of the build lifecycle return a 
 The exit code of `after_success`, `after_failure`, `after_script` and subsequent stages do not affect the build result.
 However, if one of these stages times out, the build is marked as a failure.
 
-## Deploying your Code
+## 部屬你的程式碼
 
 An optional phase in the build lifecycle is deployment. This step can't be
 overridden, but is defined by using one of our continuous deployment providers
@@ -159,13 +159,13 @@ If there are any steps you'd like to run after the deployment, you can use the `
 
 Note that `before_deploy` and `after_deploy` are run before and after every deploy provider, so will run multiple times if there are multiple providers.
 
-## Specifying Runtime Versions
+## 指定運行時的版本
 
 One of the key features of Travis CI is the ease of running your test suite against multiple runtimes and versions. Specify what languages and runtimes to run your test suite against in the `.travis.yml` file:
 
 {% include languages.html %}
 
-## Installing Packages Using apt
+## 使用 apt 安裝套件
 
 If your dependencies need native libraries to be available, you can use **passwordless sudo to install them**:
 
@@ -181,11 +181,11 @@ before_install:
 
 All virtual machines are snapshotted and returned to their initial state after each build.
 
-### Using 3rd-party PPAs
+### 使用第三方 PPAs
 
 If you need a native dependency that is not available from the official Ubuntu repositories, there might be a [3rd-party PPAs](https://launchpad.net/ubuntu/+ppas) that you can use.
 
-## Installing a Second Programming language
+## 安裝一個次要程式語言
 
 If you need to install a second programming language in your current build environment, for example installing a more recent version of Ruby than the default version present in all build environments you can do so in the `before_install` stage of the build:
 
@@ -197,7 +197,7 @@ before_install:
 
 You can also use other installation methods such as `apt-get`.
 
-## Build Timeouts
+## 建構超時
 
 It is very common for test suites or build scripts to hang.
 Travis CI has specific time limits for each job, and will stop the build and add an error message to the build log in the following situations:
@@ -214,7 +214,7 @@ Some common reasons why builds might hang:
 
 > There is no timeout for a build; a build will run as long as all the jobs do as long as each job does not timeout.
 
-## Limiting Concurrent Jobs
+## 限制並行的任務
 
 {{ site.data.snippets.concurrent_jobs }}
 
@@ -229,7 +229,7 @@ Or using the command line client:
 $ travis settings maximum_number_of_builds --set 1
 ```
 
-## Building only the latest commit
+## 只建構最新的交付
 
 If you are only interested in building the most recent commit on each branch you can use this new feature to automatically cancel older builds in the queue that are *not yet running*.
 
@@ -246,7 +246,7 @@ For example, in the following screenshot, we pushed commit `ca31c2b` to the bran
 ![Auto cancellation example](/images/autocancellation-example.png "Auto cancellation example")
 
 
-## Git Clone Depth
+## Git Clone 深度
 
 Travis CI clones repositories to a depth of 50 commits, which is only really useful if you are performing git operations.
 
@@ -268,7 +268,7 @@ git:
 ```
 {: data-file=".travis.yml"}
 
-## Git Submodules
+## Git 子模組
 
 Travis CI clones git submodules by default, to avoid this set:
 
@@ -281,7 +281,7 @@ git:
 ## Git LFS
 
 
-### Authentication
+### 認證
 
 We recommend using a read-only GitHub OAuth token to authenticate when using git LFS:
 
@@ -325,7 +325,7 @@ git:
 {: data-file=".travis.yml"}
 
 
-## Git Sparse Checkout
+## Git 稀疏查看
 Travis CI supports `git`'s [sparse checkout](https://git-scm.com/docs/git-read-tree#_sparse_checkout)
 capability.
 To clone your repository sparsely, add:
@@ -335,13 +335,13 @@ git:
 ```
 where `skip-worktree-map-file` is a path to the existing file in the current repository with data you'd like to put into `$GIT_DIR/info/sparse-checkout` file of [format described in Git documentation](https://git-scm.com/docs/git-read-tree#_sparse_checkout).
 
-## Building Specific Branches
+## 建構特定的分支
 
 Travis CI uses the `.travis.yml` file from the branch containing the git commit that triggers the build. Include branches using a safelist, or exclude them using a blocklist.
 
 > Note that you also need to take into account automatic [Pull Request Builds](/user/pull-requests#double-builds-on-pull-requests) when deciding to safelist or blocklist certain branches.
 
-### Safelisting or blocklisting branches
+### 安全列表或阻擋列表的分支
 
 Specify which branches to build using a safelist, or blocklist branches that you do not want to be built:
 
@@ -376,7 +376,7 @@ branches:
 
 > Note that for historical reasons `.travis.yml` needs to be present *on all active branches* of your project.
 
-### Using regular expressions
+### 使用正規表達式
 
 You can use regular expressions to safelist or blocklist branches:
 
@@ -393,7 +393,7 @@ Any name surrounded with `/` in the list of branches is treated as a regular exp
 Options that are specified after the last `/` (e.g., `i` for case insensitive matching) are not supported but can be given inline instead.  For example, `/^(?i:deploy)-.*$/` matches `Deploy-2014-06-01` and other
 branches and tags that start with `deploy-` in any combination of cases.
 
-## Skipping a build
+## 略過一個建構
 
 If you don't want to run a build for a particular commit for any reason, add `[ci skip]` or `[skip ci]` to the git commit message.
 
@@ -401,7 +401,7 @@ Commits that have `[ci skip]` or `[skip ci]` anywhere in the commit messages are
 
 Note that in case multiple commits are pushed together, the `[skip ci]` or `[ci skip]` takes effect only if present in the commit message of the HEAD commit.
 
-## Build Matrix
+## 建構的矩陣
 
 When you combine the three main configuration options of *Runtime*, *Environment* and *Exclusions/Inclusions* you have a matrix of all possible combinations.
 
@@ -443,7 +443,7 @@ matrix:
 
 > All build matrixes are currently limited to a maximum of **200 jobs** for both private and public repositories. If you are on an open-source plan, please remember that Travis CI provides this service free of charge to the community. So please only specify the matrix you *actually need*.
 
-### Excluding Jobs
+### 排除任務
 
 If the jobs you want to exclude from the build matrix share the same matrix
 parameters, you can specify only those and omit the varying parts.
@@ -496,7 +496,7 @@ matrix:
 ```
 {: data-file=".travis.yml"}
 
-#### Excluding jobs with `env` value
+#### 用 `env` 值排除任務
 
 When excluding jobs with `env` values, the value must match
 _exactly_.
@@ -544,7 +544,7 @@ matrix:
       env: DB=mongodb SUITE=compact # not 'env: SUITE=compact DB=mongodb'
 ```
 
-### Explicitly Including Jobs
+### 明確地包含任務
 
 It is also possible to include entries into the matrix with `matrix.include`:
 
@@ -581,7 +581,7 @@ script: ./test.py $TEST_SUITE
 creates a build matrix with 3 jobs, which runs test suite for each version
 of Python.
 
-#### Explicitly included jobs inherit the first value in the array
+#### 明確地包含任務繼承在陣列中第一個值
 
 The jobs which are explicitly included inherit the first value of the expansion
 keys defined.
@@ -606,7 +606,7 @@ script: env $EXTRA_TESTS ./test.py $TEST_SUITE
 ```
 {: data-file=".travis.yml"}
 
-### Rows that are Allowed to Fail
+### 允許失敗的行
 
 You can define rows that are allowed to fail in the build matrix. Allowed
 failures are items in your build matrix that are allowed to fail without causing
@@ -623,14 +623,14 @@ matrix:
 ```
 {: data-file=".travis.yml"}
 
-#### Matching Jobs with `allow_failures`
+#### 用 `allow_failures` 匹配任務
 
 When matching jobs against the definitions given in `allow_failures`, _all_
 conditions in `allow_failures` must be met exactly, and
 all the keys in `allow_failures` element must exist in the
 top level of the build matrix (i.e., not in `matrix.include`).
 
-##### `allow_failures` Examples
+##### `allow_failures` 範例
 
 Consider
 
@@ -676,7 +676,7 @@ matrix:
 
 Without the top-level `env`, no job will be allowed to fail.
 
-### Fast Finishing
+### 快速完成
 
 If some rows in the build matrix are allowed to fail, the build won't be marked as finished until they have completed.
 
@@ -690,7 +690,7 @@ matrix:
 
 Now, the build result will be determined as soon as all the required jobs finish, based on these results, while the rest of the `allow_failures` jobs continue to run.
 
-## Implementing Complex Build Steps
+## 實做複雜的建構步驟
 
 If you have a complex build environment that is hard to configure in the `.travis.yml`, consider moving the steps into a separate shell script.
 The script can be a part of your repository and can easily be called from the `.travis.yml`.
@@ -721,7 +721,7 @@ To run that script from your `.travis.yml`:
     ```
     {: data-file=".travis.yml"}
 
-### How does this work? (Or, why you should not use `exit` in build steps)
+### 這樣怎有用？（或是說， 為你什麼你不該在建構步驟用 `exit`）
 
 The steps specified in the build lifecycle are compiled into a single bash script and executed on the worker.
 
@@ -731,7 +731,7 @@ perform subsequent tasks.
 
 Using `exit` inside a custom script which will be invoked from during a build is fine.
 
-## Custom Hostnames
+## 自定義主機名稱
 
 If your build requires setting up custom hostnames, you can specify a single host or a
 list of them in your .travis.yml. Travis CI will automatically setup the
@@ -745,12 +745,12 @@ addons:
 ```
 {: data-file=".travis.yml"}
 
-## What repository providers or version control systems can I use?
+## 我可以使用什麼儲存庫供應商或版本控制系統？
 
 Build and test your open source and private repositories hosted on GitHub on [travis-ci.com](https://travis-ci.com/).
 
 Travis CI currently does not support git repositories hosted on Bitbucket or GitLab, or other version control systems such as Mercurial.
 
-## Troubleshooting
+## 故障排除
 
 Check out the list of [common build problems](/user/common-build-problems/).
