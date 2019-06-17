@@ -1,0 +1,706 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building a Ruby Project - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/languages/ruby.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Building a Ruby Project</h1>
+          
+          <div id="toc">
+</div>
+
+<aside class="ataglance">
+
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">Ruby</th>
+        <th style="text-align: left">Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><a href="#Dependency-Management">Default <code class="highlighter-rouge">install</code></a></td>
+        <td style="text-align: left"><code class="highlighter-rouge">bundle install --jobs=3 --retry=3</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="#Default-Build-Script">Default <code class="highlighter-rouge">script</code></a></td>
+        <td style="text-align: left"><code class="highlighter-rouge">rake</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="#Build-Matrix">Matrix keys</a></td>
+        <td style="text-align: left"><code class="highlighter-rouge">env</code>, <code class="highlighter-rouge">rvm</code>, <code class="highlighter-rouge">gemfile</code>, <code class="highlighter-rouge">jdk</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">Support</td>
+        <td style="text-align: left"><a href="mailto:support@travis-ci.com">Travis CI</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Minimal example:</p>
+
+  <div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="na">rvm</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">2.2</span>
+  <span class="pi">-</span> <span class="s">jruby</span>
+  <span class="pi">-</span> <span class="s">2.0.0-p247</span>
+</code></pre></div>  </div>
+
+</aside>
+
+<h2 id="what-this-guide-covers">What This Guide Covers</h2>
+
+<blockquote>
+  <p>Language versions and other build-environment specific
+information are in our reference pages:</p>
+  <ul>
+    <li><a href="/user/reference/precise/">Precise</a></li>
+    <li><a href="/user/reference/trusty/">Trusty</a></li>
+    <li><a href="/user/reference/osx/">OS X</a></li>
+  </ul>
+</blockquote>
+
+<p>The rest of this guide covers configuring Ruby projects on Travis CI. If you’re
+new to Travis CI please read our <a href="/user/getting-started/">Getting Started</a> and
+<a href="/user/customizing-the-build/">build configuration</a> guides first.</p>
+
+<h2 id="specifying-ruby-versions-and-implementations">Specifying Ruby versions and implementations</h2>
+
+<p>The Ruby environment on Travis CI uses <a href="https://rvm.io/">RVM</a> to provide many
+Ruby implementations, versions and even patch levels.</p>
+
+<p>To specify them, use the <code class="highlighter-rouge">rvm:</code> key in your <code class="highlighter-rouge">.travis.yml</code> file:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="na">rvm</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">2.2</span>
+  <span class="pi">-</span> <span class="s">jruby</span>
+  <span class="pi">-</span> <span class="s">2.0.0-p247</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note that the <code class="highlighter-rouge">rvm:</code> key is only available in Ruby Build Environments, not in
+other images containing a ruby implementation.</p>
+</blockquote>
+
+<p>As we upgrade both RVM and Rubies, aliases like <code class="highlighter-rouge">2.2</code> or <code class="highlighter-rouge">jruby</code> point to
+different exact versions and patch levels.</p>
+
+<h3 id="using-ruby-version">Using <code class="highlighter-rouge">.ruby-version</code></h3>
+
+<p>If the ruby version is not specified by the <code class="highlighter-rouge">rvm</code> key, Travis CI uses the
+version specified in the <code class="highlighter-rouge">.ruby-version</code> file in the root of the repository if
+one is available.</p>
+
+<h3 id="rubinius">Rubinius</h3>
+
+<!-- distro exception -->
+
+<p>If you’re using OS X or Trusty environments, you can also use
+<a href="http://rubini.us">Rubinius</a>. To test with Rubinius, add <code class="highlighter-rouge">rbx-X</code> or <code class="highlighter-rouge">rbx-X.Y.Z</code>
+to your <code class="highlighter-rouge">.travis.yml</code>, where X.Y.Z specifies a Rubinius release listed on
+<a href="http://rubies.travis-ci.org/rubinius">http://rubies.travis-ci.org/rubinius</a> .</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="na">dist</span><span class="pi">:</span> <span class="s">trusty</span>
+<span class="na">rvm</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">rbx-3</span>
+</code></pre></div></div>
+
+<h3 id="jruby-c-extensions-are-not-supported">JRuby: C extensions are not supported</h3>
+
+<p>Please note that <strong>C extensions are not supported in JRuby</strong> on Travis CI. The
+reason for doing so is to bring it to developers attention that their project
+may have dependencies that should not be used on JRuby in production. Using C
+extensions on JRuby is technically possible but is not a good idea performance
+and stability-wise and we believe continuous integration services like Travis
+CI should highlight it.</p>
+
+<p>So if you want to run CI against JRuby, please check that your Gemfile takes
+JRuby into account. Most popular C extensions these days also have Java
+implementations (json gem, nokogiri, eventmachine, bson gem) or Java
+alternatives (like JDBC-based drivers for MySQL, PostgreSQL and so on).</p>
+
+<h2 id="default-build-script">Default Build Script</h2>
+
+<p>On Ruby projects the default build script is <code class="highlighter-rouge">rake</code>. Add <code class="highlighter-rouge">rake</code> to the <code class="highlighter-rouge">:test</code>
+group of your Gemfile.</p>
+
+<h2 id="dependency-management">Dependency Management</h2>
+
+<h3 id="bundler">Bundler</h3>
+
+<p>Travis CI uses <a href="http://bundler.io/">Bundler</a> to install your Ruby project’s
+dependencies if there is a Gemfile in the project’s root directory, or if there
+is a Gemfile specified in the build matrix:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install <span class="nt">--jobs</span><span class="o">=</span>3 <span class="nt">--retry</span><span class="o">=</span>3
+</code></pre></div></div>
+
+<p>If a Gemfile.lock exists in your project’s root directory, we add the
+<code class="highlighter-rouge">--deployment</code> flag.</p>
+
+<p>If you want to use a different means of handling your Ruby project’s
+dependencies, you can override the <code class="highlighter-rouge">install</code> command.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">install</span><span class="pi">:</span> <span class="s">gem install rails</span>
+</code></pre></div></div>
+
+<p>By default, gems are installed into vendor/bundle in your project’s root
+directory.</p>
+
+<h4 id="caching-bundler">Caching Bundler</h4>
+
+<p>Bundler installation can take a while, slowing down your build. You can tell
+<a href="/user/caching/">Travis CI to cache the installed bundle</a>.</p>
+
+<p>On your first build, we warm the cache. On the second one, we’ll pull in the
+cache, making <code class="highlighter-rouge">bundle install</code> only take seconds to run.</p>
+
+<h4 id="speeding-up-your-build-by-excluding-non-essential-dependencies">Speeding up your build by excluding non-essential dependencies</h4>
+
+<p>Lots of project include libraries like <code class="highlighter-rouge">ruby-debug</code>, <code class="highlighter-rouge">unicorn</code> or <code class="highlighter-rouge">newrelic_rpm</code>
+in their default set of gems.</p>
+
+<p>This slows down the installation process quite a lot, and commonly, those
+libraries aren’t needed when running your tests. This also includes libraries
+that compile native code, slowing down the installation and overall test times
+even more.</p>
+
+<p>On top of that, libraries that implicitly pull in <code class="highlighter-rouge">ruby_core_source</code> or
+<code class="highlighter-rouge">linecache19</code>, are bound to fail when Travis CI upgrades Ruby versions and
+patchlevels.</p>
+
+<p>The same is true for gems that you only need in production, like Unicorn, the
+New Relic library, and the like.</p>
+
+<p>You can speed up your installation process by moving these libraries to a
+separate section in your Gemfile, e.g. <code class="highlighter-rouge">production</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>group :production do
+  gem 'unicorn'
+  gem 'newrelic_rpm'
+end
+</code></pre></div></div>
+
+<p>Adjust your Bundler arguments to explicitly exclude this group:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">bundler_args</span><span class="pi">:</span> <span class="s">--without production</span>
+</code></pre></div></div>
+
+<p>Enjoy a faster build, which is also less prone to compilation problems.</p>
+
+<h4 id="custom-bundler-arguments-and-gemfile-locations">Custom Bundler arguments and Gemfile locations</h4>
+
+<p>The default Gemfile location is the <code class="highlighter-rouge">Gemfile</code> in the root of your project.</p>
+
+<p>To specify a custom Gemfile name or location:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">gemfile</span><span class="pi">:</span> <span class="s">gemfiles/Gemfile.ci</span>
+</code></pre></div></div>
+
+<p>You can pass <a href="http://bundler.io/v1.3/man/bundle-install.1.html">extra arguments</a>
+ to <code class="highlighter-rouge">bundle install</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">bundler_args</span><span class="pi">:</span> <span class="s">--binstubs</span>
+</code></pre></div></div>
+
+<h3 id="testing-against-multiple-versions-of-dependencies">Testing against multiple versions of dependencies</h3>
+
+<p>Many projects need to be tested against multiple versions of Rack, EventMachine,
+HAML, Sinatra, Ruby on Rails,etc.</p>
+
+<p>To test against multiple versions of dependencies:</p>
+
+<ol>
+  <li>Create a directory in your project’s repository root where you will keep
+gemfiles, such as <code class="highlighter-rouge">./gemfiles</code>.</li>
+  <li>Add one or more gemfiles to it.</li>
+  <li>Set the <code class="highlighter-rouge">gemfile</code> key in your <code class="highlighter-rouge">.travis.yml</code>.</li>
+</ol>
+
+<p>Thoughtbot’s Paperclip is <a href="https://github.com/thoughtbot/paperclip/blob/master/.travis.yml">tested against multiple ActiveRecord
+versions</a>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">gemfile</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">gemfiles/rails2.gemfile</span>
+  <span class="pi">-</span> <span class="s">gemfiles/rails3.gemfile</span>
+  <span class="pi">-</span> <span class="s">gemfiles/rails3_1.gemfile</span>
+</code></pre></div></div>
+
+<p>An alternative to this is to use environment variables and make your test runner
+use them. For example, <a href="https://github.com/sinatra/sinatra/blob/master/.travis.yml">Sinatra is tested against multiple Tilt and Rack
+versions</a>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">env</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">rack=1.3.4"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">rack=master"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">tilt=1.3.3"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">tilt=master"</span>
+</code></pre></div></div>
+
+<p>ChefSpec is <a href="https://github.com/acrmp/chefspec/blob/master/.travis.yml">tested against multiple Opscode Chef
+versions</a>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">env</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">CHEF_VERSION=0.9.18</span>
+  <span class="pi">-</span> <span class="s">CHEF_VERSION=0.10.2</span>
+  <span class="pi">-</span> <span class="s">CHEF_VERSION=0.10.4</span>
+</code></pre></div></div>
+
+<p>The same technique is often applied to test against multiple databases, templating
+engines, hosted service providers and so on.</p>
+
+<h3 id="bundle_gemfile-environment-variable"><code class="highlighter-rouge">$BUNDLE_GEMFILE</code> environment variable</h3>
+
+<p>When <code class="highlighter-rouge">gemfile</code> is defined <em>and</em> a Gemfile file exists in the repository,
+we define the environment variable <code class="highlighter-rouge">$BUNDLE_GEMFILE</code>, which <code class="highlighter-rouge">bundle install</code>
+uses to resolve dependencies.</p>
+
+<p>If you need to work with multiple Gemfiles within a single job, override
+<code class="highlighter-rouge">$BUNDLE_GEMFILE</code> by passing the <code class="highlighter-rouge">--gemfile=</code> flag:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle install <span class="nt">--gemfile</span><span class="o">=</span>my_gemfile
+</code></pre></div></div>
+
+<h2 id="jruby-testing-against-multiple-jdks">JRuby: Testing against multiple JDKs</h2>
+
+<p>Test projects against multiple JDKs, by using the <code class="highlighter-rouge">jdk</code> key in your
+<code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jdk</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">oraclejdk7</span>
+  <span class="pi">-</span> <span class="s">openjdk7</span>
+  <span class="pi">-</span> <span class="s">oraclejdk8</span>
+</code></pre></div></div>
+
+<p>Each JDK you test against will create permutations with all other
+configurations, so to avoid running tests for, say, CRuby 1.9.3 multiple times
+you need to add some matrix excludes (described in our <a href="/user/customizing-the-build/">Build Configuration guide</a>):</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="na">rvm</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">1.9.2</span>
+  <span class="pi">-</span> <span class="s">jruby-18mode</span>
+  <span class="pi">-</span> <span class="s">jruby-19mode</span>
+  <span class="pi">-</span> <span class="s">jruby-head</span>
+<span class="na">jdk</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">openjdk6</span>
+  <span class="pi">-</span> <span class="s">openjdk7</span>
+  <span class="pi">-</span> <span class="s">oraclejdk7</span>
+<span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">exclude</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">1.9.2</span>
+      <span class="na">jdk</span><span class="pi">:</span> <span class="s">openjdk6</span>
+    <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">1.9.2</span>
+      <span class="na">jdk</span><span class="pi">:</span> <span class="s">openjdk7</span>
+    <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">1.9.2</span>
+      <span class="na">jdk</span><span class="pi">:</span> <span class="s">oraclejdk7</span>
+</code></pre></div></div>
+
+<p>For example, see
+<a href="https://github.com/travis-ci/travis-support/blob/master/.travis.yml">travis-support</a>.</p>
+
+<h2 id="upgrading-rubygems">Upgrading RubyGems</h2>
+
+<p>The RubyGems version installed on Travis CI’s Ruby environment depends on what’s
+installed by the newest Bundler/RubyGems combination, and is kept as up-to-date
+as possible.</p>
+
+<p>Should you require the latest version of RubyGems, you can add the following to
+your <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">gem update --system</span>
+  <span class="pi">-</span> <span class="s">gem --version</span>
+</code></pre></div></div>
+
+<p>To downgrade to a specific version of RubyGems:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">gem update --system 2.1.11</span>
+  <span class="pi">-</span> <span class="s">gem --version</span>
+</code></pre></div></div>
+
+<p>Note that this will impact your overall test time, as additional network
+downloads and installations are required.</p>
+
+<h2 id="build-matrix">Build Matrix</h2>
+
+<p>For Ruby projects, <code class="highlighter-rouge">env</code>, <code class="highlighter-rouge">rvm</code>, <code class="highlighter-rouge">gemfile</code>, and <code class="highlighter-rouge">jdk</code> can be given as arrays to
+construct a <a href="/user/customizing-the-build/#Build-Matrix">build matrix</a>.</p>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

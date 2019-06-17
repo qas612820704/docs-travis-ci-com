@@ -1,0 +1,502 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google App Engine Deployment - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/deployment/google-app-engine.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Google App Engine Deployment</h1>
+          
+          <p>Travis CI can automatically deploy your <a href="https://cloud.google.com/appengine/docs">Google App Engine</a> or <a href="https://cloud.google.com/appengine/docs/managed-vms/">Managed VMs</a> application after a successful build.</p>
+
+<p>For a minimal configuration, add the following to your <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">gae</span>
+  <span class="na">keyfile</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">SERVICE</span><span class="nv"> </span><span class="s">ACCOUNT</span><span class="nv"> </span><span class="s">JSON</span><span class="nv"> </span><span class="s">FILE"</span>
+  <span class="na">project</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">PROJECT</span><span class="nv"> </span><span class="s">ID"</span>
+</code></pre></div></div>
+
+<p>Then go to the <a href="http://console.developers.google.com">Google Cloud Console Dashboard</a> and:</p>
+
+<ol>
+  <li>Enable “Google App Engine Admin API”,</li>
+  <li>Go to “Credentials”, click “Add Credential” and “Service account key”, finally click “JSON” to download your Service Account JSON file.</li>
+</ol>
+
+<p>It is <em>strongly</em> recommended that you encrypt your key before committing it to a repo.
+First make sure you have the <a href="https://github.com/travis-ci/travis.rb#readme">Travis command line tool</a> installed.
+Then execute the following command from the terminal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>travis encrypt-file client-secret.json <span class="nt">--add</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">--add</code> flag automatically adds the decryption step to the .travis file.</p>
+
+<p>Keep in mind that the above command has to run in your project directory, so it can modify the <code class="highlighter-rouge">.travis.yml</code> for you.</p>
+
+<p>More detailed instructions for encrypting keys using Travis can be found <a href="http://docs.travis-ci.com/user/encrypting-files/">here</a>.</p>
+
+<h3 id="project-to-deploy">Project to deploy</h3>
+
+<p>By default, the project will be deployed with the same name as the repository. Usually, you will want to explicilty configure the <strong>project</strong> option to match the project ID found in your Cloud console (note that this is sometimes, but not always, the same as the project name).</p>
+
+<p>You can explicitly set the project id via the <strong>project</strong> option:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">gae</span>
+  <span class="na">keyfile</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="na">project</span><span class="pi">:</span> <span class="s">continuous-deployment-demo</span>
+</code></pre></div></div>
+
+<h3 id="version-to-deploy">Version to deploy</h3>
+
+<p>Either the <strong>version</strong> flag or the <strong>default</strong> option must be set. If default is true, the default version will be deployed to, which will be <code class="highlighter-rouge">http://your-project-id.appspot.com</code>. If the <strong>version</strong> flag is set instead, it will deploy to <code class="highlighter-rouge">http://version-dot-your-project-id.appspot.com</code>.</p>
+
+<h3 id="branch-to-deploy-from">Branch to deploy from</h3>
+
+<p>By default, Travis will only deploy from your <strong>master</strong> branch.</p>
+
+<p>You can also explicitly specify the branch to deploy from with the <strong>on</strong> option:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">gae</span>
+  <span class="na">keyfile</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="na">project</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="na">on</span><span class="pi">:</span> <span class="s">production</span>
+</code></pre></div></div>
+
+<p>Alternatively, you can also configure it to deploy from all branches:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">gae</span>
+  <span class="na">keyfile</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="na">project</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="na">on</span><span class="pi">:</span>
+    <span class="na">all_branches</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Builds triggered from Pull Requests will never trigger a deploy.</p>
+
+<h3 id="deploying-without-promoting">Deploying without Promoting</h3>
+
+<p>By default, when your application is deployed it will be promoted to receive all traffic. You can disable that using the <code class="highlighter-rouge">no_promote</code> option:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">gae</span>
+  <span class="na">keyfile</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="na">project</span><span class="pi">:</span> <span class="s">continuous-deployment-demo</span>
+  <span class="na">no_promote</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>In addition to that, and according to the <a href="https://cloud.google.com/sdk/release_notes#0981_20151007">Google Cloud SDK changelog</a>, <em>“in a future Cloud SDK release, deployments that promote the new version to receive all traffic will stop the previous version by default”</em>.</p>
+
+<p>You can prevent that from happening by setting the option <code class="highlighter-rouge">no_stop_previous_version</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">gae</span>
+  <span class="na">keyfile</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="na">project</span><span class="pi">:</span> <span class="s">continuous-deployment-demo</span>
+  <span class="na">no_stop_previous_version</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h3 id="skipping-cleanup">Skipping Cleanup</h3>
+
+<p>Many App Engine apps use <a href="https://pip.pypa.io/en/latest/installing.html">pip</a> to vendor library requirements into the directory, and sometimes you need build artifacts or other
+credentials to deploy. If so, you want to avoid the Travis cleanup step that will clean you working directory before the deploy.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+    <span class="na">provider</span><span class="pi">:</span> <span class="s">gae</span>
+    <span class="na">skip_cleanup</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h3 id="example-repo">Example Repo</h3>
+
+<p>See <a href="https://github.com/googlecloudplatform/continuous-deployment-demo/tree/appengine_travis_deploy">this link</a> for an example
+App Engine app with a Travis deployment configured. See the other branches in the project for Managed VMs examples, and examples
+without using this provider.</p>
+
+<h3 id="other-available-configuration-options">Other Available Configuration Options</h3>
+
+<ul>
+  <li><strong>project</strong>: <a href="https://developers.google.com/console/help/new/#projectnumber">Project ID</a> used to identify the project on Google Cloud.</li>
+  <li><strong>keyfile</strong>: Path to the JSON file containing your <a href="https://developers.google.com/console/help/new/#serviceaccounts">Service Account</a> credentials in <a href="https://tools.ietf.org/html/rfc7519">JSON Web Token</a> format. To be obtained via the <a href="https://console.developers.google.com/project/_/apiui/credential">Google Developers Console</a>. Defaults to <code class="highlighter-rouge">"service-account.json"</code>. Note that this file should be handled with care as it contains authorization keys.</li>
+  <li><strong>config</strong>: Path to your module configuration file. Defaults to <code class="highlighter-rouge">"app.yaml"</code>. This file is runtime dependent (<a href="https://cloud.google.com/appengine/docs/go/config/appconfig">Go</a>, <a href="https://cloud.google.com/appengine/docs/java/config/appconfig">Java</a>, <a href="https://cloud.google.com/appengine/docs/php/config/appconfig">PHP</a>, <a href="https://cloud.google.com/appengine/docs/python/config/appconfig">Python</a>)</li>
+  <li><strong>version</strong>: The version of the app that will be created or replaced by this deployment. If you do not specify a version, one will be generated for you. See <a href="https://cloud.google.com/sdk/gcloud/reference/app/deploy"><code class="highlighter-rouge">gcloud preview app deploy</code></a></li>
+  <li><strong>default</strong>: Flag to set the deployed version to be the default serving version. See <a href="https://cloud.google.com/sdk/gcloud/reference/app/deploy"><code class="highlighter-rouge">gcloud preview app deploy</code></a></li>
+  <li><strong>verbosity</strong>: Let’s you adjust the verbosity when invoking <code class="highlighter-rouge">"gcloud"</code>. Defaults to <code class="highlighter-rouge">"warning"</code>. See <a href="https://cloud.google.com/sdk/gcloud/reference/"><code class="highlighter-rouge">gcloud</code></a>.</li>
+  <li><strong>docker_build</strong>: If deploying a Managed VM, specifies where to build your image. Typical values are <code class="highlighter-rouge">"remote"</code> to build on Google Cloud Engine and <code class="highlighter-rouge">"local"</code> which requires Docker to be set up properly (to utilize this on Travis CI, read <a href="http://blog.travis-ci.com/2015-08-19-using-docker-on-travis-ci/">Using Docker on Travis CI</a>). Defaults to <code class="highlighter-rouge">"remote"</code>.</li>
+</ul>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

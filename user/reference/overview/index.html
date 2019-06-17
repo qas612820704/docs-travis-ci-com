@@ -1,0 +1,563 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Environment Overview - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/reference/overview.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Build Environment Overview</h1>
+          
+          <h3 id="what-this-guide-covers">What This Guide Covers</h3>
+
+<p>This guide provides an overview on the different environments in which
+Travis CI can run your builds, and why you might want to pick one over another.</p>
+
+<div id="toc"></div>
+
+<h2 id="virtualization-environments">Virtualization environments</h2>
+
+<p>Each build runs in one of the following virtual environments.</p>
+
+<h3 id="sudo-enabled">Sudo-enabled</h3>
+
+<p>A sudo enabled, full virtual machine per build, that runs Linux, either <a href="/user/reference/precise/">Ubuntu Precise 12.04</a> or <a href="/user/reference/trusty/">Ubuntu Trusty 14.04</a>.</p>
+
+<h3 id="container-based">Container-based</h3>
+
+<p>A fast boot time environment in which <code class="highlighter-rouge">sudo</code> commands are not available. Running Linux <a href="/user/reference/trusty/">Ubuntu Trusty 14.04</a></p>
+
+<h3 id="os-x">OS X</h3>
+
+<p>An <a href="/user/reference/osx/">OS X</a> environment for Objective-C and other OS X specific projects</p>
+
+<h3 id="virtualisation-environment-vs-operating-system">Virtualisation Environment vs Operating System</h3>
+
+<p>The following table summarizes the differences across virtual environments and operating systems:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">Ubuntu Precise</th>
+      <th style="text-align: left">Ubuntu Trusty</th>
+      <th style="text-align: left">Ubuntu Trusty</th>
+      <th style="text-align: left"><a href="/user/reference/osx/">OS X</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Name</td>
+      <td style="text-align: left">Sudo-enabled</td>
+      <td style="text-align: left">Container-based</td>
+      <td style="text-align: left">Sudo-enabled</td>
+      <td style="text-align: left">OS X</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Status</td>
+      <td style="text-align: left">Current</td>
+      <td style="text-align: left">Default as of August 2017</td>
+      <td style="text-align: left">Current</td>
+      <td style="text-align: left">Current</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Infrastructure</td>
+      <td style="text-align: left">Virtual machine on GCE</td>
+      <td style="text-align: left">Container on EC2</td>
+      <td style="text-align: left">Virtual machine on GCE</td>
+      <td style="text-align: left">Virtual machine</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">.travis.yml</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">sudo: required</code> <br /> <code class="highlighter-rouge">dist: precise</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">sudo: false</code> <br /> <code class="highlighter-rouge">dist: trusty</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">sudo: required</code> <br /> <code class="highlighter-rouge">dist: trusty</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">os: osx</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Allows <code class="highlighter-rouge">sudo</code></td>
+      <td style="text-align: left">Yes</td>
+      <td style="text-align: left">No</td>
+      <td style="text-align: left">Yes</td>
+      <td style="text-align: left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Approx boot time</td>
+      <td style="text-align: left">20-50s</td>
+      <td style="text-align: left">1-6s</td>
+      <td style="text-align: left">20-50s</td>
+      <td style="text-align: left">60-90s</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">File system</td>
+      <td style="text-align: left">EXT4</td>
+      <td style="text-align: left">AUFS</td>
+      <td style="text-align: left">EXT4</td>
+      <td style="text-align: left">HFS+</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Operating system</td>
+      <td style="text-align: left">Ubuntu 12.04</td>
+      <td style="text-align: left">Ubuntu 14.04</td>
+      <td style="text-align: left">Ubuntu 14.04</td>
+      <td style="text-align: left">OS X</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Memory</td>
+      <td style="text-align: left">7.5 GB</td>
+      <td style="text-align: left">4 GB max</td>
+      <td style="text-align: left">7.5 GB</td>
+      <td style="text-align: left">4 GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Cores</td>
+      <td style="text-align: left">~2, bursted</td>
+      <td style="text-align: left">2</td>
+      <td style="text-align: left">~2, bursted</td>
+      <td style="text-align: left">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">IPv4 Network</td>
+      <td style="text-align: left">IPv4 is available</td>
+      <td style="text-align: left">IPv4 is available</td>
+      <td style="text-align: left">IPv4 is available</td>
+      <td style="text-align: left">IPv4 is available</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">IPv6 Network</td>
+      <td style="text-align: left">IPv6 is not available</td>
+      <td style="text-align: left">IPv6 is available on loopback</td>
+      <td style="text-align: left">IPv6 is not available</td>
+      <td style="text-align: left">IPv6 is not available</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="what-infrastructure-is-my-environment-running-on">What infrastructure is my environment running on?</h2>
+
+<p>Usually, knowing the virtualization environment characteristics from the <a href="#Virtualisation-Environment-vs-Operating-System">table above</a> is sufficient.</p>
+
+<p>But, if you do need more detail, you have one of these two questions:</p>
+
+<ul>
+  <li>you want to see what infrastructure a <a href="#For-a-finished-build">finished build</a> ran on.</li>
+  <li>you want to determine what infrastructure a <a href="#For-a-particular-.travis.yml-configuration">particular <code class="highlighter-rouge">.travis.yml</code> configuration</a> will run on.</li>
+</ul>
+
+<h3 id="for-a-finished-build">For a finished build</h3>
+
+<p>To see what infrastructure a finished build ran on, look at the <em>hostname</em> at the top of the build log:</p>
+
+<p><img src="/images/ui/what-infrastructure.png" alt="Infrastructure shown in hostname" title="Infrastructure shown in hostname" /></p>
+
+<p>if it contains:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">ec2</code>, as in the previous example → the build ran in a container-based environment on Amazon EC2.</li>
+  <li><code class="highlighter-rouge">gce</code> → the build ran in a sudo-enabled environment on Google Compute Engine.</li>
+  <li><code class="highlighter-rouge">wjb</code> → the build ran on macOS</li>
+</ul>
+
+<h3 id="for-a-particular-travisyml-configuration">For a particular .travis.yml configuration</h3>
+
+<p>Many different parts of your <code class="highlighter-rouge">.travis.yml</code> affect what infrastructure your build runs on. The following list describes some of the main settings that determine build routing:</p>
+
+<ul>
+  <li>
+    <p>Any of the following settings related to sudo or docker route your build to a sudo-enabled linux (Ubuntu Trusty) environment on Google Cloud Engine.</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">services: docker</code></li>
+      <li><code class="highlighter-rouge">sudo: required</code> or <code class="highlighter-rouge">sudo: true</code></li>
+      <li><em>any</em> other <code class="highlighter-rouge">sudo</code> command in your build script</li>
+      <li><em>any</em> other <code class="highlighter-rouge">docker</code> command in your build script</li>
+    </ul>
+  </li>
+  <li>
+    <p>Using <code class="highlighter-rouge">os: osx</code>, setting a version of Xcode using <code class="highlighter-rouge">osx_image:</code>, or using a macOS specific language such as <code class="highlighter-rouge">language: objective-c</code> routes your build to macOS infrastructure.</p>
+  </li>
+  <li>
+    <p>If none of the previous keys are present in your <code class="highlighter-rouge">.travis.yml</code>, the default is a container-based linux (Ubunty Trusty) environment on Amazon EC2.</p>
+  </li>
+</ul>
+
+<h2 id="deprecated-virtualization-environments">Deprecated Virtualization Environments</h2>
+
+<p>Historically, Travis CI has provided the following virtualization environments.</p>
+
+<ul>
+  <li><strong>Precise Container-based environment</strong>: available from the announcement in <a href="https://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure/">December, 2014</a> to <a href="https://blog.travis-ci.com/2017-08-31-trusty-as-default-status">September, 2017</a>.</li>
+  <li><strong>Legacy environment</strong>: available until <a href="https://blog.travis-ci.com/2015-11-27-moving-to-a-more-elastic-future">December, 2015</a>.</li>
+</ul>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enterprise Installation - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">About Travis CI Enterprise</a></li>
+        
+          <li><a href="/user/enterprise/prerequisites/">System Prerequisites</a></li>
+        
+          <li><a href="/user/enterprise/installation/">Installation</a></li>
+        
+          <li><a href="/user/enterprise/upgrading/">Upgrading</a></li>
+        
+          <li><a href="/user/enterprise/build-images/">Customizing Build Images</a></li>
+        
+          <li><a href="/user/enterprise/custom-queues/">Custom Queues</a></li>
+        
+          <li><a href="/user/enterprise/worker-configuration/">Worker Configuration</a></li>
+        
+          <li><a href="/user/enterprise/worker-cli-commands/">Worker Start & Debug Containers</a></li>
+        
+          <li><a href="/user/enterprise/platform-tips/">Platform Administration Tips</a></li>
+        
+          <li><a href="/user/enterprise/trusty/">Trusty Build Environment</a></li>
+        
+          <li><a href="/user/enterprise/precise/">Precise (Legacy) Build Environment</a></li>
+        
+          <li><a href="/user/enterprise/operations-manual/">Operations Manual</a></li>
+        
+      </ul>
+      <h3>Travis CI Docs</h3>
+      <ul>
+        <li><a href="/">Travis CI Docs</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page"><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/enterprise/installation.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Enterprise Installation</h1>
+          
+          <p>This guide covers installing the Travis CI Enterprise Platform and Travis CI
+Enterprise Worker. Because Travis CI Enterprise is optimized for EC2, the following guide
+recommends steps geared toward this provider, but you can certainly modify it to
+use your provider of choice.</p>
+
+<p><strong>Before getting started:</strong> please check our <a href="/user/enterprise/prerequisites/">system prerequisites</a> for
+<a href="/user/enterprise/prerequisites/#Host-Machine-Specs">expected system specs</a>, 
+notes on setting up the required <a href="/user/enterprise/prerequisites/#OAuth-App">OAuth app</a>,
+and information on obtaining a <a href="/user/enterprise/prerequisites/#License">license</a>.</p>
+
+<div id="toc"></div>
+
+<h2 id="setting-up-the-travis-ci-enterprise-platform">Setting up the Travis CI Enterprise Platform</h2>
+
+<p>The Travis CI Enterprise Platform handles licensing, coordinates worker
+processes, and maintains the Enterprise user and admin dashboard. It must be
+installed on it’s own machine instance, separate from that of the Travis CI
+Enterprise worker. We recommend using AWS’ <code class="highlighter-rouge">c3.2xlarge</code> instance running 
+Ubuntu 14.04 LTS as the underlying operating system.</p>
+
+<h3 id="create-a-travis-ci-platform-security-group">Create a Travis CI Platform Security Group</h3>
+
+<p>If you’re setting up your AMI for the first time you need to create
+a Security Group. From the EC2 management console, create an entry for
+each port in the table below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Port</th>
+      <th style="text-align: left">Service</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">8800</td>
+      <td style="text-align: left">Custom TCP Rule</td>
+      <td style="text-align: left">This port is to access the admin dashboard for your Enterprise installation.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">5672</td>
+      <td style="text-align: left">Custom TCP Rule</td>
+      <td style="text-align: left">For RabbitMQ Non-SSL.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">4567</td>
+      <td style="text-align: left">Custom TCP Rule</td>
+      <td style="text-align: left">For RabbitMQ SSL.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">443</td>
+      <td style="text-align: left">HTTPS</td>
+      <td style="text-align: left">Web application over HTTPS access.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">80</td>
+      <td style="text-align: left">HTTP</td>
+      <td style="text-align: left">Web application access.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">22</td>
+      <td style="text-align: left">SSH</td>
+      <td style="text-align: left">SSH access.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="install-travis-ci-enterprise-platform">Install Travis CI Enterprise Platform</h3>
+
+<p>Before running the installation script, we recommend downloading and reading it.
+When you’re ready to run it on the host, run the following commands to install the 
+Travis CI Enterprise Platform and web interface:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -sSL -o /tmp/installer.sh https://enterprise.travis-ci.com/install
+sudo bash /tmp/installer.sh
+</code></pre></div></div>
+
+<p>Once the script has run ,navigate to <code class="highlighter-rouge">https://&lt;hostname&gt;:8800</code> (your Enterprise
+installation’s hostname, port 8800) to complete the setup.</p>
+
+<p>From here you can upload your license key, add your GitHub OAuth details, and
+optionally upload an SSL certificate and enter SMTP details.</p>
+
+<p>New trials and installations will always install with the latest Travis CI Enterprise version.</p>
+
+<h2 id="install-travis-ci-enterprise-worker">Install Travis CI Enterprise Worker</h2>
+
+<p>The Travis CI Enterprise Worker manages build containers and reports build
+statuses back to the platform. It must be installed on a separate machine
+instance from the Platform. We recommend using AWS’ <code class="highlighter-rouge">c3.2xlarge</code> instance running 
+Ubuntu 14.04 LTS as the underlying operating system.</p>
+
+<h3 id="create-a-travis-ci-worker-security-group">Create a Travis CI Worker Security Group</h3>
+
+<p>If you’re setting up your AMI for the first time you will need to create
+a Security Group. From the EC2 management console, create an entry for
+each port in the table below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Port</th>
+      <th style="text-align: left">Service</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">22</td>
+      <td style="text-align: left">SSH</td>
+      <td style="text-align: left">SSH access.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="install-travis-ci-worker">Install Travis CI Worker</h2>
+
+<p>Travis CI Enterprise currently supports two different worker versions, Trusty (Ubuntu 14.04) and Precise (Legacy, Ubuntu 12.04). Each version of Travis CI Enterprise expects a default version of <code class="highlighter-rouge">travis-worker</code>. Travis CI Enterprise will direct jobs to the default worker type, unless the behavior is overriden. However, different versions of Enterprise treat different worker versions as default:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Travis CI Enterprise Version</th>
+      <th>Default Worker Version</th>
+      <th>Alternative Worker Versions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Enterprise 2.2+</td>
+      <td><a href="/user/enterprise/trusty/">Trusty (14.04)</a></td>
+      <td><a href="/user/enterprise/precise/">Precise (Legacy, 12.04)</a></td>
+    </tr>
+    <tr>
+      <td>Enterprise 2.1.9+</td>
+      <td><a href="/user/enterprise/precise/">Precise (Legacy, 12.04)</a></td>
+      <td><a href="/user/enterprise/trusty">Trusty (14.04)</a></td>
+    </tr>
+    <tr>
+      <td>Enterprise 2.0+</td>
+      <td><a href="/user/enterprise/precise/">Precise (Legacy, 12.04)</a></td>
+      <td>–</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>After setting up a new instance for the worker, please follow the <a href="/user/enterprise/trusty/">Trusty (14.04)</a> or <a href="/user/enterprise/precise/">Precise (Legacy, 12.04)</a> guides for your Travis CI Enterprise version.</p>
+
+<h3 id="worker-installation-behind-web-proxies">Worker Installation Behind Web Proxies</h3>
+
+<!-- TODO does this apply to the curl command or the bash tmp installer? -->
+
+<p>If you are behind a web proxy and Docker fails to download the image(s),
+edit <code class="highlighter-rouge">/etc/default/docker</code> and set your proxy there. Re-run the script
+above. In addition, if you need Docker to use an HTTP proxy, it can also be
+specified as follows:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  export http_proxy="http://proxy.mycompany.corp:8080/"
+</code></pre></div></div>
+
+<h2 id="contact-enterprise-support">Contact Enterprise Support</h2>
+
+<p>To get in touch with us, please write a message to 
+<a href="mailto:enterprise@travis-ci.com">enterprise@travis-ci.com</a>. If possible, 
+please include as much of the following as you can:</p>
+
+<ul>
+  <li>Description of the problem - what are you observing?</li>
+  <li>Which steps did you try already?</li>
+  <li>A support bundle (You can get it from <code class="highlighter-rouge">https://yourdomain:8800/support</code>)</li>
+  <li>Log files from all workers (They can be found at <code class="highlighter-rouge">/var/log/upstart/travis-worker.log</code> - please include as many as you can retrieve).</li>
+  <li>If a build failed or errored, a text file of the build log</li>
+</ul>
+
+<p>Have you made any customizations to your setup? While we may be able to see some 
+information (such as hostname, IaaS provider, and license expiration), there 
+are many other things we can’t see which could lead to something not working. 
+Therefore , we’d like to ask you to also answer the questions below in your 
+support request (if applicable):</p>
+
+<ul>
+  <li>How many machines are you using?</li>
+  <li>Do you use configuration management tools (Chef, Puppet)?</li>
+  <li>Which other services do interface with Travis CI Enterprise?</li>
+  <li>Do you use Travis CI Enterprise together with github.com or GitHub Enterprise?</li>
+  <li>If you’re using GitHub Enterprise, which version of it?</li>
+</ul>
+
+<p>We’re looking forward to helping!</p>
+
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

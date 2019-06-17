@@ -1,0 +1,563 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bintray Deployment - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/deployment/bintray.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Bintray Deployment</h1>
+          
+          <p>Travis CI can automatically deploy your build artifacts to <a href="https://bintray.com/">Bintray</a>.</p>
+
+<p>Here is an example <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">bintray</span>
+  <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Path</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">descriptor</span><span class="nv"> </span><span class="s">file,</span><span class="nv"> </span><span class="s">containing</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Bintray</span><span class="nv"> </span><span class="s">upload"</span>
+  <span class="na">user</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Bintray</span><span class="nv"> </span><span class="s">user"</span>
+  <span class="na">key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Bintray</span><span class="nv"> </span><span class="s">API</span><span class="nv"> </span><span class="s">key"</span>
+  <span class="na">passphrase</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Optional.</span><span class="nv"> </span><span class="s">In</span><span class="nv"> </span><span class="s">case</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">passphrase</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">configured</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Bintray</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">GPG</span><span class="nv"> </span><span class="s">signing</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">used"</span>
+  <span class="na">skip_cleanup</span><span class="pi">:</span> <span class="no">true</span> <span class="c1"># to upload artifacts created during the build</span>
+</code></pre></div></div>
+
+<h3 id="encrypt-your-api-key">Encrypt your API key</h3>
+
+<p>It is recommended that you encrypt your api key. You can encrypt this key using the <code class="highlighter-rouge">travis</code> command line client and this command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>travis encrypt &lt;YOUR BINTRAY API KEY&gt; <span class="nt">--add</span> deploy.key
+</code></pre></div></div>
+
+<p>Example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>travis encrypt ab012cd345678901234e456fa7bc89def01a23b4 <span class="nt">--add</span> deploy.key
+</code></pre></div></div>
+
+<h3 id="branch-to-deploy-from">Branch to deploy from</h3>
+
+<p>By default, Travis CI will only deploy from your <strong>master</strong> branch.</p>
+
+<p>You can explicitly specify the branch to deploy from with the <strong>on</strong> option:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="s">..</span>
+  <span class="s">on</span><span class="pi">:</span> <span class="s">production</span>
+</code></pre></div></div>
+
+<p>Alternatively, you can also configure it to deploy from all branches:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="s">..</span>
+  <span class="s">on</span><span class="pi">:</span>
+    <span class="na">all_branches</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Builds triggered from Pull Requests will never trigger a deploy.</p>
+
+<h3 id="conditional-deploys">Conditional Deploys</h3>
+
+<p>You can deploy only when certain conditions are met.
+See <a href="/user/deployment#Conditional-Releases-with-on%3A">Conditional Releases with <code class="highlighter-rouge">on:</code></a>.</p>
+
+<h3 id="running-commands-before-and-after-deploy">Running commands before and after deploy</h3>
+
+<p>Sometimes you want to run commands before or after deploying. You can use the <code class="highlighter-rouge">before_deploy</code> and <code class="highlighter-rouge">after_deploy</code> stages for this. These will only be triggered if Travis CI is actually deploying.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_deploy</span><span class="pi">:</span> <span class="s2">"</span><span class="s">echo</span><span class="nv"> </span><span class="s">'ready?'"</span>
+<span class="na">deploy</span><span class="pi">:</span>
+  <span class="s">..</span>
+<span class="na">after_deploy</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">./after_deploy_1.sh</span>
+  <span class="pi">-</span> <span class="s">./after_deploy_2.sh</span>
+</code></pre></div></div>
+
+<h3 id="dry_run-option"><code class="highlighter-rouge">dry_run</code> option</h3>
+
+<p>For testing deployment configuration, you can add <code class="highlighter-rouge">dry_run: true</code> to prevent connecting
+to the Bintray server:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="s">..</span>
+  <span class="s">dry_run</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h3 id="descriptor-file-example">Descriptor file example</h3>
+
+<p>The descriptor is in JSON file format in three sections:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+    <span class="s2">"package"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"auto-upload"</span><span class="p">,</span>
+        <span class="s2">"repo"</span><span class="p">:</span> <span class="s2">"myRepo"</span><span class="p">,</span>
+        <span class="s2">"subject"</span><span class="p">:</span> <span class="s2">"myBintrayUser"</span><span class="p">,</span>
+        <span class="s2">"desc"</span><span class="p">:</span> <span class="s2">"I was pushed completely automatically"</span><span class="p">,</span>
+        <span class="s2">"website_url"</span><span class="p">:</span> <span class="s2">"www.jfrog.com"</span><span class="p">,</span>
+        <span class="s2">"issue_tracker_url"</span><span class="p">:</span> <span class="s2">"https://github.com/bintray/bintray-client-java/issues"</span><span class="p">,</span>
+        <span class="s2">"vcs_url"</span><span class="p">:</span> <span class="s2">"https://github.com/bintray/bintray-client-java.git"</span><span class="p">,</span>
+        <span class="s2">"github_use_tag_release_notes"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s2">"github_release_notes_file"</span><span class="p">:</span> <span class="s2">"RELEASE.txt"</span><span class="p">,</span>
+        <span class="s2">"licenses"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"MIT"</span><span class="p">],</span>
+        <span class="s2">"labels"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"cool"</span><span class="p">,</span> <span class="s2">"awesome"</span><span class="p">,</span> <span class="s2">"gorilla"</span><span class="p">],</span>
+        <span class="s2">"public_download_numbers"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s2">"public_stats"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s2">"attributes"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"att1"</span><span class="p">,</span> <span class="s2">"values"</span> <span class="p">:</span> <span class="p">[</span><span class="s2">"val1"</span><span class="p">],</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"string"</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"att2"</span><span class="p">,</span> <span class="s2">"values"</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"number"</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"att5"</span><span class="p">,</span> <span class="s2">"values"</span> <span class="p">:</span> <span class="p">[</span><span class="s2">"2014-12-28T19:43:37+0100"</span><span class="p">],</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"date"</span><span class="p">}]</span>
+    <span class="p">},</span>
+
+    <span class="s2">"version"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"0.5"</span><span class="p">,</span>
+        <span class="s2">"desc"</span><span class="p">:</span> <span class="s2">"This is a version"</span><span class="p">,</span>
+        <span class="s2">"released"</span><span class="p">:</span> <span class="s2">"2015-01-04"</span><span class="p">,</span>
+        <span class="s2">"vcs_tag"</span><span class="p">:</span> <span class="s2">"0.5"</span><span class="p">,</span>
+        <span class="s2">"attributes"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"VerAtt1"</span><span class="p">,</span> <span class="s2">"values"</span> <span class="p">:</span> <span class="p">[</span><span class="s2">"VerVal1"</span><span class="p">],</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"string"</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"VerAtt2"</span><span class="p">,</span> <span class="s2">"values"</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"number"</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"VerAtt3"</span><span class="p">,</span> <span class="s2">"values"</span> <span class="p">:</span> <span class="p">[</span><span class="s2">"2015-01-01T19:43:37+0100"</span><span class="p">],</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"date"</span><span class="p">}],</span>
+        <span class="s2">"gpgSign"</span><span class="p">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+
+    <span class="s2">"files"</span><span class="p">:</span>
+        <span class="p">[</span>
+        <span class="p">{</span><span class="s2">"includePattern"</span><span class="p">:</span> <span class="s2">"build/bin(.*)*/(.*</span><span class="err">\\</span><span class="s2">.gem)"</span><span class="p">,</span> <span class="s2">"excludePattern"</span><span class="p">:</span> <span class="s2">".*/do-not-deploy/.*"</span><span class="p">,</span> <span class="s2">"uploadPattern"</span><span class="p">:</span> <span class="s2">"gems/$2"</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">"includePattern"</span><span class="p">:</span> <span class="s2">"build/docs/(.*)"</span><span class="p">,</span> <span class="s2">"uploadPattern"</span><span class="p">:</span> <span class="s2">"docs/$1"</span><span class="p">}</span>
+        <span class="p">],</span>
+    <span class="s2">"publish"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="package-section">Package Section</h4>
+
+<p>Bintray package information. The following information is mandatory on open source projects:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">name</code> is the Bintray package name</li>
+  <li><code class="highlighter-rouge">repo</code> is the Bintray repository name</li>
+  <li><code class="highlighter-rouge">subject</code> is the Bintray subject, which is either a user or an organization</li>
+  <li><code class="highlighter-rouge">vcs_url</code> is the Bintray version control system url, such as a github repository url</li>
+  <li><code class="highlighter-rouge">licenses</code> is the <a href="https://bintray.com/docs/api/#_licenses" data-proofer-ignore="">Bintray licences</a>, which is a list with at least one item.</li>
+</ul>
+
+<h4 id="version-section">Version Section</h4>
+
+<p>Package version information. In case the version already exists on Bintray, only the name field is mandatory.</p>
+
+<h4 id="files-section">Files Section</h4>
+
+<p>Configure the files you would like to upload to Bintray and their upload path.</p>
+
+<p>You can define one or more groups of patterns. Each group contains three patterns:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">includePattern</code>: Pattern in the form of Ruby regular expression, indicating the path of files to be uploaded to Bintray. If files are in your root directory, you must indicate relative path : <code class="highlighter-rouge">\./</code></li>
+  <li><code class="highlighter-rouge">excludePattern</code>: Optional. Pattern in the form of Ruby regular expression, indicating the path of files to be removed from the list of files specified by the includePattern.</li>
+  <li><code class="highlighter-rouge">uploadPattern</code>: Upload path on Bintray. The path can contain symbols in the form of $1, $2,… that are replaced with capturing groups defined in the include pattern.</li>
+</ul>
+
+<p>In the example above, the following files are uploaded:</p>
+
+<ul>
+  <li>All gem files located under <code class="highlighter-rouge">build/bin/</code> (including sub directories), except for   files under a <code class="highlighter-rouge">do-not-deploy</code> directory.  The files will be uploaded to Bintray under the <code class="highlighter-rouge">gems</code> folder.</li>
+  <li>All files under <code class="highlighter-rouge">build/docs</code>. The files will be uploaded to Bintray under the <code class="highlighter-rouge">docs</code> folder.</li>
+</ul>
+
+<p><strong>Note:</strong> Regular expressions defined as part of the <code class="highlighter-rouge">includePattern</code> and <code class="highlighter-rouge">excludePattern</code> properties must be wrapped with brackets.</p>
+
+<h4 id="debian-upload">Debian Upload</h4>
+
+<p>When artifacts are uploaded to a Debian repository on Bintray using the Automatic index layout, the Debian distribution information is required and must be specified. The information is specified in the descriptor file by the matrixParams as part of the files closure as shown in the following example:</p>
+
+<p><code class="highlighter-rouge">uploadPattern</code> should respect <a href="https://blog.bintray.com/category/packages-metadata/">bintray automatic layout scheme</a>.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"files"</span><span class="p">:</span>
+    <span class="p">[{</span><span class="s2">"includePattern"</span><span class="p">:</span> <span class="s2">"build/bin/(.*</span><span class="err">\</span><span class="s2">.deb)"</span><span class="p">,</span> <span class="s2">"uploadPattern"</span><span class="p">:</span> <span class="s2">"pool/main/m/mypackage/$1"</span><span class="p">,</span>
+    <span class="s2">"matrixParams"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"deb_distribution"</span><span class="p">:</span> <span class="s2">"vivid"</span><span class="p">,</span>
+        <span class="s2">"deb_component"</span><span class="p">:</span> <span class="s2">"main"</span><span class="p">,</span>
+        <span class="s2">"deb_architecture"</span><span class="p">:</span> <span class="s2">"amd64"</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h4 id="overwriting-existing-files">Overwriting Existing Files</h4>
+
+<p>If an artifact by a given name already exists in the Bintray repository, then by default it is not overwritten. If you want to replace the existing file, define the <code class="highlighter-rouge">override</code> key in your matrix properties:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"files"</span><span class="p">:</span>
+    <span class="p">[{</span><span class="s2">"includePattern"</span><span class="p">:</span> <span class="s2">"build/bin/(myfile.bin)"</span><span class="p">,</span> <span class="s2">"uploadPattern"</span><span class="p">:</span> <span class="s2">"$1"</span><span class="p">,</span>
+    <span class="s2">"matrixParams"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"override"</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

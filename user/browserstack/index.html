@@ -1,0 +1,497 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Using BrowserStack with Travis CI - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/browserstack.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Using BrowserStack with Travis CI</h1>
+          
+          <p>Travis CI integrates with <a href="https://www.browserstack.com">BrowserStack</a>, a cross browser and real device
+web-based testing platform. BrowserStack can be used for interactive as well as automated testing through frameworks
+like Selenium, Karma and others.</p>
+
+<p>This add-on automatically sets up <a href="https://www.browserstack.com/local-testing">BrowserStack Local</a> which allows you to test your private servers alongside public URLs, using the BrowserStack cloud. To do this it uses the <a href="https://www.browserstack.com/local-testing#command-line">BrowserStackLocal binary</a> for your build platform.</p>
+
+<p><a href="https://www.browserstack.com/local-testing">BrowserStack Local</a> establishes a secure connection between your Travis build container/VM
+and BrowserStack servers. Local Testing also has support for firewalls, proxies and Active Directory.
+Once the secure connection is setup, all URLs work out of the box, including your webserver, local folders, as well as
+URLs with HTTPS.</p>
+
+<h2 id="setting-up-browserstack">Setting up BrowserStack</h2>
+
+<p>Please sign up for a BrowserStack account if you haven’t already; it’s
+<a href="https://www.browserstack.com/pricing">free</a> for Open Source projects. Once you have signed up get your username and access key from
+the  <a href="https://www.browserstack.com/accounts/settings">account settings</a> page. Your username and access key are required to configure the <code class="highlighter-rouge">.travis.yml</code>
+file of your project.</p>
+
+<p>Choose whether you want to store your access key as plain text or in a secure/encrypted form. For open source projects we recommend
+storing the access key in a secure form so that pull requests cannot use the keys stored in your <code class="highlighter-rouge">.travis.yml</code>.
+For more information see the <a href="/user/pull-requests/#Pull-Requests-and-Security-Restrictions">pull requests page</a>.</p>
+
+<h3 id="encrypted-access-key">Encrypted Access Key</h3>
+
+<p>To encrypt your access key for use in <code class="highlighter-rouge">.travis.yml</code> you can use <code class="highlighter-rouge">travis encrypt "your BrowserStack access key"</code>.
+You need to have the travis cli installed to be able to do this (see <a href="http://docs.travis-ci.com/user/encryption-keys/">Encryption Keys</a> for more details).
+Once your access key is encrypted you can add the secure string:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">addons</span><span class="pi">:</span>
+  <span class="na">browserstack</span><span class="pi">:</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Your</span><span class="nv"> </span><span class="s">BrowserStack</span><span class="nv"> </span><span class="s">username"</span>
+    <span class="na">access_key</span><span class="pi">:</span>
+      <span class="na">secure</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">secure</span><span class="nv"> </span><span class="s">string</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">`travis</span><span class="nv"> </span><span class="s">encrypt`"</span>
+</code></pre></div></div>
+
+<h3 id="plain-text-access-key">Plain Text Access Key</h3>
+
+<p>To store your access key in plain text format, add the following configuration to your <code class="highlighter-rouge">.travis.yml</code> file:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">addons</span><span class="pi">:</span>
+  <span class="na">browserstack</span><span class="pi">:</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Your</span><span class="nv"> </span><span class="s">BrowserStack</span><span class="nv"> </span><span class="s">username"</span>
+    <span class="na">access_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Your</span><span class="nv"> </span><span class="s">BrowserStack</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">key"</span>
+</code></pre></div></div>
+
+<p>We <strong>strongly</strong> recommend storing your BrowserStack access keys in encrypted format, since other users that have access to your repository
+can read and use your plain text access keys to test on BrowserStack.</p>
+
+<h3 id="local-identifier">Local Identifier</h3>
+
+<p>A Local Identifier is a unique identifier for each Local connection when multiple Local connections are connected.
+The add-on will <strong>ALWAYS</strong> create a Local Identifier for each local connection that is created. If you are using the Selenium
+testing framework, the Local Identifier must be added to the Selenium capabilities.</p>
+
+<p>The Local Identifier is exposed as an environment variable <code class="highlighter-rouge">BROWSERSTACK_LOCAL_IDENTIFIER</code>. You can use it to set
+the Selenium capability. See the following example which uses Ruby’s <a href="https://www.browserstack.com/automate/ruby">selenium-webdriver</a>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'rubygems'</span>
+<span class="nb">require</span> <span class="s1">'selenium-webdriver'</span>
+
+<span class="c1"># Input capabilities</span>
+<span class="n">caps</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">::</span><span class="no">Remote</span><span class="o">::</span><span class="no">Capabilities</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">caps</span><span class="p">[</span><span class="s1">'browserstack.local'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'true'</span>
+<span class="n">caps</span><span class="p">[</span><span class="s1">'browserstack.localIdentifier'</span><span class="p">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'BROWSERSTACK_LOCAL_IDENTIFIER'</span><span class="p">]</span>
+<span class="c1"># Add other capabilities like browser name, version and os name, version</span>
+<span class="o">...</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="p">.</span><span class="nf">for</span><span class="p">(</span><span class="ss">:remote</span><span class="p">,</span>
+  <span class="ss">:url</span> <span class="o">=&gt;</span> <span class="s2">"http://USERNAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub"</span><span class="p">,</span>
+  <span class="ss">:desired_capabilities</span> <span class="o">=&gt;</span> <span class="n">caps</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Local identifiers are essential for <a href="https://docs.travis-ci.com/user/customizing-the-build/#Build-Matrix">matrix builds</a>. Since matrix builds in travis can be run on
+the same VM, we need to add the Local Identifier when starting the connection to ensure that the correct local tunnel
+gets the right requests.</p>
+
+<h2 id="additional-options">Additional Options</h2>
+
+<h3 id="proxy">Proxy</h3>
+
+<p>Local testing also allows you to set the proxy host, port, username and password
+through which all urls will be resolved:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">addons</span><span class="pi">:</span>
+  <span class="na">browserstack</span><span class="pi">:</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Your</span><span class="nv"> </span><span class="s">BrowserStack</span><span class="nv"> </span><span class="s">username"</span>
+    <span class="na">access_key</span><span class="pi">:</span>
+      <span class="na">secure</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">secure</span><span class="nv"> </span><span class="s">string</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">`travis</span><span class="nv"> </span><span class="s">encrypt`"</span>
+    <span class="na">proxyHost</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Proxy</span><span class="nv"> </span><span class="s">server</span><span class="nv"> </span><span class="s">host"</span>
+    <span class="na">proxyPort</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Proxy</span><span class="nv"> </span><span class="s">server</span><span class="nv"> </span><span class="s">port"</span>
+    <span class="na">proxyUser</span><span class="pi">:</span> <span class="s2">"</span><span class="s">User</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">accessing</span><span class="nv"> </span><span class="s">proxy</span><span class="nv"> </span><span class="s">server"</span>
+    <span class="na">proxyPass</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Password</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">accessing</span><span class="nv"> </span><span class="s">proxy</span><span class="nv"> </span><span class="s">server"</span>
+</code></pre></div></div>
+
+<h3 id="more-options">More Options</h3>
+
+<p>Some other options that are supported by the add on are,</p>
+
+<ul>
+  <li><strong>forcelocal</strong>: If this is set to true then all network traffic will be resolved via the Travis CI container/VM.</li>
+  <li><strong>only</strong>: restricts Local testing access to the specified local servers and/or folders.</li>
+</ul>
+
+<p>Sample usage,</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">addons</span><span class="pi">:</span>
+  <span class="na">browserstack</span><span class="pi">:</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Your</span><span class="nv"> </span><span class="s">BrowserStack</span><span class="nv"> </span><span class="s">username"</span>
+    <span class="na">access_key</span><span class="pi">:</span>
+      <span class="na">secure</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">secure</span><span class="nv"> </span><span class="s">string</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">`travis</span><span class="nv"> </span><span class="s">encrypt`"</span>
+    <span class="na">forcelocal</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">only</span><span class="pi">:</span> <span class="s">dev.example.com,80,0,*.example.org,80,0</span>
+</code></pre></div></div>
+
+<p>The format for the <strong>only</strong> flag is, “Host pattern,Host Port,Flag for SSL True(1)/False(0)” and repeat.</p>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

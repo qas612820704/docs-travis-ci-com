@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enterprise Customer Worker Queues - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">About Travis CI Enterprise</a></li>
+        
+          <li><a href="/user/enterprise/prerequisites/">System Prerequisites</a></li>
+        
+          <li><a href="/user/enterprise/installation/">Installation</a></li>
+        
+          <li><a href="/user/enterprise/upgrading/">Upgrading</a></li>
+        
+          <li><a href="/user/enterprise/build-images/">Customizing Build Images</a></li>
+        
+          <li><a href="/user/enterprise/custom-queues/">Custom Queues</a></li>
+        
+          <li><a href="/user/enterprise/worker-configuration/">Worker Configuration</a></li>
+        
+          <li><a href="/user/enterprise/worker-cli-commands/">Worker Start & Debug Containers</a></li>
+        
+          <li><a href="/user/enterprise/platform-tips/">Platform Administration Tips</a></li>
+        
+          <li><a href="/user/enterprise/trusty/">Trusty Build Environment</a></li>
+        
+          <li><a href="/user/enterprise/precise/">Precise (Legacy) Build Environment</a></li>
+        
+          <li><a href="/user/enterprise/operations-manual/">Operations Manual</a></li>
+        
+      </ul>
+      <h3>Travis CI Docs</h3>
+      <ul>
+        <li><a href="/">Travis CI Docs</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page"><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/enterprise/custom-queues.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Enterprise Customer Worker Queues</h1>
+          
+          <p>Custom queues give your team more granular control over routing jobs to specific workers. This is especially helpful in conjunction with customized <a href="/user/enterprise/worker-configuration/">worker configuration</a> and/or modified <a href="/user/enterprise/build-images">build environments</a>.</p>
+
+<p>There are two <a href="#Enable-Queues-on-the-Platform">feature flags</a> required for custom queues. After setting these flags, you can define the configuration for your queues in the <a href="#Define-Custom-Queues-in-the-Management-Console">Management Console settings</a>, and <a href="#Define-Custom-Queues-Settings-on-The-Workers">allocate workers to the new queues</a></p>
+
+<div id="toc"></div>
+
+<h2 id="enable-queues-on-the-platform">Enable Queues on the Platform</h2>
+
+<p>To allow your Travis CI Enterprise platform instance to route jobs to customized queues, set the <code class="highlighter-rouge">template_selection</code> and <code class="highlighter-rouge">multi_os</code> feature flags. To do this, ssh into your platform server, then run <code class="highlighter-rouge">travis console</code>. Run the following command to enable the required feature flags:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Travis::Features.enable_for_all(:template_selection); Travis::Features.enable_for_all(:multi_os); exit
+</code></pre></div></div>
+
+<p>The new settings will take effect immediately, but job routing will remain the same until new queues are defined.</p>
+
+<h2 id="define-custom-queues-in-the-management-console">Define Custom Queues in the Management Console</h2>
+
+<p>After enabling the feature flags for custom queues, configure the job routing in the management console. This is defined in yaml, in the <strong>Advanced Configuration YAML</strong> section at the bottom of the management console <strong>Settings</strong> page, e.g. <code class="highlighter-rouge">https://&lt;your-domain&gt;:8800/settings</code>.</p>
+
+<p>There are a number of options/selectors used to define routing to a custom queue. Repos that match <em>all</em> of the selectors for a custom queue will be built on that custom queue. We recommend using the following selectors:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">language</code> - defines the build environment based on the chosen language of the project†</li>
+  <li><code class="highlighter-rouge">group</code> - mostly semantic, for defining ‘groups’ of environments†</li>
+  <li><code class="highlighter-rouge">owner</code> - either be an org or a user</li>
+  <li><code class="highlighter-rouge">slug</code> - a repository, in the form: <code class="highlighter-rouge">org/repo</code> or <code class="highlighter-rouge">user/repo</code></li>
+</ul>
+
+<p>† Specify the <code class="highlighter-rouge">language</code> and <code class="highlighter-rouge">group</code> for a job in the <code class="highlighter-rouge">.travis.yml</code>. Do not specify ownership-type selectors (<code class="highlighter-rouge">owner</code>, <code class="highlighter-rouge">slug</code>) in the configuration. See <a href="#Advanced-Configuration-YAML-Example">the example</a> for more details.</p>
+
+<blockquote>
+  <p>Note: We do not recommend using <code class="highlighter-rouge">dist</code> and <code class="highlighter-rouge">os</code> for these selectors. These two have some of their own routing processes built-in and may not entirely behave as intended.</p>
+</blockquote>
+
+<p>Define selectors in “Advanced Configuration YAML” in the following format:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">production</span><span class="pi">:</span>
+  <span class="na">queues</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">queue</span><span class="pi">:</span> <span class="s">name</span>
+    <span class="na">selector</span><span class="pi">:</span> <span class="s">value</span>
+  <span class="pi">-</span> <span class="na">queue</span><span class="pi">:</span> <span class="s">another.queue</span>
+    <span class="na">selector</span><span class="pi">:</span> <span class="s">different_value</span>
+    <span class="na">selector</span><span class="pi">:</span> <span class="s">something_else</span>
+</code></pre></div></div>
+<p>see the <a href="#Advanced-Configuration-YAML-Example">example</a> for details on syntax. Click “Save” on the Management Console Settings when you are ready. Travis CI Enterprise will restart, with your new queue settings.</p>
+
+<h3 id="advanced-configuration-yaml-example">Advanced Configuration YAML Example</h3>
+
+<p>The syntax for the <strong>Advanced Configuration YAML</strong> field is very important. Incorrect syntax will result in builds being routed to defaults, usually a <code class="highlighter-rouge">builds.linux</code> queue, depending on if there are any modifications to your installation. Here’s an example of a custom queue definition:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">production</span><span class="pi">:</span>
+  <span class="na">queues</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">queue</span><span class="pi">:</span> <span class="s">builds.ruby</span>
+    <span class="na">owner</span><span class="pi">:</span> <span class="s">travis-ci</span>
+    <span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s">enterprise</span>
+  <span class="pi">-</span> <span class="na">queue</span><span class="pi">:</span> <span class="s">builds.python</span>
+    <span class="na">owner</span><span class="pi">:</span> <span class="s">acnagy</span>
+    <span class="na">language</span><span class="pi">:</span> <span class="s">python</span>
+  <span class="pi">-</span> <span class="na">queue</span><span class="pi">:</span> <span class="s">dockercluster</span>
+    <span class="na">services</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">docker</span>
+  <span class="pi">-</span> <span class="na">queue</span><span class="pi">:</span> <span class="s">legacy</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s">legacy</span>
+  <span class="pi">-</span> <span class="na">queue</span><span class="pi">:</span> <span class="s">docs</span>
+    <span class="na">slug</span><span class="pi">:</span> <span class="s1">'</span><span class="s">travis-ci/docs-travis-ci-com'</span> 
+</code></pre></div></div>
+
+<p>For this example, to build an <code class="highlighter-rouge">enterprise</code>, Ruby project owned by the <code class="highlighter-rouge">travis-ci</code> organization, a <code class="highlighter-rouge">.travis.yml</code> would need to look as follows:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">group</span><span class="pi">:</span> <span class="s">enterprise</span>
+<span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="c1"># rest of the yaml, per standard spec</span>
+</code></pre></div></div>
+
+<p>Building <a href="https://github.com/travis-ci/docs-travis-ci-com"><code class="highlighter-rouge">travis-ci/docs-travis-ci.com</code></a> repo, however, does not require any special configuration.</p>
+
+<h2 id="define-custom-queues-settings-on-the-workers">Define Custom Queues Settings on The Workers</h2>
+
+<p>To allocate a worker to a particular queue, define the <code class="highlighter-rouge">QUEUE_NAME</code> variable in the worker config. This is located at <code class="highlighter-rouge">etc/default/travis-worker</code>. Update the environment variable to match the queue name specified in your <a href="#Advanced-Configuration-YAML-Example">custom queue configuration yaml</a>. Then restart the worker with:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service travis-worker restart
+</code></pre></div></div>
+<p>The new queue settings will take effect upon restart.</p>
+
+<h2 id="contact-enterprise-support">Contact Enterprise Support</h2>
+
+<p>To get in touch with us, please write a message to 
+<a href="mailto:enterprise@travis-ci.com">enterprise@travis-ci.com</a>. If possible, 
+please include as much of the following as you can:</p>
+
+<ul>
+  <li>Description of the problem - what are you observing?</li>
+  <li>Which steps did you try already?</li>
+  <li>A support bundle (You can get it from <code class="highlighter-rouge">https://yourdomain:8800/support</code>)</li>
+  <li>Log files from all workers (They can be found at <code class="highlighter-rouge">/var/log/upstart/travis-worker.log</code> - please include as many as you can retrieve).</li>
+  <li>If a build failed or errored, a text file of the build log</li>
+</ul>
+
+<p>Have you made any customizations to your setup? While we may be able to see some 
+information (such as hostname, IaaS provider, and license expiration), there 
+are many other things we can’t see which could lead to something not working. 
+Therefore , we’d like to ask you to also answer the questions below in your 
+support request (if applicable):</p>
+
+<ul>
+  <li>How many machines are you using?</li>
+  <li>Do you use configuration management tools (Chef, Puppet)?</li>
+  <li>Which other services do interface with Travis CI Enterprise?</li>
+  <li>Do you use Travis CI Enterprise together with github.com or GitHub Enterprise?</li>
+  <li>If you’re using GitHub Enterprise, which version of it?</li>
+</ul>
+
+<p>We’re looking forward to helping!</p>
+
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

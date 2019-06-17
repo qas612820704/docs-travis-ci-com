@@ -1,0 +1,675 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Stages - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/build-stages.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Build Stages</h1>
+          
+          <div id="toc"></div>
+
+<blockquote class="beta">
+  <p>Build stages are currently in BETA.</p>
+</blockquote>
+
+<h2 id="what-are-build-stages">What are Build Stages?</h2>
+
+<p>Build stages is a way to group jobs, and run jobs in each stage in parallel,
+but run one stage after another sequentially.</p>
+
+<p>In the simplest and most common use case, you can now make one job run <em>only</em>
+if several other, parallel jobs have completed successfully.</p>
+
+<p>Let’s say you want to test a library like a Ruby gem or an npm package against
+various runtime (Ruby or Node.js) versions in <a href="/user/customizing-the-build#Build-Matrix">parallel</a>.
+And you want to release your gem or package <strong>only</strong> if all tests have passed and
+completed successfully. Build stages make this possible.</p>
+
+<p>Of course, there are a lot more, and a lot more complicated use cases than this
+one. You can, for example, also use build stages to warm up dependency caches
+in a single job on a first stage, then use the cache on several jobs on a
+second stage. Or, you could generate a Docker image and push it first, then
+test it on several jobs in parallel. Or, you could run unit tests, deploy to
+staging, run smoke tests and only then deploy to production.</p>
+
+<h2 id="how-do-build-stages-work">How do Build Stages work?</h2>
+
+<p>The concept of build stages is powerful and flexible, yet simple and
+approachable:</p>
+
+<p>Stages group jobs that run in parallel, while their stages run sequentially.</p>
+
+<p>A stage is a group of jobs that are allowed to run in parallel. However, each
+one of the stages runs one after another, and will only proceed if all jobs in
+the previous stage have passed successfully. If one job fails in one stage, all
+other jobs on the same stage will still complete, but all jobs in subsequent
+stages will be canceled, and the build fails.</p>
+
+<p>You can configure as many jobs per stage as you need, and you can have as many
+stages as your delivery process requires.</p>
+
+<p>In the following example, we are running two jobs on the first stage, called
+test, and then run a single third job on the second stage, called deploy:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/3729517/25229553/0868909c-25d1-11e7-9263-b076fdef9288.gif" alt="Example screencast" /></p>
+
+<h2 id="how-to-define-build-stages">How to define Build Stages?</h2>
+
+<p>Here’s how you’d set up the build configuration for this in your .travis.yml
+file:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">include</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">stage</span><span class="pi">:</span> <span class="s">test</span>
+      <span class="na">script</span><span class="pi">:</span> <span class="s">./test 1</span>
+    <span class="pi">-</span> <span class="c1"># stage name not required, will continue to use `test`</span>
+      <span class="na">script</span><span class="pi">:</span> <span class="s">./test 2</span>
+    <span class="pi">-</span> <span class="na">stage</span><span class="pi">:</span> <span class="s">deploy</span>
+      <span class="na">script</span><span class="pi">:</span> <span class="s">./deploy</span>
+</code></pre></div></div>
+
+<p>This configuration creates the build from the screencast above. I.e. it creates
+a build with three jobs, two of which start in parallel in the first stage
+(named <code class="highlighter-rouge">test</code>), while the third job on the second stage (named <code class="highlighter-rouge">deploy</code>) starts
+only after the test stage completes successfully.</p>
+
+<h2 id="naming-your-build-stages">Naming your Build Stages</h2>
+
+<p>Stages are identified by their names, which are composed of names and emojis.
+The first letter of a stage name is automatically capitalized for
+aesthetical reasons, so you don’t have to deal with uppercase strings in your
+<code class="highlighter-rouge">.travis.yml</code> file.</p>
+
+<p>Also, you do not have to specify the name on every single job (as shown in the
+example above). The default stage is <code class="highlighter-rouge">test</code>. Jobs that do not have a stage
+name are assigned to the previous stage name if one exists, or the default
+stage name if there is no previous stage name. This means that if you set the
+stage name on the first job of each stage, the build will work as expected.</p>
+
+<p>For example the following config is equivalent to the one above, but also adds a
+second deploy job to the <code class="highlighter-rouge">deploy</code> stage that deploys to a different target. As
+you can see you only need to specify the stage name once:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">include</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">./test 1</span> <span class="c1"># uses the default stage name "test"</span>
+    <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">./test 2</span>
+    <span class="pi">-</span> <span class="na">stage</span><span class="pi">:</span> <span class="s">deploy</span>
+      <span class="na">script</span><span class="pi">:</span> <span class="s">./deploy target-1</span>
+    <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">./deploy target-2</span>
+</code></pre></div></div>
+
+<h2 id="build-stages-and-build-matrix-expansion">Build Stages and Build Matrix Expansion</h2>
+
+<p><a href="/user/customizing-the-build/#Build-Matrix">Matrix expansion</a>
+means that certain top level configuration keys expand into a matrix of jobs.</p>
+
+<p>For example:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">rvm</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">2.3</span>
+  <span class="pi">-</span> <span class="s">2.4</span>
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">include</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">stage</span><span class="pi">:</span> <span class="s">deploy</span>
+      <span class="na">rvm</span><span class="pi">:</span> <span class="s">2.4</span>
+      <span class="na">env</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">FOO=foo</span>
+      <span class="na">script</span><span class="pi">:</span> <span class="s">./deploy</span>
+</code></pre></div></div>
+
+<p>This will run two jobs on Ruby 2.3 and 2.4 respectively first, and assign these
+to the default stage test. The third job on the deploy stage starts only after
+the test stage has completed successfully.</p>
+
+<blockquote>
+  <p>Each job included in <code class="highlighter-rouge">jobs.include</code> inherits the first value of the array
+that defines a matrix dimension.
+In the example above, without explicitly setting <code class="highlighter-rouge">rvm: 2.4</code>, the <code class="highlighter-rouge">include</code>d job inherits
+<code class="highlighter-rouge">rvm: 2.3</code>.</p>
+</blockquote>
+
+<h2 id="specifying-stage-order-and-conditions">Specifying Stage Order and Conditions</h2>
+
+<p>You can specify the order for stages in the section <code class="highlighter-rouge">stages</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">stages</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">compile</span>
+  <span class="pi">-</span> <span class="s">test</span>
+  <span class="pi">-</span> <span class="s">deploy</span>
+</code></pre></div></div>
+
+<p>This is mostly useful in order to “prepend” a stage to the <code class="highlighter-rouge">test</code> stage that
+jobs resulting from the matrix expansion will be assigned to.</p>
+
+<p>On the same section you can also specify conditions for stages, like so:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">stages</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">compile</span>
+  <span class="pi">-</span> <span class="s">test</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">deploy</span>
+    <span class="na">if</span><span class="pi">:</span> <span class="s">branch = master</span>
+</code></pre></div></div>
+
+<p>See <a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a> for more details on specifying conditions.</p>
+
+<h2 id="build-stages-and-deployments">Build Stages and Deployments</h2>
+
+<p>You can combine build stages with <a href="/user/deployment/">deployments</a>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">include</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">./test 1</span> <span class="c1"># uses the default stage name "test"</span>
+    <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span> <span class="s">./test 2</span>
+    <span class="pi">-</span> <span class="na">stage</span><span class="pi">:</span> <span class="s">deploy</span>
+      <span class="na">script</span><span class="pi">:</span> <span class="s">skip</span>     <span class="c1"># usually you do not want to rerun any tests</span>
+      <span class="na">deploy</span><span class="pi">:</span> <span class="nl">&amp;heroku</span>
+        <span class="na">provider</span><span class="pi">:</span> <span class="s">heroku</span>
+        <span class="c1"># ...</span>
+</code></pre></div></div>
+
+<p>Travis CI does not set or overwrite any of your scripts, and most languages
+have a <a href="/user/languages/ruby/#Default-Build-Script">default test script</a>
+defined. So in many use cases you might want to overwrite the <code class="highlighter-rouge">script</code> step by
+specifying the keyword <code class="highlighter-rouge">skip</code> or <code class="highlighter-rouge">ignore</code>, in other cases you might want to
+overwrite other steps, such as the <code class="highlighter-rouge">install</code> step that runs by default on
+several languages.</p>
+
+<h2 id="data-persistence-between-stages-and-jobs">Data persistence between stages and jobs</h2>
+
+<p>It is important to note that jobs do not share storage, as each job runs in a fresh VM or container.
+If your jobs need to share files (e.g., using build artifacts from the “Test” stage for deployment in the
+subsequent “Deploy” stage), you need to use an external storage mechanism such as S3 and a remote
+<code class="highlighter-rouge">scp</code> server.</p>
+
+<p>See <a href="#Sharing-files-between-jobs-via-S3">the S3 example</a> below.</p>
+
+<h2 id="examples">Examples</h2>
+
+<h3 id="deploying-to-heroku">Deploying to Heroku</h3>
+
+<p>An example with 5 stages:</p>
+
+<ul>
+  <li>Two jobs running unit tests in parallel on stage 1.</li>
+  <li>One job deploying the application to Heroku staging.</li>
+  <li>One job testing the staging deployment on Heroku.</li>
+  <li>One job deploying the application to Heroku production.</li>
+  <li>One job testing the production deployment on Heroku.</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/deploy-heroku/">details here</a>.</p>
+
+<h3 id="deploying-to-rubygems">Deploying to Rubygems</h3>
+
+<p>This example has two build stages:</p>
+
+<ul>
+  <li>Two jobs that run tests against Ruby 2.2 and 2.3 respectively</li>
+  <li>One job that publishes the gem to rubygems.org</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/deploy-rubygems/">details here</a>.</p>
+
+<h3 id="deploying-to-npm">Deploying to NPM</h3>
+
+<p>This example has two build stages:</p>
+
+<ul>
+  <li>Four jobs that run tests against Node versions 4 to 7</li>
+  <li>One job that deploys (releases) the package to NPM</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/deploy-npm/">details here</a>.</p>
+
+<h3 id="deploying-to-github-releases">Deploying to GitHub Releases</h3>
+
+<p>This example has two build stages:</p>
+
+<ul>
+  <li>Four jobs that run tests</li>
+  <li>One job that deploys to GitHub Releases</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/deploy-github-releases/">details here</a>.</p>
+
+<h3 id="combining-build-stages-with-matrix-expansion">Combining build stages with matrix expansion</h3>
+
+<p>This example has two build stages:</p>
+
+<ul>
+  <li>Four test jobs that have been expanded from <code class="highlighter-rouge">rvm</code> and <code class="highlighter-rouge">env</code> matrix keys.</li>
+  <li>One deploy job.</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/matrix-expansion/">details here</a>.</p>
+
+<h3 id="warming-up-a-cache-with-expensive-dependencies">Warming up a cache with expensive dependencies</h3>
+
+<p>This uses two build stages in order to warm up a cache with expensive dependencies, and optimize test run times:</p>
+
+<ul>
+  <li>One job that installs dependencies and warms up the cache for the given branch.</li>
+  <li>Three jobs that run tests, using the cache.</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/warm-cache/">details here</a>.</p>
+
+<h3 id="sharing-a-docker-image">Sharing a Docker image</h3>
+
+<p>This example has 2 build stages:</p>
+
+<ul>
+  <li>One job builds and pushes a Docker image</li>
+  <li>Two jobs that pull and test the image</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/share-docker-image/">details here</a>.</p>
+
+<h3 id="sharing-files-between-jobs-via-s3">Sharing files between jobs via S3</h3>
+
+<p>This uses two build stages, sharing files from build stage 1 in stage 2:</p>
+
+<ul>
+  <li>Two jobs that set up files on S3.</li>
+  <li>One job that uses both files from stage 1.</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/share-files-s3/">details here</a>.</p>
+
+<h3 id="defining-different-steps-on-different-stages">Defining different steps on different stages</h3>
+
+<p>This example has 2 build stages:</p>
+
+<ul>
+  <li>Two jobs that run different suites of tests against Ruby 2.3.1</li>
+  <li>One job that runs a custom deploy script that doesn’t require running the default <code class="highlighter-rouge">install</code> or <code class="highlighter-rouge">script</code> steps</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/define-steps/">details here</a>.</p>
+
+<h3 id="defining-steps-using-yaml-aliases">Defining steps using YAML aliases</h3>
+
+<p>This example uses YAML aliases to define steps. It has 3 build stages:</p>
+
+<ul>
+  <li>Two jobs that run tests against Ruby 2.2 and 2.3</li>
+  <li>One job that deploys to staging</li>
+  <li>Three jobs that runs test against staging</li>
+</ul>
+
+<p>You can find more <a href="/user/build-stages/using-yaml-aliases/">details here</a>.</p>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

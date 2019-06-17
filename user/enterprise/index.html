@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Travis CI Enterprise - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">About Travis CI Enterprise</a></li>
+        
+          <li><a href="/user/enterprise/prerequisites/">System Prerequisites</a></li>
+        
+          <li><a href="/user/enterprise/installation/">Installation</a></li>
+        
+          <li><a href="/user/enterprise/upgrading/">Upgrading</a></li>
+        
+          <li><a href="/user/enterprise/build-images/">Customizing Build Images</a></li>
+        
+          <li><a href="/user/enterprise/custom-queues/">Custom Queues</a></li>
+        
+          <li><a href="/user/enterprise/worker-configuration/">Worker Configuration</a></li>
+        
+          <li><a href="/user/enterprise/worker-cli-commands/">Worker Start & Debug Containers</a></li>
+        
+          <li><a href="/user/enterprise/platform-tips/">Platform Administration Tips</a></li>
+        
+          <li><a href="/user/enterprise/trusty/">Trusty Build Environment</a></li>
+        
+          <li><a href="/user/enterprise/precise/">Precise (Legacy) Build Environment</a></li>
+        
+          <li><a href="/user/enterprise/operations-manual/">Operations Manual</a></li>
+        
+      </ul>
+      <h3>Travis CI Docs</h3>
+      <ul>
+        <li><a href="/">Travis CI Docs</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page"><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/enterprise.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Travis CI Enterprise</h1>
+          
+          <p>Whether your team uses GitHub Flow, feature branches or just commits directly to
+master, Travis CI Enterprise supports your way of shipping code. Travis CIs’
+integration with GitHub gives your team the highest confidence with every change
+made.</p>
+
+<div id="toc"></div>
+
+<p>Travis CI Enterprise is built to integrate with GitHub Enterprise. Using OAuth
+for authentication, we sync your users permissions to make sure they only have
+access to the repositories you want them to have access to. This allows you to
+use LDAP or SAML to manage your users access. Travis CI Enterprise also
+integrates with GitHub.com, allowing you greater control over your security, and
+to scale out your build infrastructure as needed.</p>
+
+<h2 id="why-choose-enterprise-over-travis-cicom">Why choose Enterprise over travis-ci.com?</h2>
+
+<p>Travis CI Enterprise is built to bring the features of the <a href="/user/travis-pro">hosted
+platform</a> to different development processes. Whether you
+would like to run CI builds on-premises with your own servers or in your own
+private cloud, Enterprise is equipped to fit right into your team’s workflow.
+Enterprise-specific features include:</p>
+
+<ul>
+  <li><strong>Support for GitHub Enterprise:</strong> You can use your GitHub Enterprise
+installation as the authentication and authorization layer for Travis CI
+Enterprise, allowing you to leverage your existing LDAP or SAML with no
+extra configuration.</li>
+  <li><strong>Meets security and regulatory requirements:</strong>  With your servers and hosts
+being deployed inside your firewall, you have full ownership and control of
+your data, helping to make it possible to meet the security requirements of
+your company.</li>
+  <li><strong>Customizable images:</strong>  We provide a range of build environment images,
+covering an extensive set of languages, updated with the current dependences
+each community is using. If you or your team need specific changes, they are
+easily customizable, which can then be deployed for use by your team.</li>
+  <li><strong>Hosted on your infrastructure:</strong> Travis CI Enterprise supports the cloud
+or on-premises environment of your choice. This includes AWS, Google Compute
+Engine, VMware, OpenStack and Azure.</li>
+  <li><strong>Scales to your needs:</strong> Your team has the flexibility to spin up as much build
+capacity as needed. If it’s a busy week before a production release, all you
+need to do is to start up some more capacity and let your team test to their
+hearts content.</li>
+  <li><strong>High availability:</strong> Your continuous integration system is just as critical
+ as your GitHub Enterprise. Travis CI Enterprise can run in a multi node setup
+ behind a load balancer, providing safety from hardware failures.</li>
+</ul>
+
+<p>Travis CI Enterprise brings both flexibility to your CI/CD process, and gives
+your entire team visibility and control over the build process. And of course if
+anyone has any questions, our Enterprise-specific support team is here to help
+you out.</p>
+
+<h2 id="trials-and-licensing">Trials and Licensing</h2>
+
+<p>You can get a free trial license over at <a href="https://enterprise.travis-ci.com/">enterprise.travis-
+ci.com</a>. Your trial license will be fully-
+featured so you can get a good picture of how Enterprise will work for your
+team.</p>
+
+<p>If you’re interested in getting started, let us know at <a href="mailto:sales@travis-ci.com">sales@travis-ci.com</a>. We’d love to figure out Travis CI Enterprise can support
+your development workflow best. Or, if you’d like to talk more about support, and onboarding, 
+please email us at <a href="mailto:enterprise@travis-ci.com">enterprise@travis-ci.com</a>. Our
+team looks forward to hearing from you!</p>
+
+<p>To get in touch with us, please write a message to 
+<a href="mailto:enterprise@travis-ci.com">enterprise@travis-ci.com</a>. If possible, 
+please include as much of the following as you can:</p>
+
+<ul>
+  <li>Description of the problem - what are you observing?</li>
+  <li>Which steps did you try already?</li>
+  <li>A support bundle (You can get it from <code class="highlighter-rouge">https://yourdomain:8800/support</code>)</li>
+  <li>Log files from all workers (They can be found at <code class="highlighter-rouge">/var/log/upstart/travis-worker.log</code> - please include as many as you can retrieve).</li>
+  <li>If a build failed or errored, a text file of the build log</li>
+</ul>
+
+<p>Have you made any customizations to your setup? While we may be able to see some 
+information (such as hostname, IaaS provider, and license expiration), there 
+are many other things we can’t see which could lead to something not working. 
+Therefore , we’d like to ask you to also answer the questions below in your 
+support request (if applicable):</p>
+
+<ul>
+  <li>How many machines are you using?</li>
+  <li>Do you use configuration management tools (Chef, Puppet)?</li>
+  <li>Which other services do interface with Travis CI Enterprise?</li>
+  <li>Do you use Travis CI Enterprise together with github.com or GitHub Enterprise?</li>
+  <li>If you’re using GitHub Enterprise, which version of it?</li>
+</ul>
+
+<p>We’re looking forward to helping!</p>
+
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+  <li><a href="/user/enterprise/prerequisites">System Prerequisites</a></li>
+  <li><a href="/user/enterprise/installation">Travis CI Enterprise Installation</a></li>
+  <li><a href="/user/enterprise/build-images">Customizing Build Images</a></li>
+</ul>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

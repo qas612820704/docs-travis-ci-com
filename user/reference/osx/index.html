@@ -1,0 +1,1544 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The OS X Build Environment - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/reference/osx.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">The OS X Build Environment</h1>
+          
+          <h3 id="what-this-guide-covers">What This Guide Covers</h3>
+
+<p>This guide explains what packages, tools and settings are available in the
+Travis OS X CI environment (often referred to as the “CI environment”).</p>
+
+<div id="toc"></div>
+
+<h2 id="overview">Overview</h2>
+
+<p>Travis CI runs builds in virtual machines that are snapshotted before each build
+and rolled back at the end of it. This offers a number of benefits:</p>
+
+<ul>
+  <li>Host OS is not affected by test suites</li>
+  <li>No state persists between runs</li>
+  <li>Passwordless sudo is available</li>
+  <li>It is possible for test suites to install various services via <code class="highlighter-rouge">brew</code>
+and then customize the configuration of those services at the
+beginning of each build.</li>
+</ul>
+
+<p>The environment available to test suites is known as the <em>Travis CI
+environment</em>.</p>
+
+<h2 id="using-os-x">Using OS X</h2>
+
+<p>To use our OS X build infrastructure, add the following to your <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">os</span><span class="pi">:</span> <span class="s">osx</span>
+</code></pre></div></div>
+
+<h2 id="os-x-version">OS X Version</h2>
+
+<p>Travis CI uses OS X 10.12.6 (and Xcode 8.3.3) by default . You can use another version of OS X (and Xcode) by specifying the corresponding <code class="highlighter-rouge">osx_image</code> key from the following table:</p>
+
+<table>
+
+<tr align="left"><th>osx_image value</th><th>Xcode version</th><th>OS X version</th><th>JDK</th></tr>
+
+<tr>
+  <td><code>osx_image: xcode9.3</code></td>
+  <td><a href="#Xcode-9.3">Xcode 9.3</a></td>
+  <td>OS X 10.13</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode9.2</code></td>
+  <td><a href="#Xcode-9.2">Xcode 9.2</a></td>
+  <td>OS X 10.12</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode9.1</code></td>
+  <td><a href="#Xcode-9.1">Xcode 9.1</a></td>
+  <td>OS X 10.12</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode9</code></td>
+  <td><a href="#Xcode-9.0">Xcode 9</a></td>
+  <td>OS X 10.12</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode8.3</code>  <em>Default</em> </td>
+  <td><a href="#Xcode-8.3">Xcode 8.3.3</a></td>
+  <td>OS X 10.12</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode8</code></td>
+  <td><a href="#Xcode-8">Xcode 8gm</a></td>
+  <td>OS X 10.11</td>
+  <td>1.8.0_92-b14</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode7.3</code></td>
+  <td><a href="#Xcode-7.3">Xcode 7.3.1</a></td>
+  <td>OS X 10.11</td>
+  <td>1.8.0_92-b14</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode6.4</code></td>
+  <td><a href="#Xcode-6.4">Xcode 6.4</a></td>
+  <td>OS X 10.10</td>
+  <td>1.8.0_45-b14</td>
+  </tr>
+
+</table>
+
+<h2 id="homebrew">Homebrew</h2>
+
+<p>Homebrew is installed and updated every time the virtual machines are updated.</p>
+
+<blockquote>
+  <p>To speed up your build, try installing your packages <em>without</em> running <code class="highlighter-rouge">brew update</code> first, to see if the Homebrew database on the build image already has what you need.</p>
+</blockquote>
+
+<h3 id="a-note-on-upgrading-packages">A note on upgrading packages</h3>
+
+<p>When upgrading a package with <code class="highlighter-rouge">brew upgrade</code>, the command will fail if the most up-to-date version of the package is already installed (so an upgrade didn’t occur).</p>
+
+<p>Depending on how you are upgrading the package, it could cause the build to error:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew upgrade xctool
+Error: xctool-0.1.16 already installed
+The command "brew upgrade xctool" failed and exited with 1 during .
+
+Your build has been stopped.
+</code></pre></div></div>
+
+<p>Or it can result in the command not found:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xctool: command not found
+</code></pre></div></div>
+
+<p>This is intended behaviour from Homebrew’s side, but you can get around it by using <a href="https://github.com/Homebrew/homebrew-bundle"><code class="highlighter-rouge">brew bundle</code></a> or by first checking if the command needs an upgrade with <code class="highlighter-rouge">brew outdated</code></p>
+
+<h4 id="brew-bundle"><code class="highlighter-rouge">brew bundle</code></h4>
+
+<p><a href="https://github.com/Homebrew/homebrew-bundle"><code class="highlighter-rouge">brew bundle</code></a> uses a <code class="highlighter-rouge">Brewfile</code>, similar to to a Ruby <code class="highlighter-rouge">Gemfile</code> to install multiple dependencies. By creating a <code class="highlighter-rouge">Brewfile</code>:</p>
+
+<div data-file="Brewfile" class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew 'xctool'
+</code></pre></div></div>
+
+<p>You can then update and/or install all of the dependencies with the following command (which will not error if the package is already installed and up to date):</p>
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">brew update &amp;&amp; brew bundle</span>
+</code></pre></div></div>
+
+<h4 id="brew-outdated"><code class="highlighter-rouge">brew outdated</code></h4>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">brew update</span>
+  <span class="pi">-</span> <span class="s">brew outdated &lt;package-name&gt; || brew upgrade &lt;package-name&gt;</span>
+</code></pre></div></div>
+
+<p>For example, if you always want the latest version of xctool, you can run this:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">brew update</span>
+  <span class="pi">-</span> <span class="s">brew outdated xctool || brew upgrade xctool</span>
+</code></pre></div></div>
+
+<h2 id="file-system">File System</h2>
+
+<p>VMs running OS X use the default file system, HFS+.
+This file system is case-insensitive, and returns entities within a
+directory alphabetically.</p>
+
+<h2 id="jdk-and-os-x">JDK and OS X</h2>
+
+<p>The JDK available in the OS X environment is tied to the Xcode version selected for your build, it is not set independently. To use a particular JDK for your build, be sure to select an <a href="#OS-X-Version">OS X image</a> which includes the version of Java that you need.</p>
+
+<table>
+
+<tr align="left"><th>osx_image value</th><th>Xcode version</th><th>OS X version</th><th>JDK</th></tr>
+
+<tr>
+  <td><code>osx_image: xcode9.3</code></td>
+  <td><a href="#Xcode-9.3">Xcode 9.3</a></td>
+  <td>OS X 10.13</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode9.2</code></td>
+  <td><a href="#Xcode-9.2">Xcode 9.2</a></td>
+  <td>OS X 10.12</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode9.1</code></td>
+  <td><a href="#Xcode-9.1">Xcode 9.1</a></td>
+  <td>OS X 10.12</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode9</code></td>
+  <td><a href="#Xcode-9.0">Xcode 9</a></td>
+  <td>OS X 10.12</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode8.3</code>  <em>Default</em> </td>
+  <td><a href="#Xcode-8.3">Xcode 8.3.3</a></td>
+  <td>OS X 10.12</td>
+  <td>1.8.0_112-b16</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode8</code></td>
+  <td><a href="#Xcode-8">Xcode 8gm</a></td>
+  <td>OS X 10.11</td>
+  <td>1.8.0_92-b14</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode7.3</code></td>
+  <td><a href="#Xcode-7.3">Xcode 7.3.1</a></td>
+  <td>OS X 10.11</td>
+  <td>1.8.0_92-b14</td>
+  </tr>
+
+<tr>
+  <td><code>osx_image: xcode6.4</code></td>
+  <td><a href="#Xcode-6.4">Xcode 6.4</a></td>
+  <td>OS X 10.10</td>
+  <td>1.8.0_45-b14</td>
+  </tr>
+
+</table>
+
+<h2 id="compilers-and-build-toolchain">Compilers and Build toolchain</h2>
+
+<ul>
+  <li>automake 1.15.1</li>
+  <li>maven 3.5.0</li>
+  <li>mercurial 4.3.3</li>
+  <li>pkg-config 0.29.2</li>
+  <li>wget 1.19.1_1</li>
+  <li>xctool 0.3.3</li>
+  <li>cmake 3.9.4</li>
+</ul>
+
+<h2 id="languages">Languages</h2>
+
+<ul>
+  <li>go 1.9.1</li>
+</ul>
+
+<h2 id="services">Services</h2>
+
+<ul>
+  <li>postgis 2.4.0</li>
+  <li>postgresql 9.6.5</li>
+</ul>
+
+<h2 id="runtimes">Runtimes</h2>
+
+<p>Every worker has at least one version of Ruby, Java and Python to accommodate
+projects that may need one of those runtimes during the build.</p>
+
+<h2 id="environment-variables">Environment variables</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">CI=true</code></li>
+  <li><code class="highlighter-rouge">TRAVIS=true</code></li>
+  <li><code class="highlighter-rouge">USER=travis</code> (<strong>do not depend on this value</strong>)</li>
+  <li><code class="highlighter-rouge">HOME=/Users/travis</code> (<strong>do not depend on this value</strong>)</li>
+</ul>
+
+<p>Additionally, Travis CI sets environment variables you can use in your build,
+e.g.  to tag the build, or to run post-build deployments.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">TRAVIS_BRANCH</code>:For builds not triggered by a pull request this is the
+name of the branch currently being built; whereas for builds triggered
+by a pull request this is the name of the branch targeted by the pull
+request (in many cases this will be <code class="highlighter-rouge">master</code>).</li>
+  <li><code class="highlighter-rouge">TRAVIS_BUILD_DIR</code>: The absolute path to the directory where the repository
+being built has been copied on the worker.</li>
+  <li><code class="highlighter-rouge">TRAVIS_BUILD_ID</code>: The id of the current build that Travis CI uses internally.</li>
+  <li><code class="highlighter-rouge">TRAVIS_BUILD_NUMBER</code>: The number of the current build (for example, “4”).</li>
+  <li><code class="highlighter-rouge">TRAVIS_COMMIT</code>: The commit that the current build is testing.</li>
+  <li><code class="highlighter-rouge">TRAVIS_COMMIT_RANGE</code>: The range of commits that were included in the push
+or pull request. (Note that this is empty for builds triggered by the initial commit of a new branch.)</li>
+  <li><code class="highlighter-rouge">TRAVIS_JOB_ID</code>: The id of the current job that Travis CI uses internally.</li>
+  <li><code class="highlighter-rouge">TRAVIS_JOB_NUMBER</code>: The number of the current job (for example, “4.1”).</li>
+  <li><code class="highlighter-rouge">TRAVIS_PULL_REQUEST</code>: The pull request number if the current job is a pull
+request, “false” if it’s not a pull request.</li>
+  <li><code class="highlighter-rouge">TRAVIS_SECURE_ENV_VARS</code>: Whether or not secure environment vars are being
+used. This value is either “true” or “false”.</li>
+  <li><code class="highlighter-rouge">TRAVIS_REPO_SLUG</code>: The slug (in form: <code class="highlighter-rouge">owner_name/repo_name</code>) of the
+repository currently being built. (for example, “travis-ci/travis-build”).</li>
+  <li><code class="highlighter-rouge">TRAVIS_OS_NAME</code>: On multi-OS builds, this value indicates the platform the job is running on.
+Values are <code class="highlighter-rouge">linux</code> and <code class="highlighter-rouge">osx</code> currently, to be extended in the future.</li>
+  <li><code class="highlighter-rouge">TRAVIS_TAG</code>: If the current build is for a git tag, this variable is set to the tag’s name.</li>
+</ul>
+
+<h2 id="maven-version">Maven version</h2>
+
+<p>Stock Apache Maven 3.</p>
+
+<h2 id="ruby-versionsimplementations">Ruby versions/implementations</h2>
+
+<ul>
+  <li>
+    <p>system (depends on OS X version) – You need to use <code class="highlighter-rouge">sudo</code> to install gems with this ruby</p>
+  </li>
+  <li>ruby-1.9.3-p551</li>
+  <li>ruby-2.0.0-p643</li>
+  <li>ruby-2.0.0-p648 (default)</li>
+  <li>ruby-2.1.5</li>
+  <li>ruby-2.1.10</li>
+  <li>ruby-2.2.1</li>
+  <li>ruby-2.2.4</li>
+  <li>ruby-2.2.5</li>
+  <li>ruby-2.3.0</li>
+  <li>ruby-2.3.1</li>
+  <li>jruby-1.7.19</li>
+  <li>jruby-1.7.23</li>
+  <li>jruby-1.7.25</li>
+  <li>jruby-9.0.5.0</li>
+  <li>jruby-9.1.0.0</li>
+</ul>
+
+<p>Rubies are built using <a href="http://rvm.io/">RVM</a> that is installed per-user.</p>
+
+<h2 id="bundler-version">Bundler version</h2>
+
+<p>Recent 1.7 version (usually the most recent)</p>
+
+<h2 id="gems-in-the-global-gem-set">Gems in the global gem set</h2>
+
+<ul>
+  <li>bundler</li>
+  <li>rake</li>
+  <li>cocoapods</li>
+</ul>
+
+<h2 id="python-related-tools">Python related tools</h2>
+
+<ul>
+  <li>pyenv (via homebrew)</li>
+  <li>virtualenv (via pip)</li>
+  <li>numpy (via pip)</li>
+  <li>scipy (via pip)</li>
+  <li>tox (via pip)</li>
+</ul>
+
+<h2 id="xcode-version">Xcode version</h2>
+
+<p>Xcode 8.3.3 is installed with all available simulators and SDKs.
+Command Line Tools are also installed.</p>
+
+<h3>Xcode 9.3</h3>
+
+<p>Xcode 9.3 is available by adding <code class="highlighter-rouge">osx_image: xcode9.3</code> to your .travis.yml.</p>
+
+<p>Our Xcode 9.3 images have the following SDKs preinstalled:</p>
+
+<ul>
+  <li>
+    <p>macosx10.13</p>
+  </li>
+  <li>
+    <p>iphoneos11.3</p>
+  </li>
+  <li>
+    <p>iphonesimulator11.3</p>
+  </li>
+  <li>
+    <p>appletvos11.2</p>
+  </li>
+  <li>
+    <p>appletvsimulator11.3</p>
+  </li>
+  <li>
+    <p>watchos4.3</p>
+  </li>
+  <li>
+    <p>watchsimulator4.3</p>
+  </li>
+</ul>
+
+<p>The Xcode 9.3 image also comes with the following simulators:</p>
+
+<ul>
+  <li>
+    <p>iOS 8.1</p>
+  </li>
+  <li>
+    <p>iOS 8.2</p>
+  </li>
+  <li>
+    <p>iOS 8.3</p>
+  </li>
+  <li>
+    <p>iOS 8.4</p>
+  </li>
+  <li>
+    <p>iOS 9.0</p>
+  </li>
+  <li>
+    <p>iOS 9.1</p>
+  </li>
+  <li>
+    <p>iOS 9.2</p>
+  </li>
+  <li>
+    <p>iOS 9.3</p>
+  </li>
+  <li>
+    <p>iOS 10.0</p>
+  </li>
+  <li>
+    <p>iOS 10.1</p>
+  </li>
+  <li>
+    <p>iOS 10.2</p>
+  </li>
+  <li>
+    <p>iOS 10.3</p>
+  </li>
+  <li>
+    <p>iOS 11.0</p>
+  </li>
+  <li>
+    <p>iOS 11.1</p>
+  </li>
+  <li>
+    <p>iOS 11.2</p>
+  </li>
+  <li>
+    <p>iOS 11.3</p>
+  </li>
+  <li>
+    <p>tvOS 9.0</p>
+  </li>
+  <li>
+    <p>tvOS 9.1</p>
+  </li>
+  <li>
+    <p>tvOS 9.2</p>
+  </li>
+  <li>
+    <p>tvOS 10.0</p>
+  </li>
+  <li>
+    <p>tvOS 10.1</p>
+  </li>
+  <li>
+    <p>tvOS 10.2</p>
+  </li>
+  <li>
+    <p>tvOS 11.0</p>
+  </li>
+  <li>
+    <p>tvOS 11.1</p>
+  </li>
+  <li>
+    <p>tvOS 11.2</p>
+  </li>
+  <li>
+    <p>tvOS 11.3</p>
+  </li>
+  <li>
+    <p>watchOS 2.0</p>
+  </li>
+  <li>
+    <p>watchOS 2.1</p>
+  </li>
+  <li>
+    <p>watchOS 2.2</p>
+  </li>
+  <li>
+    <p>watchOS 3.2</p>
+  </li>
+  <li>
+    <p>watchOS 4.0</p>
+  </li>
+  <li>
+    <p>watchOS 4.1</p>
+  </li>
+  <li>
+    <p>watchOS 4.2</p>
+  </li>
+  <li>
+    <p>watchOS 4.3</p>
+  </li>
+</ul>
+
+<h3>Xcode 9.2</h3>
+
+<p>Xcode 9.2 is available by adding <code class="highlighter-rouge">osx_image: xcode9.2</code> to your .travis.yml.</p>
+
+<p>Our Xcode 9.2 images have the following SDKs preinstalled:</p>
+
+<ul>
+  <li>
+    <p>macosx10.13</p>
+  </li>
+  <li>
+    <p>iphoneos11.2</p>
+  </li>
+  <li>
+    <p>iphonesimulator11.2</p>
+  </li>
+  <li>
+    <p>appletvos11.2</p>
+  </li>
+  <li>
+    <p>appletvsimulator11.2</p>
+  </li>
+  <li>
+    <p>watchos4.2</p>
+  </li>
+  <li>
+    <p>watchsimulator4.2</p>
+  </li>
+</ul>
+
+<p>The Xcode 9.2 image also comes with the following simulators:</p>
+
+<ul>
+  <li>
+    <p>iOS 8.1</p>
+  </li>
+  <li>
+    <p>iOS 8.2</p>
+  </li>
+  <li>
+    <p>iOS 8.3</p>
+  </li>
+  <li>
+    <p>iOS 8.4</p>
+  </li>
+  <li>
+    <p>iOS 9.0</p>
+  </li>
+  <li>
+    <p>iOS 9.1</p>
+  </li>
+  <li>
+    <p>iOS 9.2</p>
+  </li>
+  <li>
+    <p>iOS 9.3</p>
+  </li>
+  <li>
+    <p>iOS 10.0</p>
+  </li>
+  <li>
+    <p>iOS 10.1</p>
+  </li>
+  <li>
+    <p>iOS 10.2</p>
+  </li>
+  <li>
+    <p>iOS 10.3</p>
+  </li>
+  <li>
+    <p>iOS 11.0</p>
+  </li>
+  <li>
+    <p>iOS 11.1</p>
+  </li>
+  <li>
+    <p>iOS 11.2</p>
+  </li>
+  <li>
+    <p>tvOS 9.0</p>
+  </li>
+  <li>
+    <p>tvOS 9.1</p>
+  </li>
+  <li>
+    <p>tvOS 9.2</p>
+  </li>
+  <li>
+    <p>tvOS 10.0</p>
+  </li>
+  <li>
+    <p>tvOS 10.1</p>
+  </li>
+  <li>
+    <p>tvOS 10.2</p>
+  </li>
+  <li>
+    <p>tvOS 11.0</p>
+  </li>
+  <li>
+    <p>tvOS 11.1</p>
+  </li>
+  <li>
+    <p>tvOS 11.2</p>
+  </li>
+  <li>
+    <p>watchOS 2.0</p>
+  </li>
+  <li>
+    <p>watchOS 2.1</p>
+  </li>
+  <li>
+    <p>watchOS 2.2</p>
+  </li>
+  <li>
+    <p>watchOS 3.2</p>
+  </li>
+  <li>
+    <p>watchOS 4.0</p>
+  </li>
+  <li>
+    <p>watchOS 4.1</p>
+  </li>
+  <li>
+    <p>watchOS 4.2</p>
+  </li>
+</ul>
+
+<h3>Xcode 9.1</h3>
+
+<p>Xcode 9.1 is available by adding <code class="highlighter-rouge">osx_image: xcode9.1</code> to your .travis.yml.</p>
+
+<p>Our Xcode 9.1 images have the following SDKs preinstalled:</p>
+
+<ul>
+  <li>
+    <p>macosx10.13</p>
+  </li>
+  <li>
+    <p>iphoneos11.1</p>
+  </li>
+  <li>
+    <p>iphonesimulator11.1</p>
+  </li>
+  <li>
+    <p>appletvos11.1</p>
+  </li>
+  <li>
+    <p>appletvsimulator11.1</p>
+  </li>
+  <li>
+    <p>watchos4.1</p>
+  </li>
+  <li>
+    <p>watchsimulator4.1</p>
+  </li>
+</ul>
+
+<p>The Xcode 9.1 image also comes with the following simulators:</p>
+
+<ul>
+  <li>
+    <p>iOS 8.1</p>
+  </li>
+  <li>
+    <p>iOS 8.2</p>
+  </li>
+  <li>
+    <p>iOS 8.3</p>
+  </li>
+  <li>
+    <p>iOS 8.4</p>
+  </li>
+  <li>
+    <p>iOS 9.0</p>
+  </li>
+  <li>
+    <p>iOS 9.1</p>
+  </li>
+  <li>
+    <p>iOS 9.2</p>
+  </li>
+  <li>
+    <p>iOS 9.3</p>
+  </li>
+  <li>
+    <p>iOS 10.0</p>
+  </li>
+  <li>
+    <p>iOS 10.1</p>
+  </li>
+  <li>
+    <p>iOS 10.2</p>
+  </li>
+  <li>
+    <p>iOS 10.3</p>
+  </li>
+  <li>
+    <p>iOS 11.0</p>
+  </li>
+  <li>
+    <p>iOS 11.1</p>
+  </li>
+  <li>
+    <p>tvOS 9.0</p>
+  </li>
+  <li>
+    <p>tvOS 9.1</p>
+  </li>
+  <li>
+    <p>tvOS 9.2</p>
+  </li>
+  <li>
+    <p>tvOS 10.0</p>
+  </li>
+  <li>
+    <p>tvOS 10.1</p>
+  </li>
+  <li>
+    <p>tvOS 10.2</p>
+  </li>
+  <li>
+    <p>tvOS 11.0</p>
+  </li>
+  <li>
+    <p>tvOS 11.1</p>
+  </li>
+  <li>
+    <p>watchOS 2.0</p>
+  </li>
+  <li>
+    <p>watchOS 2.1</p>
+  </li>
+  <li>
+    <p>watchOS 2.2</p>
+  </li>
+  <li>
+    <p>watchOS 3.2</p>
+  </li>
+  <li>
+    <p>watchOS 4.0</p>
+  </li>
+  <li>
+    <p>watchOS 4.1</p>
+  </li>
+</ul>
+
+<h3>Xcode 9.0</h3>
+
+<p>Xcode 9 is available by adding <code class="highlighter-rouge">osx_image: xcode9</code> to your .travis.yml.</p>
+
+<p>Our Xcode 9 images have the following SDKs preinstalled:</p>
+
+<ul>
+  <li>
+    <p>macosx10.13</p>
+  </li>
+  <li>
+    <p>iphoneos11.0</p>
+  </li>
+  <li>
+    <p>iphonesimulator11.0</p>
+  </li>
+  <li>
+    <p>appletvos11.0</p>
+  </li>
+  <li>
+    <p>appletvsimulator11.0</p>
+  </li>
+  <li>
+    <p>watchos4.0</p>
+  </li>
+  <li>
+    <p>watchsimulator4.0</p>
+  </li>
+</ul>
+
+<p>The Xcode 9 image also comes with the following simulators:</p>
+
+<ul>
+  <li>
+    <p>iOS 8.1</p>
+  </li>
+  <li>
+    <p>iOS 8.2</p>
+  </li>
+  <li>
+    <p>iOS 8.3</p>
+  </li>
+  <li>
+    <p>iOS 8.4</p>
+  </li>
+  <li>
+    <p>iOS 9.0</p>
+  </li>
+  <li>
+    <p>iOS 9.1</p>
+  </li>
+  <li>
+    <p>iOS 9.2</p>
+  </li>
+  <li>
+    <p>iOS 9.3</p>
+  </li>
+  <li>
+    <p>iOS 10.0</p>
+  </li>
+  <li>
+    <p>iOS 10.1</p>
+  </li>
+  <li>
+    <p>iOS 10.2</p>
+  </li>
+  <li>
+    <p>iOS 10.3</p>
+  </li>
+  <li>
+    <p>iOS 11.0</p>
+  </li>
+  <li>
+    <p>tvOS 9.0</p>
+  </li>
+  <li>
+    <p>tvOS 9.1</p>
+  </li>
+  <li>
+    <p>tvOS 9.2</p>
+  </li>
+  <li>
+    <p>tvOS 10.0</p>
+  </li>
+  <li>
+    <p>tvOS 10.1</p>
+  </li>
+  <li>
+    <p>tvOS 10.2</p>
+  </li>
+  <li>
+    <p>tvOS 11.0</p>
+  </li>
+  <li>
+    <p>watchOS 2.0</p>
+  </li>
+  <li>
+    <p>watchOS 2.1</p>
+  </li>
+  <li>
+    <p>watchOS 2.2</p>
+  </li>
+  <li>
+    <p>watchOS 3.2</p>
+  </li>
+  <li>
+    <p>watchOS 4.0</p>
+  </li>
+</ul>
+
+<h3>Xcode 8.3</h3>
+
+<p>Xcode 8.3.3 is available by adding <code class="highlighter-rouge">osx_image: xcode8.3</code> to your .travis.yml.</p>
+
+<p>– <strong>Default when no other <code class="highlighter-rouge">osx_image:</code> is specified</strong></p>
+
+<p>Our Xcode 8.3.3 images have the following SDKs preinstalled:</p>
+
+<ul>
+  <li>
+    <p>macosx10.12</p>
+  </li>
+  <li>
+    <p>iphoneos10.3</p>
+  </li>
+  <li>
+    <p>iphonesimulator10.3</p>
+  </li>
+  <li>
+    <p>appletvos10.2</p>
+  </li>
+  <li>
+    <p>appletvsimulator10.2</p>
+  </li>
+  <li>
+    <p>watchos3.2</p>
+  </li>
+  <li>
+    <p>watchsimulator3.2</p>
+  </li>
+</ul>
+
+<p>The Xcode 8.3.3 image also comes with the following simulators:</p>
+
+<ul>
+  <li>
+    <p>iOS 8.1</p>
+  </li>
+  <li>
+    <p>iOS 8.2</p>
+  </li>
+  <li>
+    <p>iOS 8.3</p>
+  </li>
+  <li>
+    <p>iOS 8.4</p>
+  </li>
+  <li>
+    <p>iOS 9.0</p>
+  </li>
+  <li>
+    <p>iOS 9.1</p>
+  </li>
+  <li>
+    <p>iOS 9.2</p>
+  </li>
+  <li>
+    <p>iOS 9.3</p>
+  </li>
+  <li>
+    <p>iOS 10.0</p>
+  </li>
+  <li>
+    <p>iOS 10.1</p>
+  </li>
+  <li>
+    <p>iOS 10.2</p>
+  </li>
+  <li>
+    <p>iOS 10.3</p>
+  </li>
+  <li>
+    <p>tvOS 9.0</p>
+  </li>
+  <li>
+    <p>tvOS 9.1</p>
+  </li>
+  <li>
+    <p>tvOS 9.2</p>
+  </li>
+  <li>
+    <p>tvOS 10.0</p>
+  </li>
+  <li>
+    <p>tvOS 10.1</p>
+  </li>
+  <li>
+    <p>tvOS 10.2</p>
+  </li>
+  <li>
+    <p>watchOS 2.0</p>
+  </li>
+  <li>
+    <p>watchOS 2.1</p>
+  </li>
+  <li>
+    <p>watchOS 2.2</p>
+  </li>
+  <li>
+    <p>watchOS 3.2</p>
+  </li>
+</ul>
+
+<h3>Xcode 8</h3>
+
+<p>Xcode 8gm is available by adding <code class="highlighter-rouge">osx_image: xcode8</code> to your .travis.yml.</p>
+
+<p>Our Xcode 8gm images have the following SDKs preinstalled:</p>
+
+<ul>
+  <li>
+    <p>macosx10.11</p>
+  </li>
+  <li>
+    <p>iphoneos10.0</p>
+  </li>
+  <li>
+    <p>iphonesimulator10.0</p>
+  </li>
+  <li>
+    <p>appletvos10.0</p>
+  </li>
+  <li>
+    <p>appletvsimulator10.0</p>
+  </li>
+  <li>
+    <p>watchos3.0</p>
+  </li>
+  <li>
+    <p>watchsimulator3.0</p>
+  </li>
+  <li>
+    <p>iphoneos9.3</p>
+  </li>
+  <li>
+    <p>iphonesimulator9.3</p>
+  </li>
+  <li>
+    <p>appletvos9.2</p>
+  </li>
+  <li>
+    <p>appletvsimulator9.2</p>
+  </li>
+  <li>
+    <p>watchos2.2</p>
+  </li>
+  <li>
+    <p>watchsimulator2.2</p>
+  </li>
+</ul>
+
+<p>The Xcode 8gm image also comes with the following simulators:</p>
+
+<ul>
+  <li>
+    <p>iOS 10.0</p>
+  </li>
+  <li>
+    <p>watchOS 3.0</p>
+  </li>
+  <li>
+    <p>tvOS 10.0</p>
+  </li>
+  <li>
+    <p>iOS 8.1</p>
+  </li>
+  <li>
+    <p>iOS 8.2</p>
+  </li>
+  <li>
+    <p>iOS 8.3</p>
+  </li>
+  <li>
+    <p>iOS 8.4</p>
+  </li>
+  <li>
+    <p>iOS 9.0</p>
+  </li>
+  <li>
+    <p>iOS 9.1</p>
+  </li>
+  <li>
+    <p>iOS 9.2</p>
+  </li>
+  <li>
+    <p>iOS 9.3</p>
+  </li>
+  <li>
+    <p>watchOS 2.0</p>
+  </li>
+  <li>
+    <p>watchOS 2.1</p>
+  </li>
+  <li>
+    <p>watchOS 2.2</p>
+  </li>
+  <li>
+    <p>tvOS 9.0</p>
+  </li>
+  <li>
+    <p>tvOS 9.1</p>
+  </li>
+  <li>
+    <p>tvOS 9.2</p>
+  </li>
+</ul>
+
+<h3>Xcode 7.3</h3>
+
+<p>Xcode 7.3.1 is available by adding <code class="highlighter-rouge">osx_image: xcode7.3</code> to your .travis.yml.</p>
+
+<p>Our Xcode 7.3.1 images have the following SDKs preinstalled:</p>
+
+<ul>
+  <li>
+    <p>macosx10.11</p>
+  </li>
+  <li>
+    <p>iphoneos9.3</p>
+  </li>
+  <li>
+    <p>iphonesimulator9.3</p>
+  </li>
+  <li>
+    <p>appletvos9.2</p>
+  </li>
+  <li>
+    <p>appletvsimulator9.2</p>
+  </li>
+  <li>
+    <p>watchos2.2</p>
+  </li>
+  <li>
+    <p>watchsimulator2.2</p>
+  </li>
+</ul>
+
+<p>The Xcode 7.3.1 image also comes with the following simulators:</p>
+
+<ul>
+  <li>
+    <p>iOS 8.1</p>
+  </li>
+  <li>
+    <p>iOS 8.2</p>
+  </li>
+  <li>
+    <p>iOS 8.3</p>
+  </li>
+  <li>
+    <p>iOS 8.4</p>
+  </li>
+  <li>
+    <p>iOS 9.0</p>
+  </li>
+  <li>
+    <p>iOS 9.1</p>
+  </li>
+  <li>
+    <p>iOS 9.2</p>
+  </li>
+  <li>
+    <p>iOS 9.3</p>
+  </li>
+  <li>
+    <p>watchOS 2.0</p>
+  </li>
+  <li>
+    <p>watchOS 2.1</p>
+  </li>
+  <li>
+    <p>watchOS 2.2</p>
+  </li>
+  <li>
+    <p>tvOS 9.0</p>
+  </li>
+  <li>
+    <p>tvOS 9.1</p>
+  </li>
+  <li>
+    <p>tvOS 9.2</p>
+  </li>
+</ul>
+
+<h3>Xcode 6.4</h3>
+
+<p>Xcode 6.4 is available by adding <code class="highlighter-rouge">osx_image: xcode6.4</code> to your .travis.yml.</p>
+
+<p>Our Xcode 6.4 images have the following SDKs preinstalled:</p>
+
+<ul>
+  <li>
+    <p>macosx10.9</p>
+  </li>
+  <li>
+    <p>macosx10.10</p>
+  </li>
+  <li>
+    <p>iphoneos8.4</p>
+  </li>
+  <li>
+    <p>iphonesimulator8.4</p>
+  </li>
+</ul>
+
+<p>The Xcode 6.4 image also comes with the following simulators:</p>
+
+<ul>
+  <li>
+    <p>iOS 7.1</p>
+  </li>
+  <li>
+    <p>iOS 8.1</p>
+  </li>
+  <li>
+    <p>iOS 8.2</p>
+  </li>
+  <li>
+    <p>iOS 8.4</p>
+  </li>
+</ul>
+
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

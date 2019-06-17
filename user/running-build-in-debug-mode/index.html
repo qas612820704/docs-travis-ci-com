@@ -1,0 +1,548 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Running Build in Debug Mode - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/running-build-in-debug-mode.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Running Build in Debug Mode</h1>
+          
+          <div id="toc"></div>
+
+<p>If you are having trouble resolving complex build errors, or you suspect there are
+significant differences between your local development environment and
+the Travis CI build environment, you can restart builds in debug mode
+to get shell access to the virtual machine or container.</p>
+
+<h2 id="restarting-a-job-in-debug-mode">Restarting a job in debug mode</h2>
+
+<p>The “Debug build” or “Debug job” button is available on the upper right corner of
+the build and job pages.</p>
+
+<p><img src="/images/debug_buttons.png" alt="Screenshot of debug build/job buttons" /></p>
+
+<h3 id="restarting-a-job-in-debug-mode-via-api">Restarting a job in debug mode via API</h3>
+
+<p>To restart a job in debug mode via API, send a <code class="highlighter-rouge">POST</code> request to the job’s <code class="highlighter-rouge">debug</code> endpoint.
+This request needs to be authenticated by adding your <a href="/user/triggering-builds/">Travis CI API token</a>
+to the <code class="highlighter-rouge">Authorization</code> header. You can find your API token in your Travis CI Profile page
+for <a href="https://travis-ci.com/profile">public projects</a>.</p>
+
+<p>As public repositories do not show the Debug button, this is the only way to restart builds
+in the debug mode for public repositories.</p>
+
+<pre><code class="language-sh-session">$ curl -s -X POST \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "Travis-API-Version: 3" \
+  -H "Authorization: token ********************" \
+  -d "{\"quiet\": true}" \
+  https://api.travis-ci.com/job/${id}/debug
+</code></pre>
+
+<p>(Note the literal word <code class="highlighter-rouge">token</code> must be present before the actual authorization token.)</p>
+
+<h4 id="finding-the-job-id">Finding the job ID</h4>
+
+<p>The <code class="highlighter-rouge">${id}</code> is a job ID, not a build ID. For example, the ID <code class="highlighter-rouge">248927956</code> in the URL <a href="https://travis-ci.org/travis-ci/docs-travis-ci-com/builds/248927956"><code class="highlighter-rouge">https://travis-ci.org/travis-ci/docs-travis-ci-com/builds/248927956</code></a> is a build ID. To obtain the corresponding job ID, click the <em>View config</em> button on that page, and the URL will change into <a href="https://travis-ci.org/travis-ci/docs-travis-ci-com/jobs/248927957/config"><code class="highlighter-rouge">https://travis-ci.org/travis-ci/docs-travis-ci-com/jobs/248927957/config</code></a>, showing the job ID <code class="highlighter-rouge">248927957</code>. Alternatively, you can obtain job IDs corresponding to a build ID <a href="https://docs.travis-ci.com/api/#builds">via the API</a>.</p>
+
+<h4 id="echoing-debug-sessions-output-to-the-logs">Echoing debug session’s output to the logs</h4>
+
+<p>To show any command input and output you see while connected to the VM running in the debug
+mode, pass an empty JSON object (<code class="highlighter-rouge">{}</code>) in the payload instead.</p>
+
+<h2 id="connecting-to-the-job-running-in-the-debug-mode">Connecting to the job running in the debug mode</h2>
+
+<p>When the job starts in the debug mode, it will go through the initial steps, including setting up language
+run times and caches (if applicable) and installing debug utilities.</p>
+
+<p>When it is ready for your connection, you will see:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Debug build initiated by BanzaiMan
+Setting up debug tools.
+Preparing debug sessions.
+Use the following SSH command to access the interactive debugging environment:
+ssh DwBhYvwgoBQ2dr7iQ5ZH34wGt@ny2.tmate.io
+This build is running in quiet mode. No session output will be displayed.
+This debug build will stay alive for 30 minutes.
+</code></pre></div></div>
+
+<p>Running the <code class="highlighter-rouge">ssh</code> command above will drop you in on a live VM.</p>
+
+<h3 id="security-considerations">Security considerations</h3>
+
+<p>At this time, there is no authentication beyond the <code class="highlighter-rouge">ssh</code> command displayed in
+the logs.</p>
+
+<p>You may choose to share the <code class="highlighter-rouge">ssh</code> command with another person who might be
+able to help you out in debugging the build.</p>
+
+<p>However, this also means that anyone who can see the command while the debug
+VM is live can connect to the debug VM and potentially look at your secrets.
+This is the reason that the feature is not available by default on public
+repositories.</p>
+
+<p>Do note that when another <code class="highlighter-rouge">ssh</code> connection starts, that new connection
+will be attached to the session you are already in.
+When you are already connected to the live debug VM, and a new user connects
+to the VM using the same <code class="highlighter-rouge">ssh</code> command, you can see what the new user is doing.
+For example, if the new user runs <code class="highlighter-rouge">env</code> to list all the environment variables,
+you can see the output on your terminal as well.
+This gives a clear indication that your secrets are at risk, and you
+should take measures to mitigate any possible damage.</p>
+
+<p>If you suspect malicious activity, you can either close all your windows, or cancel
+the debug job on the Web UI to disconnect the attacker.</p>
+
+<h3 id="permission-denied-error-message">“Permission denied” error message</h3>
+
+<p>Upon entering the <code class="highlighter-rouge">ssh</code> command, you may see an error message such as this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ssh DwBhYvwgoBQ2dr7iQ5ZH34wGt@ny2.tmate.io
+The authenticity of host 'ny2.tmate.io (104.236.9.236)' can't be established.
+ECDSA key fingerprint is c7:a1:51:36:d2:bb:35:4b:0a:1a:c0:43:97:74:ea:42.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ny2.tmate.io,104.236.9.236' (ECDSA) to the list of known hosts.
+Permission denied (publickey).
+</code></pre></div></div>
+
+<p>If you see this, run the command <code class="highlighter-rouge">ssh-keygen</code> (go through the prompts), and try again.</p>
+
+<h2 id="things-to-do-once-you-are-inside-the-debug-vm">Things to do once you are inside the debug VM</h2>
+
+<p>Once inside the debug VM, you are able to explore.</p>
+
+<p>You are in a <a href="https://tmate.io/"><code class="highlighter-rouge">tmate</code></a> session, at the point
+where your <code class="highlighter-rouge">before_install</code> (even if it is not defined) phase is about to
+start.</p>
+
+<h3 id="convenience-bash-functions">Convenience <code class="highlighter-rouge">bash</code> functions</h3>
+
+<p>Various build phases are defined in convenience <code class="highlighter-rouge">bash</code> functions named
+<code class="highlighter-rouge">travis_run_*</code> (e.g., <code class="highlighter-rouge">travis_run_before_install</code>, <code class="highlighter-rouge">travis_run_install</code>).
+Run these build phases to observe your build:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>travis_run_before_install
+travis_run_install
+travis_run_before_script
+travis_run_script
+travis_run_after_success
+travis_run_after_failure
+travis_run_after_script
+</code></pre></div></div>
+
+<h3 id="basic-tmate-features">Basic <code class="highlighter-rouge">tmate</code> features</h3>
+
+<p><code class="highlighter-rouge">tmate</code> is a fork of <a href="https://tmux.github.io/"><code class="highlighter-rouge">tmux</code></a>.
+Your debug VM session uses the default configuration; thus, the command prefix is
+<code class="highlighter-rouge">ctrl-b</code>.</p>
+
+<p>A subset of functionalities are available for you in this debug session.</p>
+
+<h4 id="creating-a-new-window">Creating a new window</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctrl-b c
+</code></pre></div></div>
+
+<p>The first window is indexed 0. So repeating command will give you windows
+1, 2, and so on.</p>
+
+<h4 id="switching-to-a-different-window">Switching to a different window</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctrl-b 0
+</code></pre></div></div>
+
+<p>This switches your session’s focus to the window with the index 0.
+You can substitute <code class="highlighter-rouge">0</code> with any valid index to switch to that window.</p>
+
+<p>Switching between windows can be helpful if you want to run long-running process in
+one window while looking at the debug VM in another.</p>
+
+<h4 id="scrolling-up-and-down-the-terminal-history">Scrolling up and down the terminal history</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ctrl-b [
+</code></pre></div></div>
+
+<p>Enter the log scroll mode. Here, you can move your cursor with your arrow keys to go through the
+log history.</p>
+
+<p>Press <code class="highlighter-rouge">q</code> to exit the log scroll mode.</p>
+
+<h3 id="getting-out-of-the-debug-vm">Getting out of the debug VM</h3>
+
+<p>Once you exit from all the live <code class="highlighter-rouge">tmate</code> windows, the debug VM will terminate
+after resetting the job’s status to the original status before you restarted it.
+No more phases (<code class="highlighter-rouge">before_install</code>, <code class="highlighter-rouge">install</code>, etc.) will be executed.</p>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

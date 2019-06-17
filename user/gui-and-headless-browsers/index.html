@@ -1,0 +1,634 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GUI and Headless Browser Testing - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/gui-and-headless-browsers.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">GUI and Headless Browser Testing</h1>
+          
+          <h2 id="what-this-guide-covers">What This Guide Covers</h2>
+
+<p>This guide covers headless GUI &amp; browser testing using tools provided by the Travis <a href="/user/reference/precise/">CI environment</a>. Most of the content is technology-neutral and does not cover all the details of specific testing tools (like Poltergeist or Capybara). We recommend you start with the <a href="/user/getting-started/">Getting Started</a> and <a href="/user/customizing-the-build/">Build Configuration</a> guides before reading this one.</p>
+
+<h2 id="using-sauce-labs">Using Sauce Labs</h2>
+
+<p><a href="https://saucelabs.com">Sauce Labs</a> provides a Selenium cloud with access to more than 170 different device/OS/browser combinations. If you have browser tests that use Selenium, using Sauce Labs to run the tests is very easy. First, you need to sign up for their service (it’s free for open source projects).</p>
+
+<p>Once you’ve signed up, set up a tunnel using Sauce Connect so Sauce Labs can connect to your web server. Our <a href="/user/sauce-connect/">Sauce Connect addon</a> makes this easy, just add this to your .travis.yml:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">addons</span><span class="pi">:</span>
+  <span class="na">sauce_connect</span><span class="pi">:</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Your</span><span class="nv"> </span><span class="s">Sauce</span><span class="nv"> </span><span class="s">Labs</span><span class="nv"> </span><span class="s">username"</span>
+    <span class="na">access_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Your</span><span class="nv"> </span><span class="s">Sauce</span><span class="nv"> </span><span class="s">Labs</span><span class="nv"> </span><span class="s">access</span><span class="nv"> </span><span class="s">key"</span>
+</code></pre></div></div>
+
+<p>You can <a href="/user/encryption-keys/">encrypt your access key</a>, if you want to.</p>
+
+<p>Now Sauce Labs has a way of reaching your web server, but you still need to start it up. See <a href="#Starting-a-Web-Server">Starting a Web Server</a> below for more information on how to do that.</p>
+
+<p>Finally, you need to configure your Selenium tests to run on Sauce Labs instead of locally. This is done using a <a href="https://code.google.com/p/selenium/wiki/RemoteWebDriver">Remote WebDriver</a>. The exact code depends on what tool/platform you’re using, but for Python it would look like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>username <span class="o">=</span> os.environ[<span class="s2">"SAUCE_USERNAME"</span><span class="o">]</span>
+access_key <span class="o">=</span> os.environ[<span class="s2">"SAUCE_ACCESS_KEY"</span><span class="o">]</span>
+capabilities[<span class="s2">"tunnel-identifier"</span><span class="o">]</span> <span class="o">=</span> os.environ[<span class="s2">"TRAVIS_JOB_NUMBER"</span><span class="o">]</span>
+hub_url <span class="o">=</span> <span class="s2">"%s:%s@localhost:4445"</span> % <span class="o">(</span>username, access_key<span class="o">)</span>
+driver <span class="o">=</span> webdriver.Remote<span class="o">(</span><span class="nv">desired_capabilities</span><span class="o">=</span>capabilities, <span class="nv">command_executor</span><span class="o">=</span><span class="s2">"http://%s/wd/hub"</span> % hub_url<span class="o">)</span>
+</code></pre></div></div>
+
+<p>The Sauce Connect addon exports the <code class="highlighter-rouge">SAUCE_USERNAME</code> and <code class="highlighter-rouge">SAUCE_ACCESS_KEY</code> environment variables, and relays connections to the hub URL back to Sauce Labs.</p>
+
+<p>This is all you need to get your Selenium tests running on Sauce Labs. However, you may want to only use Sauce Labs for Travis CI builds, and not for local builds. To do this, you can use the <code class="highlighter-rouge">CI</code> or <code class="highlighter-rouge">TRAVIS</code> environment variables to conditionally change what driver you’re using (see <a href="/user/reference/precise/#Environment-variables">our list of available envionment variables</a> for more ways to detect if you’re running on Travis CI).</p>
+
+<p>To make the test results on Sauce Labs a little more easy to navigate, you may wish to provide some more metadata to send with the build. You can do this by passing in more desired capabilities:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>capabilities[<span class="s2">"build"</span><span class="o">]</span> <span class="o">=</span> os.environ[<span class="s2">"TRAVIS_BUILD_NUMBER"</span><span class="o">]</span>
+capabilities[<span class="s2">"tags"</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span>os.environ[<span class="s2">"TRAVIS_PYTHON_VERSION"</span><span class="o">]</span>, <span class="s2">"CI"</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>For travis-web, our very own website, we use Sauce Labs to run browser tests on multiple browsers. We use environment variables in our <a href="https://github.com/travis-ci/travis-web/blob/15dc5ff92184db7044f0ce3aa451e57aea58ee19/.travis.yml#L14-15">.travis.yml</a> to split up the build into multiple jobs, and then pass the desired browser into Sauce Labs using <a href="https://github.com/travis-ci/travis-web/blob/15dc5ff92184db7044f0ce3aa451e57aea58ee19/script/saucelabs.rb#L9-13">desired capabilities</a>. On the Travis CI side, it ends up looking like <a href="https://travis-ci.org/travis-ci/travis-web/builds/12857641">this</a>.</p>
+
+<h2 id="using-xvfb-to-run-tests-that-require-a-gui">Using xvfb to Run Tests That Require a GUI</h2>
+
+<p>To run tests requiring a graphical user interface on Travis CI, use <code class="highlighter-rouge">xvfb</code> (X
+Virtual Framebuffer) to imitate a display. If you need a browser, you can use
+Firefox (either with the pre-installed version, or the <a href="/user/firefox">addon</a>)
+or Google Chrome (with the <a href="/user/chrome">addon</a>, on Linux Trusty or OS X).</p>
+
+<h3 id="using-the-xvfb-run-wrapper">Using the xvfb-run wrapper</h3>
+
+<p><code class="highlighter-rouge">xvfb-run</code> is a wrapper for invoking <code class="highlighter-rouge">xvfb</code> so that <code class="highlighter-rouge">xvfb</code> can be used with
+less fuss:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">script</span><span class="pi">:</span> <span class="s">xvfb-run make test</span>
+</code></pre></div></div>
+
+<p>To set the screen resolution:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">script</span><span class="pi">:</span> <span class="s">xvfb-run --server-args="-screen 0 1024x768x24" make test</span>
+</code></pre></div></div>
+
+<h3 id="using-xvfb-directly">Using xvfb directly</h3>
+
+<p>To use <code class="highlighter-rouge">xvfb</code> itself, start it in the <code class="highlighter-rouge">before_script</code> section of your
+<code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_script</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">export</span><span class="nv"> </span><span class="s">DISPLAY=:99.0"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">sh</span><span class="nv"> </span><span class="s">-e</span><span class="nv"> </span><span class="s">/etc/init.d/xvfb</span><span class="nv"> </span><span class="s">start"</span>
+  <span class="pi">-</span> <span class="s">sleep 3</span> <span class="c1"># give xvfb some time to start</span>
+</code></pre></div></div>
+
+<p>Note: Don’t run <code class="highlighter-rouge">xvfb</code> directly, as it does not handle multiple concurrent
+instances that way.</p>
+
+<p>If you need to set the screen size and pixel depth, you need to start <code class="highlighter-rouge">xvfb</code>
+with the <code class="highlighter-rouge">start-stop-daemon</code> utility and not with the init script in the
+previous example.</p>
+
+<p>For example, to set the screen resolution to <code class="highlighter-rouge">1280x1024x16</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">/sbin/start-stop-daemon</span><span class="nv"> </span><span class="s">--start</span><span class="nv"> </span><span class="s">--quiet</span><span class="nv"> </span><span class="s">--pidfile</span><span class="nv"> </span><span class="s">/tmp/custom_xvfb_99.pid</span><span class="nv"> </span><span class="s">--make-pidfile</span><span class="nv"> </span><span class="s">--background</span><span class="nv"> </span><span class="s">--exec</span><span class="nv"> </span><span class="s">/usr/bin/Xvfb</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">:99</span><span class="nv"> </span><span class="s">-ac</span><span class="nv"> </span><span class="s">-screen</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">1280x1024x16"</span>
+</code></pre></div></div>
+
+<p>See <a href="http://www.xfree86.org/4.0.1/Xvfb.1.html">xvfb manual page</a> for more information.</p>
+
+<h3 id="starting-a-web-server">Starting a Web Server</h3>
+
+<!-- FIXME: write this paragraph -->
+
+<p>If your project requires a web application running to be tested, you need to start one before running tests. It is common to use Ruby, Node.js and JVM-based web servers
+that serve HTML pages used to run test suites. Because every build environment provides at least one version of Ruby, Node.js and OpenJDK, you can rely on one of those
+three options.</p>
+
+<p>Add a <code class="highlighter-rouge">before_script</code> to start a server, for example:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_script</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">export</span><span class="nv"> </span><span class="s">DISPLAY=:99.0"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">sh</span><span class="nv"> </span><span class="s">-e</span><span class="nv"> </span><span class="s">/etc/init.d/xvfb</span><span class="nv"> </span><span class="s">start"</span>
+  <span class="pi">-</span> <span class="s">sleep 3</span> <span class="c1"># give xvfb some time to start</span>
+  <span class="pi">-</span> <span class="s">rackup</span>  <span class="c1"># start a Web server</span>
+  <span class="pi">-</span> <span class="s">sleep 3</span> <span class="c1"># give Web server some time to bind to sockets, etc</span>
+</code></pre></div></div>
+
+<p>If you need web server to be listening on port 80, remember to use <code class="highlighter-rouge">sudo</code> (Linux will not allow non-privileged process to bind to port 80). For ports greater than 1024, using <code class="highlighter-rouge">sudo</code> is not necessary (and not recommended).</p>
+
+<div class="note-box">
+Note that <code>sudo</code> is not available for builds that are running on the <a href="/user/workers/container-based-infrastructure">container-based workers</a>.
+</div>
+
+<h3 id="using-the-chrome-addon-in-the-headless-mode">Using the <a href="/user/chrome">Chrome addon</a> in the headless mode</h3>
+
+<p>Starting with version 57 for Linux Trusty and version 59 on OS X, Google Chrome can be used in “headless”
+mode, which is suitable for driving browser-based tests using Selenium and other tools.</p>
+
+<blockquote>
+  <p>As of 2017-05-02, this means <code class="highlighter-rouge">stable</code> or <code class="highlighter-rouge">beta</code> on Linux builds, and <code class="highlighter-rouge">beta</code> on OS X builds.</p>
+</blockquote>
+
+<p>For example, on Linux</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dist</span><span class="pi">:</span> <span class="s">trusty</span>
+<span class="na">addons</span><span class="pi">:</span>
+  <span class="na">chrome</span><span class="pi">:</span> <span class="s">stable</span>
+<span class="na">before_install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="c1"># start your web application and listen on `localhost`</span>
+  <span class="pi">-</span> <span class="s">google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &amp;</span>
+  <span class="s">⋮</span>
+</code></pre></div></div>
+
+<p>On OS X:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">objective-c</span>
+<span class="na">addons</span><span class="pi">:</span>
+  <span class="na">chrome</span><span class="pi">:</span> <span class="s">beta</span>
+<span class="na">before_install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="c1"># start your web application and listen on `localhost`</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">/Applications/Google</span><span class="se">\\</span><span class="nv"> </span><span class="s">Chrome.app/Contents/MacOS/Google</span><span class="se">\\</span><span class="nv"> </span><span class="s">Chrome</span><span class="nv"> </span><span class="s">--headless</span><span class="nv"> </span><span class="s">--disable-gpu</span><span class="nv"> </span><span class="s">--remote-debugging-port=9222</span><span class="nv"> </span><span class="s">http://localhost</span><span class="nv"> </span><span class="s">&amp;"</span>
+  <span class="s">⋮</span>
+</code></pre></div></div>
+
+<h4 id="documentation">Documentation</h4>
+
+<ul>
+  <li><a href="https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md">Headless Chromium documentation</a></li>
+  <li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome">Getting Started with Headless Chrome</a></li>
+</ul>
+
+<h3 id="using-the-firefox-addon-in-headless-mode">Using the <a href="/user/firefox">Firefox addon</a> in headless mode</h3>
+
+<p>Starting with version 56, Firefox can be used in “headless” mode, which is
+suitable for driving browser-based tests using Selenium and other tools.
+Headless mode can be enabled using the <code class="highlighter-rouge">MOZ_HEADLESS</code>
+<a href="/user/environment-variables">environment variable</a>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">env</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">MOZ_HEADLESS=1</span>
+<span class="na">addons</span><span class="pi">:</span>
+  <span class="na">firefox</span><span class="pi">:</span> <span class="s">latest</span>
+</code></pre></div></div>
+
+<p>Alternatively, you can pass the <code class="highlighter-rouge">-headless</code> command line argument when
+starting Firefox. For example, the following code demonstrates how you would
+set this argument using the Python client for Selenium:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">Firefox</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.firefox.options</span> <span class="kn">import</span> <span class="n">Options</span>
+
+<span class="n">options</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
+<span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-headless'</span><span class="p">)</span>
+<span class="n">firefox</span> <span class="o">=</span> <span class="n">Firefox</span><span class="p">(</span><span class="n">firefox_options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>#### Documentation</p>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/Firefox/Headless_mode#Using_headless_mode">Using headless mode</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/Firefox/Headless_mode#Automated_testing_with_headless_mode">Automated testing with headless mode</a></li>
+</ul>
+
+<h2 id="using-phantomjs">Using PhantomJS</h2>
+
+<p><a href="http://phantomjs.org/">PhantomJS</a> is a headless WebKit with JavaScript API. It is an optimal solution for fast headless testing, site scraping, pages capture, SVG renderer, network monitoring and many other use cases.</p>
+
+<p><a href="/user/reference/precise/">CI environment</a> provides PhantomJS pre-installed (available in PATH as <code class="highlighter-rouge">phantomjs</code>; don’t rely on the exact location). Since it is completely headless, there is no need run <code class="highlighter-rouge">xvfb</code>.</p>
+
+<p>A very simple example:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">script</span><span class="pi">:</span> <span class="s">phantomjs testrunner.js</span>
+</code></pre></div></div>
+
+<p>If you need a web server to serve the tests, see the previous section.</p>
+
+<h2 id="examples">Examples</h2>
+
+<h3 id="real-world-projects">Real World Projects</h3>
+
+<ul>
+  <li><a href="https://github.com/emberjs/ember.js/blob/master/.travis.yml">Ember.js</a> (starts web server programmatically)</li>
+  <li><a href="https://github.com/sproutcore/sproutcore/blob/master/.travis.yml">Sproutcore</a> (starts web server with <em>before_script</em>)</li>
+</ul>
+
+<h3 id="ruby">Ruby</h3>
+
+<h4 id="rspec-jasmine-cucumber">RSpec, Jasmine, Cucumber</h4>
+
+<p>Here’s an example rake task that runs Rspec, Jasmine, and Cucumber tests:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">task</span> <span class="ss">:travis</span> <span class="k">do</span>
+  <span class="p">[</span><span class="s2">"rspec spec"</span><span class="p">,</span> <span class="s2">"rake jasmine:ci"</span><span class="p">,</span> <span class="s2">"rake cucumber"</span><span class="p">].</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cmd</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="s2">"Starting to run </span><span class="si">#{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">..."</span>
+    <span class="nb">system</span><span class="p">(</span><span class="s2">"export DISPLAY=:99.0 &amp;&amp; bundle exec </span><span class="si">#{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="s2">"</span><span class="si">#{</span><span class="n">cmd</span><span class="si">}</span><span class="s2"> failed!"</span> <span class="k">unless</span> <span class="vg">$?</span><span class="p">.</span><span class="nf">exitstatus</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>In this example, both Jasmine and Cucumber need the display port, because they both use real browsers. Rspec would run without it, but it does no harm to set it.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="selenium-and-firefox-popups">Selenium and Firefox popups</h3>
+
+<p>If your test suite handles a modal dialog popup, for example, <a href="https://support.mozilla.org/en-US/questions/792131">a redirect to another location</a>, then you may need to add a custom profile so that the popup is suppressed.</p>
+
+<p>This can be fixed by applying a custom Firefox profile with the option turned off: (example is in Ruby using Capybara)</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Capybara</span><span class="p">.</span><span class="nf">register_driver</span> <span class="ss">:selenium</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
+
+  <span class="n">custom_profile</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">::</span><span class="no">Firefox</span><span class="o">::</span><span class="no">Profile</span><span class="p">.</span><span class="nf">new</span>
+
+  <span class="c1"># Turn off the super annoying popup!</span>
+  <span class="n">custom_profile</span><span class="p">[</span><span class="s2">"network.http.prompt-temp-redirect"</span><span class="p">]</span> <span class="o">=</span> <span class="kp">false</span>
+
+  <span class="no">Capybara</span><span class="o">::</span><span class="no">Selenium</span><span class="o">::</span><span class="no">Driver</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="ss">:browser</span> <span class="o">=&gt;</span> <span class="ss">:firefox</span><span class="p">,</span> <span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="n">custom_profile</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="karma-and-firefox-inactivity-timeouts">Karma and Firefox inactivity timeouts</h3>
+
+<p>When testing with Karma and Firefox, you may encounter build errors as a result of browser inactivity timeouts. When this occurs, Karma will output an error similar to:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WARN [Firefox 31.0.0 (Linux)]: Disconnected (1 times), because no message in 10000 ms.
+</code></pre></div></div>
+
+<p>In that case, you should increase the browser inactivity timeout to a higher value in <code class="highlighter-rouge">karma.conf.js</code>, e.g.:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">browserNoActivityTimeout</span><span class="p">:</span> <span class="mi">30000</span><span class="p">,</span>
+</code></pre></div></div>
+
+<p>For more infomation, refer to the Karma <a href="https://karma-runner.github.io/1.0/config/configuration-file.html">Configuration File</a> documentation.</p>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

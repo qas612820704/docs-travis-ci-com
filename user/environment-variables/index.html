@@ -1,0 +1,673 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Environment Variables - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/environment-variables.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Environment Variables</h1>
+          
+          <p>A common way to customize the build process is to define environment variables, which can be accessed from any stage in your build process.</p>
+
+<div id="toc"></div>
+
+<p>The best way to define an environment variable depends on what type of information it will contain, and when you need to change it:</p>
+
+<ul>
+  <li>if it does <em>not</em> contain sensitive information, might be different for different branches and should be available to forks – <a href="#Defining-Variables-in-travisyml">add it to your .travis.yml</a></li>
+  <li>if it <em>does</em> contain sensitive information, and might be different for different branches – <a href="#Encrypted-Variables">encrypt it and add it to your .travis.yml</a></li>
+  <li>if it <em>does</em> contain sensitive information, but is the same for all branches – <a href="#Defining-Variables-in-Repository-Settings">add it to your Repository Settings</a></li>
+</ul>
+
+<h2 id="defining-public-variables-in-travisyml">Defining public variables in .travis.yml</h2>
+
+<p id="Defining-Variables-in-travisyml">Public variables defined in <code class="highlighter-rouge">.travis.yml</code> are tied to a certain commit. Changing them requires a new commit, restarting an old build uses the old values. They are also available automatically on forks of the repository.</p>
+
+<p>Define variables in <code class="highlighter-rouge">.travis.yml</code> that:</p>
+
+<ul>
+  <li>are needed for the build to run and that don’t contain sensitive data. For instance, a test suite for a Ruby application might require <code class="highlighter-rouge">$RACK_ENV</code> to be set to <code class="highlighter-rouge">test</code>.</li>
+  <li>differ per branch.</li>
+  <li>differ per job.</li>
+</ul>
+
+<p>Define environment variables in your <code class="highlighter-rouge">.travis.yml</code> in the <code class="highlighter-rouge">env</code> key, quoting special characters such as asterisks (<code class="highlighter-rouge">*</code>):</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">env</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">DB=postgres</span>
+  <span class="pi">-</span> <span class="s">SH=bash</span>
+  <span class="pi">-</span> <span class="s">PACKAGE_VERSION="1.0.*"</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>If you define a variable with the same name in <code class="highlighter-rouge">.travis.yml</code> and in the Repository Settings, the one in <code class="highlighter-rouge">.travis.yml</code> takes precedence. If you define a variable in <code class="highlighter-rouge">.travis.yml</code> as both encrypted and unencrypted, the one defined later in the file takes precedence.</p>
+</blockquote>
+
+<h3 id="defining-multiple-variables-per-item">Defining Multiple Variables per Item</h3>
+
+<p>When you define multiple variables per line in the <code class="highlighter-rouge">env</code> array (matrix variables), one build is triggered per item.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">rvm</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">1.9.3</span>
+  <span class="pi">-</span> <span class="s">rbx-3</span>
+<span class="na">env</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">FOO=foo BAR=bar</span>
+  <span class="pi">-</span> <span class="s">FOO=bar BAR=foo</span>
+</code></pre></div></div>
+
+<p>this configuration triggers <strong>4 individual builds</strong>:</p>
+
+<ol>
+  <li>Ruby 1.9.3 with <code class="highlighter-rouge">FOO=foo</code> and <code class="highlighter-rouge">BAR=bar</code></li>
+  <li>Ruby 1.9.3 with <code class="highlighter-rouge">FOO=bar</code> and <code class="highlighter-rouge">BAR=foo</code></li>
+  <li>Rubinius latest version (rbx-3) with <code class="highlighter-rouge">FOO=foo</code> and <code class="highlighter-rouge">BAR=bar</code></li>
+  <li>Rubinius latest version (rbx-3) with <code class="highlighter-rouge">FOO=bar</code> and <code class="highlighter-rouge">BAR=foo</code></li>
+</ol>
+
+<h3 id="global-variables">Global Variables</h3>
+
+<p>Sometimes you may want to use environment variables that are global to the matrix, i.e. they’re inserted into each matrix row. That may include keys, tokens, URIs or other data that is needed for every build. In such cases, instead of manually adding such keys to each <code class="highlighter-rouge">env</code> line in matrix, you can use <code class="highlighter-rouge">global</code> and <code class="highlighter-rouge">matrix</code> keys to differentiate between those two cases. For example:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">env</span><span class="pi">:</span>
+  <span class="na">global</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">CAMPFIRE_TOKEN=abc123</span>
+    <span class="pi">-</span> <span class="s">TIMEOUT=1000</span>
+  <span class="na">matrix</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">USE_NETWORK=true</span>
+    <span class="pi">-</span> <span class="s">USE_NETWORK=false</span>
+</code></pre></div></div>
+
+<p>triggers builds with the following <code class="highlighter-rouge">env</code> rows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">USE_NETWORK</span><span class="o">=</span><span class="nb">true </span><span class="nv">CAMPFIRE_TOKEN</span><span class="o">=</span>abc123 <span class="nv">TIMEOUT</span><span class="o">=</span>1000
+<span class="nv">USE_NETWORK</span><span class="o">=</span><span class="nb">false </span><span class="nv">CAMPFIRE_TOKEN</span><span class="o">=</span>abc123 <span class="nv">TIMEOUT</span><span class="o">=</span>1000
+</code></pre></div></div>
+
+<h2 id="defining-encrypted-variables-in-travisyml">Defining encrypted variables in .travis.yml</h2>
+
+<p id="Encrypted-Variables">Before adding sensitive data such as API credentials to your <code class="highlighter-rouge">.travis.yml</code> you need to encrypt it. Encrypted variables are not available to untrusted builds such as pull requests coming from another repository.</p>
+
+<p>A <code class="highlighter-rouge">.travis.yml</code> file containing encrypted variables looks like this:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">env</span><span class="pi">:</span>
+  <span class="na">global</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">secure</span><span class="pi">:</span> <span class="s">mcUCykGm4bUZ3CaW6AxrIMFzuAYjA98VIz6YmYTmM0/8sp/B/54JtQS/j0ehCD6B5BwyW6diVcaQA2c7bovI23GyeTT+TgfkuKRkzDcoY51ZsMDdsflJ94zV7TEIS31eCeq42IBYdHZeVZp/L7EXOzFjVmvYhboJiwnsPybpCfpIH369fjYKuVmutccD890nP8Bzg8iegssVldgsqDagkuLy0wObAVH0FKnqiIPtFoMf3mDeVmK2AkF1Xri1edsPl4wDIu1Ko3RCRgfr6NxzuNSh6f4Z6zmJLB4ONkpb3fAa9Lt+VjJjdSjCBT1OGhJdP7NlO5vSnS5TCYvgFqNSXqqJx9BNzZ9/esszP7DJBe1yq1aNwAvJ7DlSzh5rvLyXR4VWHXRIR3hOWDTRwCsJQJctCLpbDAFJupuZDcvqvPNj8dY5MSCu6NroXMMFmxJHIt3Hdzr+hV9RNJkQRR4K5bR+ewbJ/6h9rjX6Ot6kIsjJkmEwx1jllxi4+gSRtNQ/O4NCi3fvHmpG2pCr7Jz0+eNL2d9wm4ZxX1s18ZSAZ5XcVJdx8zL4vjSnwAQoFXzmx0LcpK6knEgw/hsTFovSpe5p3oLcERfSd7GmPm84Qr8U4YFKXpeQlb9k5BK9MaQVqI4LyaM2h4Xx+wc0QlEQlUOfwD4B2XrAYXFIq1PAEic=</span>
+  <span class="na">matrix</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">USE_NETWORK=true</span>
+    <span class="pi">-</span> <span class="s">USE_NETWORK=false</span>
+    <span class="pi">-</span> <span class="na">secure</span><span class="pi">:</span> <span class="s">&lt;you can also put encrypted vars inside matrix&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Encrypted environment variables are not available to pull requests from forks due to the security risk of exposing such information to unknown code.</p>
+
+  <p>If you define a variable with the same name in <code class="highlighter-rouge">.travis.yml</code> and in the Repository Settings, the one in <code class="highlighter-rouge">.travis.yml</code> takes precedence. If you define a variable in <code class="highlighter-rouge">.travis.yml</code> as both encrypted and unencrypted, the one defined later in the file takes precedence.</p>
+</blockquote>
+
+<h3 id="encrypting-environment-variables">Encrypting environment variables</h3>
+
+<p>Encrypt environment variables with the public key attached to your repository using the <code class="highlighter-rouge">travis</code> gem:</p>
+
+<ol>
+  <li>
+    <p>If you do not have the <code class="highlighter-rouge">travis</code> gem installed, run <code class="highlighter-rouge">gem install travis</code>.</p>
+  </li>
+  <li>
+    <p>In your repository directory, run:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>travis encrypt <span class="nv">MY_SECRET_ENV</span><span class="o">=</span>super_secret <span class="nt">--add</span> env.matrix
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Commit the changes to your <code class="highlighter-rouge">.travis.yml</code>.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>Encryption and decryption keys are tied to the repository. If you fork a project and add it to Travis CI, it will <em>not</em> have access to the encrypted variables.</p>
+</blockquote>
+
+<p>The encryption scheme is explained in more detail in <a href="/user/encryption-keys">Encryption keys</a>.</p>
+
+<h2 id="defining-variables-in-repository-settings">Defining Variables in Repository Settings</h2>
+
+<p id="Defining-Variables-in-Repository-Settings">Variables defined in repository settings are the same for all builds, and when you restart an old build, it uses the latest values. These variables are not automatically available to forks.</p>
+
+<p>Define variables in the Repository Settings that:</p>
+
+<ul>
+  <li>differ per repository.</li>
+  <li>contain sensitive data, such as third-party credentials.</li>
+</ul>
+
+<p>To define variables in Repository Settings, make sure you’re logged in, navigate to the repository in question, choose “Settings” from the cog menu, and click on “Add new variable” in the “Environment Variables” section.</p>
+
+<figure>
+  <img alt="Screenshot of environment variables in settings" src="/images/settings-env-vars.png" />
+  <figcaption>Environment Variables in the Repository Settings</figcaption>
+</figure>
+
+<blockquote>
+  <p>These values are used directly in your build, so make sure to escape <a href="http://www.tldp.org/LDP/abs/html/special-chars.html">special characters (for bash)</a> accordingly. In particular, if a value contains spaces, you should put quotes around that value. E.g. <code class="highlighter-rouge">my secret passphrase</code> should be written <code class="highlighter-rouge">"my secret passphrase"</code>.</p>
+</blockquote>
+
+<p>By default, the value of these new environment variables is hidden from the <code class="highlighter-rouge">export</code> line in the logs. This corresponds to the behavior of <a href="#Encrypted-Variables">encrypted variables</a> in your <code class="highlighter-rouge">.travis.yml</code>. The variables are stored encrypted in our systems, and get decrypted when the build script is generated.</p>
+
+<p>Similarly, we do not provide these values to untrusted builds, triggered by pull requests from another repository.</p>
+
+<p>As an alternative to the web interface, you can also use the CLI’s <a href="https://github.com/travis-ci/travis.rb#env"><code class="highlighter-rouge">env</code></a> command.</p>
+
+<blockquote>
+  <p>If you define a variable with the same name in <code class="highlighter-rouge">.travis.yml</code> and in the Repository Settings, the one in <code class="highlighter-rouge">.travis.yml</code> takes precedence.</p>
+</blockquote>
+
+<h2 id="convenience-variables">Convenience Variables</h2>
+
+<p>To make using encrypted environment variables easier, the following environment variables are available:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">TRAVIS_SECURE_ENV_VARS</code> is set to <code class="highlighter-rouge">true</code> if you have defined any encrypted variables, including variables defined in the Repository Settings, and <code class="highlighter-rouge">false</code> if you have not.</li>
+  <li><code class="highlighter-rouge">TRAVIS_PULL_REQUEST</code> is set to the pull request number if the current job is a pull request build, or <code class="highlighter-rouge">false</code> if it’s not.</li>
+</ul>
+
+<h2 id="default-environment-variables">Default Environment Variables</h2>
+
+<p>The following default environment variables are available to all builds.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">CI=true</code></li>
+  <li><code class="highlighter-rouge">TRAVIS=true</code></li>
+  <li><code class="highlighter-rouge">CONTINUOUS_INTEGRATION=true</code></li>
+  <li><code class="highlighter-rouge">DEBIAN_FRONTEND=noninteractive</code></li>
+  <li><code class="highlighter-rouge">HAS_JOSH_K_SEAL_OF_APPROVAL=true</code></li>
+  <li><code class="highlighter-rouge">USER=travis</code> (<strong>do not depend on this value</strong>; do not override this value)</li>
+  <li><code class="highlighter-rouge">HOME=/home/travis</code> (<strong>do not depend on this value</strong>)</li>
+  <li><code class="highlighter-rouge">LANG=en_US.UTF-8</code></li>
+  <li><code class="highlighter-rouge">LC_ALL=en_US.UTF-8</code></li>
+  <li><code class="highlighter-rouge">RAILS_ENV=test</code></li>
+  <li><code class="highlighter-rouge">RACK_ENV=test</code></li>
+  <li><code class="highlighter-rouge">MERB_ENV=test</code></li>
+  <li><code class="highlighter-rouge">JRUBY_OPTS="--server -Dcext.enabled=false -Xcompile.invokedynamic=false"</code></li>
+  <li><code class="highlighter-rouge">JAVA_HOME</code> is set to the appropriate value.</li>
+</ul>
+
+<p>Additionally, Travis CI sets environment variables you can use in your build, e.g.
+to tag the build, or to run post-build deployments.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">TRAVIS_ALLOW_FAILURE</code>:
+    <ul>
+      <li>set to <code class="highlighter-rouge">true</code> if the job is allowed to fail.</li>
+      <li>set to <code class="highlighter-rouge">false</code> if the job is not allowed to fail.</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">TRAVIS_BRANCH</code>:
+    <ul>
+      <li>for push builds, or builds not triggered by a pull request, this is the name of the branch.</li>
+      <li>for builds triggered by a pull request this is the name of the branch targeted by the pull
+request.</li>
+      <li>
+        <p>for builds triggered by a tag, this is the same as the name of the tag (<code class="highlighter-rouge">TRAVIS_TAG</code>).</p>
+
+        <blockquote>
+          <p>Note that for tags, git does not store the branch from which a commit was tagged.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">TRAVIS_BUILD_DIR</code>: The absolute path to the directory where the repository
+being built has been copied on the worker.</li>
+  <li><code class="highlighter-rouge">TRAVIS_BUILD_ID</code>: The id of the current build that Travis CI uses internally.</li>
+  <li><code class="highlighter-rouge">TRAVIS_BUILD_NUMBER</code>: The number of the current build (for example, “4”).</li>
+  <li><code class="highlighter-rouge">TRAVIS_COMMIT</code>: The commit that the current build is testing.</li>
+  <li><code class="highlighter-rouge">TRAVIS_COMMIT_MESSAGE</code>: The commit subject and body, unwrapped.</li>
+  <li><code class="highlighter-rouge">TRAVIS_COMMIT_RANGE</code>: The range of commits that were included in the push
+or pull request. (Note that this is empty for builds triggered by the initial commit of a new branch.)</li>
+  <li><code class="highlighter-rouge">TRAVIS_EVENT_TYPE</code>: Indicates how the build was triggered. One of <code class="highlighter-rouge">push</code>, <code class="highlighter-rouge">pull_request</code>, <code class="highlighter-rouge">api</code>, <code class="highlighter-rouge">cron</code>.</li>
+  <li><code class="highlighter-rouge">TRAVIS_JOB_ID</code>: The id of the current job that Travis CI uses internally.</li>
+  <li><code class="highlighter-rouge">TRAVIS_JOB_NUMBER</code>: The number of the current job (for example, “4.1”).</li>
+  <li><code class="highlighter-rouge">TRAVIS_OS_NAME</code>: On multi-OS builds, this value indicates the platform the job is running on.
+Values are <code class="highlighter-rouge">linux</code> and <code class="highlighter-rouge">osx</code> currently, to be extended in the future.</li>
+  <li><code class="highlighter-rouge">TRAVIS_OSX_IMAGE</code>: The <code class="highlighter-rouge">osx_image</code> value configured in <code class="highlighter-rouge">.travis.yml</code>. If this is not set in <code class="highlighter-rouge">.travis.yml</code>,
+it is empty.</li>
+  <li><code class="highlighter-rouge">TRAVIS_PULL_REQUEST</code>: The pull request number if the current job is a pull
+request, “false” if it’s not a pull request.</li>
+  <li><code class="highlighter-rouge">TRAVIS_PULL_REQUEST_BRANCH</code>:
+    <ul>
+      <li>if the current job is a pull request, the name of the branch from which the PR originated.</li>
+      <li>if the current job is a push build, this variable is empty (<code class="highlighter-rouge">""</code>).</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">TRAVIS_PULL_REQUEST_SHA</code>:
+    <ul>
+      <li>if the current job is a pull request, the commit SHA of the HEAD commit of the PR.</li>
+      <li>if the current job is a push build, this variable is empty (<code class="highlighter-rouge">""</code>).</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">TRAVIS_PULL_REQUEST_SLUG</code>:
+    <ul>
+      <li>if the current job is a pull request, the slug (in the form <code class="highlighter-rouge">owner_name/repo_name</code>) of the repository from which the PR originated.</li>
+      <li>if the current job is a push build, this variable is empty (<code class="highlighter-rouge">""</code>).</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">TRAVIS_REPO_SLUG</code>: The slug (in form: <code class="highlighter-rouge">owner_name/repo_name</code>) of the repository currently being built.</li>
+  <li><code class="highlighter-rouge">TRAVIS_SECURE_ENV_VARS</code>:
+    <ul>
+      <li>set to <code class="highlighter-rouge">true</code> if there are any encrypted environment variables.</li>
+      <li>set to <code class="highlighter-rouge">false</code> if no encrypted environment variables are available.</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">TRAVIS_SUDO</code>: <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code> based on whether <code class="highlighter-rouge">sudo</code> is enabled.</li>
+  <li><code class="highlighter-rouge">TRAVIS_TEST_RESULT</code>: <strong>0</strong> if all commands in the <code class="highlighter-rouge">script</code> section (up to the point this environment variable is referenced) have exited with zero; <strong>1</strong> otherwise.</li>
+  <li><code class="highlighter-rouge">TRAVIS_TAG</code>: If the current build is for a git tag, this variable is set to the tag’s name.</li>
+  <li><code class="highlighter-rouge">TRAVIS_BUILD_STAGE_NAME</code>: The <a href="/user/build-stages/">build stage</a> in capitalzed form, e.g. <code class="highlighter-rouge">Test</code> or <code class="highlighter-rouge">Deploy</code>. If a build does not use build stages, this variable is empty (<code class="highlighter-rouge">""</code>).</li>
+</ul>
+
+<p>Language-specific builds expose additional environment variables representing
+the current version being used to run the build. Whether or not they’re set
+depends on the language you’re using.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">TRAVIS_DART_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_GO_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_HAXE_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_JDK_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_JULIA_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_NODE_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_OTP_RELEASE</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_PERL_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_PHP_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_PYTHON_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_R_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_RUBY_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_RUST_VERSION</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_SCALA_VERSION</code></li>
+</ul>
+
+<p>Other software specific environment variables are set when the software or service is installed or started, and contain the version number:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">TRAVIS_MARIADB_VERSION</code></li>
+</ul>
+
+<p>The following environment variables are available for Objective-C builds.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">TRAVIS_XCODE_SDK</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_XCODE_SCHEME</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_XCODE_PROJECT</code></li>
+  <li><code class="highlighter-rouge">TRAVIS_XCODE_WORKSPACE</code></li>
+</ul>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

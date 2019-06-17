@@ -1,0 +1,616 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deployment - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+ <meta class="swiftype" name="tags" data-type="string" content="skip_cleanup" />
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/deployment.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Deployment</h1>
+          
+          <div id="toc"></div>
+
+<h2 id="supported-providers">Supported Providers</h2>
+
+<p>Continuous Deployment to the following providers is supported:</p>
+
+<ul class="list-language">
+
+  <li><a href="/user/deployment/anynines/">anynines</a></li>
+
+  <li><a href="/user/deployment/appfog/">Appfog</a></li>
+
+  <li><a href="/user/deployment/atlas/">Atlas</a></li>
+
+  <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+
+  <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+
+  <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+
+  <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+
+  <li><a href="/user/deployment/s3/">AWS S3</a></li>
+
+  <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+
+  <li><a href="/user/deployment/bintray/">bintray</a></li>
+
+  <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+
+  <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+
+  <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+
+  <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+
+  <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+
+  <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+
+  <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+
+  <li><a href="/user/deployment/deis/">Deis</a></li>
+
+  <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+
+  <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+
+  <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+
+  <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+
+  <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+
+  <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+
+  <li><a href="/user/deployment/hackage/">Hackage</a></li>
+
+  <li><a href="/user/deployment/heroku/">Heroku</a></li>
+
+  <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+
+  <li><a href="/user/deployment/modulus/">Modulus</a></li>
+
+  <li><a href="/user/deployment/npm/">npm</a></li>
+
+  <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+
+  <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+
+  <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+
+  <li><a href="/user/deployment/pypi/">PyPI</a></li>
+
+  <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+
+  <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+
+  <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+
+  <li><a href="/user/deployment/script/">Script</a></li>
+
+  <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+
+  <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+
+  <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+
+</ul>
+
+<p>To deploy to a custom or unsupported provider, use the <a href="/user/deployment/custom/">after-success build
+stage</a> or <a href="/user/deployment/script">script provider</a>.</p>
+
+<h2 id="uploading-files-and-skip_cleanup">Uploading Files and skip_cleanup</h2>
+
+<p>When deploying files to a provider, prevent Travis CI from resetting your
+working directory and deleting all changes made during the build ( <code class="highlighter-rouge">git stash
+--all</code>) by adding <code class="highlighter-rouge">skip_cleanup</code> to your <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">skip_cleanup</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h2 id="deploying-to-multiple-providers">Deploying to Multiple Providers</h2>
+
+<p>Deploying to multiple providers is possible by adding the different providers
+to the <code class="highlighter-rouge">deploy</code> section as a list. For example, if you want to deploy to both
+cloudControl and Heroku, your <code class="highlighter-rouge">deploy</code> section would look something like this:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">provider</span><span class="pi">:</span> <span class="s">cloudcontrol</span>
+    <span class="na">email</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">CLOUDCONTROL</span><span class="nv"> </span><span class="s">EMAIL"</span>
+    <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">CLOUDCONTROL</span><span class="nv"> </span><span class="s">PASSWORD"</span>
+    <span class="na">deployment</span><span class="pi">:</span> <span class="s2">"</span><span class="s">APP_NAME/DEP_NAME"</span>
+  <span class="pi">-</span> <span class="na">provider</span><span class="pi">:</span> <span class="s">heroku</span>
+    <span class="na">api_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">HEROKU</span><span class="nv"> </span><span class="s">API</span><span class="nv"> </span><span class="s">KEY"</span>
+</code></pre></div></div>
+
+<h2 id="conditional-releases-with-on">Conditional Releases with <code class="highlighter-rouge">on:</code></h2>
+
+<p>Set your build to deploy only in specific circumstances by configuring the <code class="highlighter-rouge">on:</code> key for any deployment provider.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">s3</span>
+  <span class="na">access_key_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">AWS</span><span class="nv"> </span><span class="s">ACCESS</span><span class="nv"> </span><span class="s">KEY"</span>
+  <span class="na">secret_access_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">AWS</span><span class="nv"> </span><span class="s">SECRET</span><span class="nv"> </span><span class="s">KEY"</span>
+  <span class="na">bucket</span><span class="pi">:</span> <span class="s2">"</span><span class="s">S3</span><span class="nv"> </span><span class="s">Bucket"</span>
+  <span class="na">skip_cleanup</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">on</span><span class="pi">:</span>
+    <span class="na">branch</span><span class="pi">:</span> <span class="s">release</span>
+    <span class="na">condition</span><span class="pi">:</span> <span class="s">$MY_ENV = super_awesome</span>
+</code></pre></div></div>
+
+<p>When <em>all</em> conditions specified in the <code class="highlighter-rouge">on:</code> section are met, your build will deploy.</p>
+
+<p>Use the following options to configure conditional deployment:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">repo</code>: in the form <code class="highlighter-rouge">owner_name/repo_name</code>. Deploy only when the build occurs on a particular repository. For example</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">on</span><span class="pi">:</span>
+   <span class="na">repo</span><span class="pi">:</span> <span class="s">travis-ci/dpl</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">branch</code>: name of the branch.
+ If omitted, this defaults to the <code class="highlighter-rouge">app</code>-specific branch, or <code class="highlighter-rouge">master</code>. If the branch name is not known ahead of time, you can specify
+ <code class="highlighter-rouge">all_branches: true</code> <em>instead of</em> <code class="highlighter-rouge">branch: </code> and use other conditions to control your deployment.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">jdk</code>, <code class="highlighter-rouge">node</code>, <code class="highlighter-rouge">perl</code>, <code class="highlighter-rouge">php</code>, <code class="highlighter-rouge">python</code>, <code class="highlighter-rouge">ruby</code>, <code class="highlighter-rouge">scala</code>, <code class="highlighter-rouge">go</code>: for    language runtimes that support multiple versions,
+ you can limit the deployment to happen only on the job that matches a specific version.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">condition</code>: deploy when <em>a single</em> bash condition evaluates to <code class="highlighter-rouge">true</code>. This must be a string value, and is equivalant to <code class="highlighter-rouge">if [[ &lt;condition&gt; ]]; then &lt;deploy&gt;; fi</code>. For example, <code class="highlighter-rouge">$CC = gcc</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tags</code> can be <code class="highlighter-rouge">true</code>, <code class="highlighter-rouge">false</code> or any other string:</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">tags: true</code>: deployment is triggered if and only if <code class="highlighter-rouge">$TRAVIS_TAG</code> is set.
+ Depending on your workflow, you may set <code class="highlighter-rouge">$TRAVIS_TAG</code> explicitly, even if this is
+ a non-tag build when it was initiated. This causes the <code class="highlighter-rouge">branch</code> condition to be ignored.</li>
+      <li><code class="highlighter-rouge">tags: false</code>: deployment is triggered if and only if <code class="highlighter-rouge">$TRAVIS_TAG</code> is empty.
+ This also causes the <code class="highlighter-rouge">branch</code> condition to be ignored.</li>
+      <li>When <code class="highlighter-rouge">tags</code> is not set, or set to any other value, <code class="highlighter-rouge">$TRAVIS_TAG</code> is ignored, and the <code class="highlighter-rouge">branch</code> condition is considered, if it is set.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="examples-of-conditional-deployment">Examples of Conditional Deployment</h3>
+
+<p>This example deploys to Appfog only from the <code class="highlighter-rouge">staging</code> branch when the test has run on Node.js version 0.11.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">appfog</span>
+  <span class="na">user</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="na">api_key</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="na">on</span><span class="pi">:</span>
+    <span class="na">branch</span><span class="pi">:</span> <span class="s">staging</span>
+    <span class="na">node</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.11'</span> <span class="c1"># this should be quoted; otherwise, 0.10 would not work</span>
+</code></pre></div></div>
+
+<p>The next example deploys using a custom script <code class="highlighter-rouge">deploy.sh</code>, only for builds on the branches <code class="highlighter-rouge">staging</code> and <code class="highlighter-rouge">production</code>.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">script</span>
+  <span class="na">script</span><span class="pi">:</span> <span class="s">deploy.sh</span>
+  <span class="na">on</span><span class="pi">:</span>
+    <span class="na">all_branches</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">condition</span><span class="pi">:</span> <span class="s">$TRAVIS_BRANCH =~ ^staging|production$</span>
+</code></pre></div></div>
+
+<p>The next example deploys to S3 only when <code class="highlighter-rouge">$CC</code> is set to <code class="highlighter-rouge">gcc</code>.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">s3</span>
+  <span class="na">access_key_id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">AWS</span><span class="nv"> </span><span class="s">ACCESS</span><span class="nv"> </span><span class="s">KEY"</span>
+  <span class="na">secret_access_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">YOUR</span><span class="nv"> </span><span class="s">AWS</span><span class="nv"> </span><span class="s">SECRET</span><span class="nv"> </span><span class="s">KEY"</span>
+  <span class="na">skip_cleanup</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">bucket</span><span class="pi">:</span> <span class="s2">"</span><span class="s">S3</span><span class="nv"> </span><span class="s">Bucket"</span>
+  <span class="na">on</span><span class="pi">:</span>
+    <span class="na">condition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">$CC</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">gcc"</span>
+</code></pre></div></div>
+
+<p>This example deploys to GitHub Releases when a tag is set and the Ruby version is 2.0.0.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">releases</span>
+  <span class="na">api_key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">GITHUB</span><span class="nv"> </span><span class="s">OAUTH</span><span class="nv"> </span><span class="s">TOKEN"</span>
+  <span class="na">file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">FILE</span><span class="nv"> </span><span class="s">TO</span><span class="nv"> </span><span class="s">UPLOAD"</span>
+  <span class="na">skip_cleanup</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">on</span><span class="pi">:</span>
+    <span class="na">tags</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">rvm</span><span class="pi">:</span> <span class="s">2.0.0</span>
+</code></pre></div></div>
+
+<h3 id="adding-a-deployment-provider">Adding a deployment provider</h3>
+
+<p>We are working on adding support for other PaaS providers. If you host your application with a provider not listed here and you would like to have Travis CI automatically deploy your application, please <a href="mailto:support@travis-ci.com">get in touch</a>.</p>
+
+<p>If you contribute to or experiment with the <a href="https://github.com/travis-ci/dpl">deploy tool</a> make sure you use the edge version from GitHub:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">provider</span><span class="pi">:</span> <span class="s">awesome-experimental-provider</span>
+  <span class="na">edge</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h2 id="pull-requests">Pull Requests</h2>
+
+<p>Note that pull request builds skip the deployment step altogether.</p>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

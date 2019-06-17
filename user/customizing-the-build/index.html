@@ -1,0 +1,1162 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自定義你的建構 - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="/user/getting-started/">Getting Started</a></li>
+        <li><a href="/user/for-beginners/">Core Concepts for Beginners</a></li>
+        <li><a href="/user/customizing-the-build/">Customizing Your Build</a></li>
+        <li><a href="/user/common-build-problems/">Common Build Problems</a></li>
+        <li><a href="/user/speeding-up-the-build/">Speeding up the Build</a></li>
+        <li><a href="/user/build-stages/">Build Stages (beta)</a></li>
+        <li><a href="/user/docker/">Using Docker in your Build</a></li>
+        <li><a href="/user/gui-and-headless-browsers/">Headless Testing with Browsers</a></li>
+        <li><a href="/user/pull-requests/">Building Pull Requests</a></li>
+        <li><a href="/user/cron-jobs/">Cron Jobs</a></li>
+        <li><a href="https://github.com/travis-ci/travis#readme">Command Line Client</a></li>
+      </ul>
+
+      <h3>Installing Dependencies</h3>
+      <ul>
+        <li><a href="/user/installing-dependencies/">Installing Dependencies</a></li>
+        <li><a href="/user/private-dependencies/">Private Dependencies</a></li>
+        <li><a href="/user/database-setup/">Setting up Services and Databases</a></li>
+        <li><a href="/user/caching/">Caching Dependencies</a></li>
+        <li><a href="/user/ssh-known-hosts/">Adding to SSH Known Hosts</a></li>
+
+      </ul>
+      <h3>Programming Languages</h3>
+      <ul>
+      
+        <li><a href="/user/languages/android/">Android</a></li>
+      
+        <li><a href="/user/languages/c/">C</a></li>
+      
+        <li><a href="/user/languages/csharp/">C#</a></li>
+      
+        <li><a href="/user/languages/cpp/">C++</a></li>
+      
+        <li><a href="/user/languages/clojure/">Clojure</a></li>
+      
+        <li><a href="/user/languages/crystal/">Crystal</a></li>
+      
+        <li><a href="/user/languages/d/">D</a></li>
+      
+        <li><a href="/user/languages/dart/">Dart</a></li>
+      
+        <li><a href="/user/languages/erlang/">Erlang</a></li>
+      
+        <li><a href="/user/languages/elixir/">Elixir</a></li>
+      
+        <li><a href="/user/languages/csharp/">F#</a></li>
+      
+        <li><a href="/user/languages/go/">Go</a></li>
+      
+        <li><a href="/user/languages/groovy/">Groovy</a></li>
+      
+        <li><a href="/user/languages/haskell/">Haskell</a></li>
+      
+        <li><a href="/user/languages/haxe/">Haxe</a></li>
+      
+        <li><a href="/user/languages/java/">Java</a></li>
+      
+        <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+      
+        <li><a href="/user/languages/julia/">Julia</a></li>
+      
+        <li><a href="/user/languages/nix/">Nix</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+      
+        <li><a href="/user/languages/perl/">Perl</a></li>
+      
+        <li><a href="/user/languages/perl6/">Perl6</a></li>
+      
+        <li><a href="/user/languages/php/">PHP</a></li>
+      
+        <li><a href="/user/languages/python/">Python</a></li>
+      
+        <li><a href="/user/languages/r/">R</a></li>
+      
+        <li><a href="/user/languages/ruby/">Ruby</a></li>
+      
+        <li><a href="/user/languages/rust/">Rust</a></li>
+      
+        <li><a href="/user/languages/scala/">Scala</a></li>
+      
+        <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+      
+        <li><a href="/user/languages/objective-c/">Swift</a></li>
+      
+        <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+      
+        <li><a href="/user/languages/community-supported-languages/">Adding a language</a></li>
+      </ul>
+
+      <h3>Deployments and Uploads</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/deployment/">Overview</a></li>
+        
+          <li><a href="/user/deployment/anynines/">anynines</a></li>
+        
+          <li><a href="/user/deployment/appfog/">Appfog</a></li>
+        
+          <li><a href="/user/deployment/atlas/">Atlas</a></li>
+        
+          <li><a href="/user/deployment/codedeploy/">AWS CodeDeploy</a></li>
+        
+          <li><a href="/user/deployment/elasticbeanstalk/">AWS Elastic Beanstalk</a></li>
+        
+          <li><a href="/user/deployment/lambda/">AWS Lambda</a></li>
+        
+          <li><a href="/user/deployment/opsworks/">AWS OpsWorks</a></li>
+        
+          <li><a href="/user/deployment/s3/">AWS S3</a></li>
+        
+          <li><a href="/user/deployment/azure-web-apps/">Azure Web Apps</a></li>
+        
+          <li><a href="/user/deployment/bintray/">bintray</a></li>
+        
+          <li><a href="/user/deployment/bitballoon/">BitBalloon</a></li>
+        
+          <li><a href="/user/deployment/bluemixcloudfoundry/">Bluemix CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/boxfuse/">Boxfuse</a></li>
+        
+          <li><a href="/user/deployment/catalyze/">Catalyze</a></li>
+        
+          <li><a href="/user/deployment/chefsupermarket/">Chef Supermarket</a></li>
+        
+          <li><a href="/user/deployment/cloud66/">Cloud 66</a></li>
+        
+          <li><a href="/user/deployment/cloudfoundry/">CloudFoundry</a></li>
+        
+          <li><a href="/user/deployment/deis/">Deis</a></li>
+        
+          <li><a href="/user/deployment/engineyard/">Engine Yard</a></li>
+        
+          <li><a href="/user/deployment/pages/">GitHub Pages</a></li>
+        
+          <li><a href="/user/deployment/releases/">GitHub Releases</a></li>
+        
+          <li><a href="/user/deployment/google-app-engine/">Google App Engine</a></li>
+        
+          <li><a href="/user/deployment/gcs/">Google Cloud Storage</a></li>
+        
+          <li><a href="/user/deployment/firebase/">Google Firebase</a></li>
+        
+          <li><a href="/user/deployment/hackage/">Hackage</a></li>
+        
+          <li><a href="/user/deployment/heroku/">Heroku</a></li>
+        
+          <li><a href="/user/deployment/launchpad/">Launchpad</a></li>
+        
+          <li><a href="/user/deployment/modulus/">Modulus</a></li>
+        
+          <li><a href="/user/deployment/npm/">npm</a></li>
+        
+          <li><a href="/user/deployment/openshift/">OpenShift</a></li>
+        
+          <li><a href="/user/deployment/packagecloud/">packagecloud.io</a></li>
+        
+          <li><a href="/user/deployment/puppetforge/">Puppet Forge</a></li>
+        
+          <li><a href="/user/deployment/pypi/">PyPI</a></li>
+        
+          <li><a href="/user/deployment/cloudfiles/">Rackspace Cloud Files</a></li>
+        
+          <li><a href="/user/deployment/rubygems/">RubyGems</a></li>
+        
+          <li><a href="/user/deployment/scalingo/">Scalingo</a></li>
+        
+          <li><a href="/user/deployment/script/">Script</a></li>
+        
+          <li><a href="/user/deployment/surge/">Surge.sh</a></li>
+        
+          <li><a href="/user/deployment/testfairy/">TestFairy</a></li>
+        
+          <li><a href="/user/deployment/snaps/">Ubuntu Snap Store</a></li>
+        
+        <li><a href="/user/uploading-artifacts/">Uploading Build Artifacts</a></li>
+      </ul>
+
+      <h3>CI Environment Reference</h3>
+      <ul>
+      <li class="is-overview"><a href="/user/reference/overview/">Overview</a></li>
+      <li><a href="/user/reference/precise/">Precise CI Environment Reference</a></li>
+      <li><a href="/user/reference/trusty/">Trusty CI Environment</a><li>
+      <li><a href="/user/reference/osx/">OS X CI Environment Reference</a></li>
+      <li><a href="/user/multi-os/">Building on Multiple Operating Systems</a></li>
+      <li><a href="/user/environment-variables/">Environment Variables</a></li>
+      <li><a href="/user/precise-to-trusty-migration-guide/">Precise to Trusty Migration Guide</a></li>
+      <li><a href="/user/build-environment-updates/">Build Environment Updates</a></li>
+      <li><a href="/user/ip-addresses/">Build machines IP Addresses</a></li>
+      </ul>
+
+      <h3>Encrypting Files and Data</h3>
+      <ul>
+        <li><a href="/user/encryption-keys/">Encrypting Sensitive Data</a></li>
+        <li><a href="/user/encrypting-files/">Encrypting Files</a></li>
+        <li><a href="/user/github-oauth-scopes/">GitHub Permissions used by Travis CI</a></li>
+        <li><a href="/user/best-practices-security/">Best Practices in Securing Your Data</a></li>
+      </ul>
+
+      <h3>Beta Features</h3>
+      <ul>
+        <li><a href="/user/build-stages/">Build Stages</a></li>
+        <li><a href="/user/conditional-builds-stages-jobs/">Conditional Builds, Stages, and Jobs</a></li>
+      </ul>
+
+      <h3>Integrations and Notifications</h3>
+      <ul>
+        <li><a href="/user/notifications/">Configuring Notifications</a></li>
+        <li><a href="/user/status-images/">Showing Build Status Images</a></li>
+        <li><a href="/user/code-climate/">Code Climate</a></li>
+        <li><a href="/user/coveralls/">Coveralls</a></li>
+        <li><a href="/user/coverity-scan/">Coverity Scan</a></li>
+        <li><a href="/user/browserstack/">BrowserStack</a></li>
+        <li><a href="/user/sauce-connect/">Sauce Labs</a></li>
+        <li><a href="/user/sonarcloud/">SonarCloud</a></li>
+        <li><a href="/user/sourceclear/">SourceClear</a></li>
+        <li><a href="/user/build-feeds/">Atom Feeds</a></li>
+        <li><a href="/user/cc-menu/">CCMenu / CCTray Feeds</a></li>
+        <li><a href="/user/integration/platformio/">Embedded Builds with PlatformIO</a></li>
+      </ul>
+
+      <h3>Developer Program</h3>
+      <ul>
+        <li class="is-overview"><a href="/user/developer/">Overview</a></li>
+        <li><a href="http://developer.travis-ci.com/">API V3</a></li>
+        <li><a href="/user/triggering-builds/">Triggering Builds with API V3</a></li>
+        <li><a href="https://github.com/travis-ci/travis#ruby-library">The Ruby Library</a></li>
+      </ul>
+      <h3>3rd Party Tools and Resources</h3>
+      <ul>
+        <li><a href="/user/apps/">Apps, Clients and Tools</a></li>
+        <li><a href="https://scan.coverity.com/travis_ci">Coverity Scan</a></li>
+      </ul>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">Enterprise Docs</a></li>
+      </ul>
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/security/">Security</a></li>
+        <li><a href="/legal/terms-conditions/">Terms and Conditions</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page" data-swiftype-index='false'><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/customizing-the-build.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">自定義你的建構</h1>
+          
+          <div id="toc"></div>
+
+<p>Travis CI provides a default build environment and a default set of steps for each programming language. You can customize any step in this process in <code class="highlighter-rouge">.travis.yml</code>.  Travis CI uses <code class="highlighter-rouge">.travis.yml</code> file in the root of your repository to learn about your project and how you want your builds to be executed. <code class="highlighter-rouge">.travis.yml</code> can be
+very minimalistic or have a lot of customization in it. A few examples of what
+kind of information your <code class="highlighter-rouge">.travis.yml</code> file may have:</p>
+
+<ul>
+  <li>What programming language your project uses</li>
+  <li>What commands or scripts you want to be executed before each build (for example, to install or clone your project’s dependencies)</li>
+  <li>What command is used to run your test suite</li>
+  <li>Emails, Campfire and IRC rooms to notify about build failures</li>
+</ul>
+
+<h2 id="建構的生命週期">建構的生命週期</h2>
+
+<p>A build on Travis CI is made up of two steps:</p>
+
+<ol>
+  <li><strong>install</strong>: install any dependencies required</li>
+  <li><strong>script</strong>: run the build script</li>
+</ol>
+
+<p>You can run custom commands before the installation step (<code class="highlighter-rouge">before_install</code>), and before (<code class="highlighter-rouge">before_script</code>) or after (<code class="highlighter-rouge">after_script</code>) the script step.</p>
+
+<p>In a <code class="highlighter-rouge">before_install</code> step, you can install additional dependencies required by your project such as Ubuntu packages or custom services.</p>
+
+<p>You can perform additional steps when your build succeeds or fails using  the <code class="highlighter-rouge">after_success</code> (such as building documentation, or deploying to a custom server) or <code class="highlighter-rouge">after_failure</code> (such as uploading log files) options. In both <code class="highlighter-rouge">after_failure</code> and <code class="highlighter-rouge">after_success</code>, you can access the build result using the <code class="highlighter-rouge">$TRAVIS_TEST_RESULT</code> environment variable.</p>
+
+<p>The complete build lifecycle, including three optional deployment steps and after checking out the git repository and changing to the repository directory, is:</p>
+
+<ol>
+  <li>OPTIONAL Install <a href="/user/installing-dependencies/#Installing-Packages-with-the-APT-Addon"><code class="highlighter-rouge">apt addons</code></a></li>
+  <li>OPTIONAL Install <a href="/user/caching"><code class="highlighter-rouge">cache components</code></a></li>
+  <li><code class="highlighter-rouge">before_install</code></li>
+  <li><code class="highlighter-rouge">install</code></li>
+  <li><code class="highlighter-rouge">before_script</code></li>
+  <li><code class="highlighter-rouge">script</code></li>
+  <li>OPTIONAL <code class="highlighter-rouge">before_cache</code> (for cleaning up cache)</li>
+  <li><code class="highlighter-rouge">after_success</code> or <code class="highlighter-rouge">after_failure</code></li>
+  <li>OPTIONAL <code class="highlighter-rouge">before_deploy</code></li>
+  <li>OPTIONAL <code class="highlighter-rouge">deploy</code></li>
+  <li>OPTIONAL <code class="highlighter-rouge">after_deploy</code></li>
+  <li><code class="highlighter-rouge">after_script</code></li>
+</ol>
+
+<h2 id="自定義安裝步驟">自定義安裝步驟</h2>
+
+<p>The default dependency installation commands depend on the project language. For instance, Java builds either use Maven or Gradle, depending on which build file is present in the repository. Ruby projects use Bundler when a Gemfile is present in the repository.</p>
+
+<p>You can specify your own script to run to install whatever dependencies your project requires in <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">install</span><span class="pi">:</span> <span class="s">./install-dependencies.sh</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>When using custom scripts they should be executable (for example, using <code class="highlighter-rouge">chmod +x</code>) and contain a valid shebang line such as <code class="highlighter-rouge">/usr/bin/env sh</code>, <code class="highlighter-rouge">/usr/bin/env ruby</code>, or <code class="highlighter-rouge">/usr/bin/env python</code>.</p>
+</blockquote>
+
+<p>You can also provide multiple steps, for instance to install both ruby and node dependencies:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">install</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">bundle install --path vendor/bundle</span>
+  <span class="pi">-</span> <span class="s">npm install</span>
+</code></pre></div></div>
+
+<p>When one of the steps fails, the build stops immediately and is marked as <a href="#Breaking-the-Build">errored</a>.</p>
+
+<h3 id="略過安裝步驟">略過安裝步驟</h3>
+
+<p>You can skip the installation step entirely by adding the following to your <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">install</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h2 id="自定義建構步驟">自定義建構步驟</h2>
+
+<p>The default build command depends on the project language. Ruby projects use <code class="highlighter-rouge">rake</code>, the common denominator for most Ruby projects.</p>
+
+<p>You can overwrite the default build step in <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">script</span><span class="pi">:</span> <span class="s">bundle exec thor build</span>
+</code></pre></div></div>
+
+<p>You can specify multiple script commands as well:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">script</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">bundle exec rake build</span>
+<span class="pi">-</span> <span class="s">bundle exec rake builddoc</span>
+</code></pre></div></div>
+
+<p>When one of the build commands returns a non-zero exit code, the Travis CI build runs the subsequent commands as well, and accumulates the build result.</p>
+
+<p>In the example above, if <code class="highlighter-rouge">bundle exec rake build</code> returns an exit code of 1, the following command <code class="highlighter-rouge">bundle exec rake builddoc</code> is still run, but the build will result in a failure.</p>
+
+<p>If your first step is to run unit tests, followed by integration tests, you may still want to see if the integration tests succeed when the unit tests fail.</p>
+
+<p>You can change this behavior by using a little bit of shell magic to run all commands subsequently but still have the build fail when the first command returns a non-zero exit code. Here’s the snippet for your <code class="highlighter-rouge">.travis.yml</code></p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">script</span><span class="pi">:</span> <span class="s">bundle exec rake build &amp;&amp; bundle exec rake builddoc</span>
+</code></pre></div></div>
+
+<p>This example (note the <code class="highlighter-rouge">&amp;&amp;</code>) fails immediately when <code class="highlighter-rouge">bundle exec rake build</code> fails.</p>
+
+<h3 id="注意-">注意 $?</h3>
+
+<p>Each command in <code class="highlighter-rouge">script</code> is processed by a special bash function.
+This function manipulates <code class="highlighter-rouge">$?</code> to produce logs suitable for display.
+Consequently, you should not rely on the value of <code class="highlighter-rouge">$?</code> in <code class="highlighter-rouge">script</code> section to
+alter the build behavior.
+See <a href="https://github.com/travis-ci/travis-ci/issues/3771">this GitHub issue</a>
+for a more technical discussion.</p>
+
+<h2 id="破壞建構">破壞建構</h2>
+
+<p>If any of the commands in the first four stages of the build lifecycle return a non-zero exit code, the build is broken:</p>
+
+<ul>
+  <li>If <code class="highlighter-rouge">before_install</code>, <code class="highlighter-rouge">install</code> or <code class="highlighter-rouge">before_script</code> returns a non-zero exit code,
+the build is <strong>errored</strong> and stops immediately.</li>
+  <li>If <code class="highlighter-rouge">script</code> returns a non-zero exit code, the build is <strong>failed</strong>, but continues to run before being marked as <strong>failed</strong>.</li>
+</ul>
+
+<p>The exit code of <code class="highlighter-rouge">after_success</code>, <code class="highlighter-rouge">after_failure</code>, <code class="highlighter-rouge">after_script</code> and subsequent stages do not affect the build result.
+However, if one of these stages times out, the build is marked as a failure.</p>
+
+<h2 id="部屬你的程式碼">部屬你的程式碼</h2>
+
+<p>An optional phase in the build lifecycle is deployment. This step can’t be
+overridden, but is defined by using one of our continuous deployment providers
+to deploy code to Heroku, Engine Yard, or a different supported platform.
+The deploy steps are skipped if the build is broken.</p>
+
+<p>When deploying files to a provider, prevent Travis CI from resetting your
+working directory and deleting all changes made during the build ( <code class="highlighter-rouge">git stash
+--all</code>) by adding <code class="highlighter-rouge">skip_cleanup</code> to your <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+  <span class="na">skip_cleanup</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>You can run steps before a deploy by using the <code class="highlighter-rouge">before_deploy</code> phase. A non-zero exit code in this phase will mark the build as <strong>errored</strong>.</p>
+
+<p>If there are any steps you’d like to run after the deployment, you can use the <code class="highlighter-rouge">after_deploy</code> phase.</p>
+
+<p>Note that <code class="highlighter-rouge">before_deploy</code> and <code class="highlighter-rouge">after_deploy</code> are run before and after every deploy provider, so will run multiple times if there are multiple providers.</p>
+
+<h2 id="指定運行時的版本">指定運行時的版本</h2>
+
+<p>One of the key features of Travis CI is the ease of running your test suite against multiple runtimes and versions. Specify what languages and runtimes to run your test suite against in the <code class="highlighter-rouge">.travis.yml</code> file:</p>
+
+<ul class="list-language">
+
+  <li><a href="/user/languages/android/">Android</a></li>
+
+  <li><a href="/user/languages/c/">C</a></li>
+
+  <li><a href="/user/languages/csharp/">C#</a></li>
+
+  <li><a href="/user/languages/cpp/">C++</a></li>
+
+  <li><a href="/user/languages/clojure/">Clojure</a></li>
+
+  <li><a href="/user/languages/crystal/">Crystal</a></li>
+
+  <li><a href="/user/languages/d/">D</a></li>
+
+  <li><a href="/user/languages/dart/">Dart</a></li>
+
+  <li><a href="/user/languages/erlang/">Erlang</a></li>
+
+  <li><a href="/user/languages/elixir/">Elixir</a></li>
+
+  <li><a href="/user/languages/csharp/">F#</a></li>
+
+  <li><a href="/user/languages/go/">Go</a></li>
+
+  <li><a href="/user/languages/groovy/">Groovy</a></li>
+
+  <li><a href="/user/languages/haskell/">Haskell</a></li>
+
+  <li><a href="/user/languages/haxe/">Haxe</a></li>
+
+  <li><a href="/user/languages/java/">Java</a></li>
+
+  <li><a href="/user/languages/javascript-with-nodejs/">JavaScript <small>(with Node.js)</small></a></li>
+
+  <li><a href="/user/languages/julia/">Julia</a></li>
+
+  <li><a href="/user/languages/nix/">Nix</a></li>
+
+  <li><a href="/user/languages/objective-c/">Objective-C</a></li>
+
+  <li><a href="/user/languages/perl/">Perl</a></li>
+
+  <li><a href="/user/languages/perl6/">Perl6</a></li>
+
+  <li><a href="/user/languages/php/">PHP</a></li>
+
+  <li><a href="/user/languages/python/">Python</a></li>
+
+  <li><a href="/user/languages/r/">R</a></li>
+
+  <li><a href="/user/languages/ruby/">Ruby</a></li>
+
+  <li><a href="/user/languages/rust/">Rust</a></li>
+
+  <li><a href="/user/languages/scala/">Scala</a></li>
+
+  <li><a href="/user/languages/smalltalk/">Smalltalk</a></li>
+
+  <li><a href="/user/languages/objective-c/">Swift</a></li>
+
+  <li><a href="/user/languages/csharp/">Visual Basic</a></li>
+
+</ul>
+
+<h2 id="使用-apt-安裝套件">使用 apt 安裝套件</h2>
+
+<p>If your dependencies need native libraries to be available, you can use <strong>passwordless sudo to install them</strong>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_install</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">sudo apt-get update -qq</span>
+<span class="pi">-</span> <span class="s">sudo apt-get install -qq [packages list]</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note that this feature is not available for builds that are running on <a href="/user/reference/overview/#Virtualization-environments">Container-based workers</a>.
+Look into <a href="/user/installing-dependencies/#Installing-Packages-on-Container-Based-Infrastructure">using the <code class="highlighter-rouge">apt</code> plug-in</a> instead.</p>
+</blockquote>
+
+<p>All virtual machines are snapshotted and returned to their initial state after each build.</p>
+
+<h3 id="使用第三方-ppas">使用第三方 PPAs</h3>
+
+<p>If you need a native dependency that is not available from the official Ubuntu repositories, there might be a <a href="https://launchpad.net/ubuntu/+ppas">3rd-party PPAs</a> that you can use.</p>
+
+<h2 id="安裝一個次要程式語言">安裝一個次要程式語言</h2>
+
+<p>If you need to install a second programming language in your current build environment, for example installing a more recent version of Ruby than the default version present in all build environments you can do so in the <code class="highlighter-rouge">before_install</code> stage of the build:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">before_install</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">rvm install 2.1.5</span>
+</code></pre></div></div>
+
+<p>You can also use other installation methods such as <code class="highlighter-rouge">apt-get</code>.</p>
+
+<h2 id="建構超時">建構超時</h2>
+
+<p>It is very common for test suites or build scripts to hang.
+Travis CI has specific time limits for each job, and will stop the build and add an error message to the build log in the following situations:</p>
+
+<ul>
+  <li>When a job produces no log output for 10 minutes.</li>
+  <li>When a job on a public repository takes longer than 50 minutes.</li>
+  <li>When a job on a private repository takes longer than 120 minutes.</li>
+</ul>
+
+<p>Some common reasons why builds might hang:</p>
+
+<ul>
+  <li>Waiting for keyboard input or other kind of human interaction</li>
+  <li>Concurrency issues (deadlocks, livelocks and so on)</li>
+  <li>Installation of native extensions that take very long time to compile</li>
+</ul>
+
+<blockquote>
+  <p>There is no timeout for a build; a build will run as long as all the jobs do as long as each job does not timeout.</p>
+</blockquote>
+
+<h2 id="限制並行的任務">限制並行的任務</h2>
+
+<p>The maximum number of concurrent jobs depends on the total system load, but
+one situation in which you might want to set a particular limit is:</p>
+
+<ul>
+  <li>if your build depends on an external resource and might run into a race
+condition with concurrent jobs.</li>
+</ul>
+
+<p>You can set the maximum number of concurrent jobs in the settings pane for
+each repository.</p>
+
+<p><img src="/images/screenshots/concurrent-builds-how-to.png" alt="Settings -&gt; Limit concurrent builds" /></p>
+
+<p>Or using the command line client:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>travis settings maximum_number_of_builds <span class="nt">--set</span> 1
+</code></pre></div></div>
+
+<h2 id="只建構最新的交付">只建構最新的交付</h2>
+
+<p>If you are only interested in building the most recent commit on each branch you can use this new feature to automatically cancel older builds in the queue that are <em>not yet running</em>.</p>
+
+<p>The <em>Auto Cancellation Setting</em> is in the Settings tab of each repository, and you can enable it separately for:</p>
+
+<ul>
+  <li>
+    <p><em>Auto cancel branch builds</em> - which build your branch and appear in the <em>Build History</em> tab of your repository.</p>
+  </li>
+  <li>
+    <p><em>Auto cancel pull request builds</em> - which build the future merge result of your feature branch against its target and appear in the <em>Pull Requests</em> tab of your repository.</p>
+  </li>
+</ul>
+
+<p><img src="/images/autocancellation.png" alt="Auto cancellation setting" title="Auto cancellation setting" /></p>
+
+<p>For example, in the following screenshot, we pushed commit <code class="highlighter-rouge">ca31c2b</code> to the branch <code class="highlighter-rouge">MdA-fix-notice</code> while builds #226 and #227 were queued. With the auto cancellation feature on, the builds #226 and #227 were automatically cancelled:</p>
+
+<p><img src="/images/autocancellation-example.png" alt="Auto cancellation example" title="Auto cancellation example" /></p>
+
+<h2 id="git-clone-深度">Git Clone 深度</h2>
+
+<p>Travis CI clones repositories to a depth of 50 commits, which is only really useful if you are performing git operations.</p>
+
+<blockquote>
+  <p>Please note that if you use a depth of 1 and have a queue of jobs, Travis CI won’t build commits that are in the queue when you push a new commit.</p>
+</blockquote>
+
+<p>You can set the <a href="http://git-scm.com/docs/git-clone">clone depth</a> in <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">git</span><span class="pi">:</span>
+  <span class="na">depth</span><span class="pi">:</span> <span class="s">3</span>
+</code></pre></div></div>
+
+<p>You can also remove the <code class="highlighter-rouge">--depth</code> flag entirely with:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">git</span><span class="pi">:</span>
+  <span class="na">depth</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<h2 id="git-子模組">Git 子模組</h2>
+
+<p>Travis CI clones git submodules by default, to avoid this set:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">git</span><span class="pi">:</span>
+  <span class="na">submodules</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<h2 id="git-lfs">Git LFS</h2>
+
+<h3 id="認證">認證</h3>
+
+<p>We recommend using a read-only GitHub OAuth token to authenticate when using git LFS:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>before_install:
+- echo -e "machine github.com\n  login $GITHUB_TOKEN" &gt;&gt; ~/.netrc
+- git lfs pull
+</code></pre></div></div>
+
+<p>This authentication is required when connecting to private repositories, and prevents rate-limiting when connecting to open source repositories.</p>
+
+<p>Deploy keys are not currently supported by LFS, so you should use a GitHub OAuth token to authenticate as in the example above.</p>
+
+<h3 id="linux">Linux</h3>
+
+<p><a href="https://git-lfs.github.com/">Git LFS</a> is supported by default on our Ubuntu Trusty images.</p>
+
+<h3 id="mac-os">Mac OS</h3>
+
+<p>Installing git-lfs via brew is the recommended way to get Git LFS in <a href="/user/reference/osx/">Mac OS</a>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>os: osx
+
+before_install:
+- brew install git-lfs
+
+before_script:
+- git lfs pull
+</code></pre></div></div>
+
+<h3 id="git-lfs-skip-smudge">Git LFS Skip Smudge</h3>
+
+<p>GitHub rate-limits the Git-LFS requests during the git clone process. If you run into rate-limiting issues, you can skip fetching the git-lfs files during the initial <code class="highlighter-rouge">git clone</code> (equivalent to <a href="https://github.com/git-lfs/git-lfs/blob/master/docs/man/git-lfs-smudge.1.ronn"><code class="highlighter-rouge">git lfs smudge --skip</code></a>), and download these assets during the <code class="highlighter-rouge">before_install</code> phase of your build. To achieve this, you can use the following configuration in <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">git</span><span class="pi">:</span>
+  <span class="na">lfs_skip_smudge</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h2 id="git-稀疏查看">Git 稀疏查看</h2>
+<p>Travis CI supports <code class="highlighter-rouge">git</code>’s <a href="https://git-scm.com/docs/git-read-tree#_sparse_checkout">sparse checkout</a>
+capability.
+To clone your repository sparsely, add:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">git</span><span class="pi">:</span>
+  <span class="na">sparse_checkout</span><span class="pi">:</span> <span class="s">skip-worktree-map-file</span>
+</code></pre></div></div>
+<p>where <code class="highlighter-rouge">skip-worktree-map-file</code> is a path to the existing file in the current repository with data you’d like to put into <code class="highlighter-rouge">$GIT_DIR/info/sparse-checkout</code> file of <a href="https://git-scm.com/docs/git-read-tree#_sparse_checkout">format described in Git documentation</a>.</p>
+
+<h2 id="建構特定的分支">建構特定的分支</h2>
+
+<p>Travis CI uses the <code class="highlighter-rouge">.travis.yml</code> file from the branch containing the git commit that triggers the build. Include branches using a safelist, or exclude them using a blocklist.</p>
+
+<blockquote>
+  <p>Note that you also need to take into account automatic <a href="/user/pull-requests#double-builds-on-pull-requests">Pull Request Builds</a> when deciding to safelist or blocklist certain branches.</p>
+</blockquote>
+
+<h3 id="安全列表或阻擋列表的分支">安全列表或阻擋列表的分支</h3>
+
+<p>Specify which branches to build using a safelist, or blocklist branches that you do not want to be built:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># blocklist</span>
+<span class="na">branches</span><span class="pi">:</span>
+  <span class="na">except</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">legacy</span>
+  <span class="pi">-</span> <span class="s">experimental</span>
+
+<span class="c1"># safelist</span>
+<span class="na">branches</span><span class="pi">:</span>
+  <span class="na">only</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">master</span>
+  <span class="pi">-</span> <span class="s">stable</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note that safelisting also prevents tagged commits from being built. If you consistently tag your builds in the format <code class="highlighter-rouge">v1.3</code> you can safelist them all with <a href="#Using-regular-expressions">regular expressions</a>, for example <code class="highlighter-rouge">/^v\d+\.\d+(\.\d+)?(-\S*)?$/</code>.</p>
+</blockquote>
+
+<p>If you use both a safelist and a blocklist, the safelist takes precedence. By default, the <code class="highlighter-rouge">gh-pages</code> branch is not built unless you add it to the safelist.</p>
+
+<p>To build <em>all</em> branches:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">branches</span><span class="pi">:</span>
+  <span class="na">only</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">gh-pages</span>
+  <span class="pi">-</span> <span class="s">/.*/</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note that for historical reasons <code class="highlighter-rouge">.travis.yml</code> needs to be present <em>on all active branches</em> of your project.</p>
+</blockquote>
+
+<h3 id="使用正規表達式">使用正規表達式</h3>
+
+<p>You can use regular expressions to safelist or blocklist branches:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">branches</span><span class="pi">:</span>
+  <span class="na">only</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">master</span>
+  <span class="pi">-</span> <span class="s">/^deploy-.*$/</span>
+</code></pre></div></div>
+
+<p>Any name surrounded with <code class="highlighter-rouge">/</code> in the list of branches is treated as a regular expression and can contain any quantifiers, anchors or character classes supported by <a href="http://www.ruby-doc.org/core-1.9.3/Regexp.html">Ruby regular expressions</a>.</p>
+
+<p>Options that are specified after the last <code class="highlighter-rouge">/</code> (e.g., <code class="highlighter-rouge">i</code> for case insensitive matching) are not supported but can be given inline instead.  For example, <code class="highlighter-rouge">/^(?i:deploy)-.*$/</code> matches <code class="highlighter-rouge">Deploy-2014-06-01</code> and other
+branches and tags that start with <code class="highlighter-rouge">deploy-</code> in any combination of cases.</p>
+
+<h2 id="略過一個建構">略過一個建構</h2>
+
+<p>If you don’t want to run a build for a particular commit for any reason, add <code class="highlighter-rouge">[ci skip]</code> or <code class="highlighter-rouge">[skip ci]</code> to the git commit message.</p>
+
+<p>Commits that have <code class="highlighter-rouge">[ci skip]</code> or <code class="highlighter-rouge">[skip ci]</code> anywhere in the commit messages are ignored by Travis CI.</p>
+
+<p>Note that in case multiple commits are pushed together, the <code class="highlighter-rouge">[skip ci]</code> or <code class="highlighter-rouge">[ci skip]</code> takes effect only if present in the commit message of the HEAD commit.</p>
+
+<h2 id="建構的矩陣">建構的矩陣</h2>
+
+<p>When you combine the three main configuration options of <em>Runtime</em>, <em>Environment</em> and <em>Exclusions/Inclusions</em> you have a matrix of all possible combinations.</p>
+
+<p>Below is an example configuration for a build matrix that expands to <em>56 individual (7 * 4 * 2)</em> jobs.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">rvm</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">1.9.3</span>
+  <span class="pi">-</span> <span class="s">2.0.0</span>
+  <span class="pi">-</span> <span class="s">2.2</span>
+  <span class="pi">-</span> <span class="s">ruby-head</span>
+  <span class="pi">-</span> <span class="s">jruby</span>
+  <span class="pi">-</span> <span class="s">rbx-3</span>
+  <span class="pi">-</span> <span class="s">ree</span>
+<span class="na">gemfile</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">gemfiles/Gemfile.rails-2.3.x</span>
+  <span class="pi">-</span> <span class="s">gemfiles/Gemfile.rails-3.0.x</span>
+  <span class="pi">-</span> <span class="s">gemfiles/Gemfile.rails-3.1.x</span>
+  <span class="pi">-</span> <span class="s">gemfiles/Gemfile.rails-edge</span>
+<span class="na">env</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">ISOLATED=true</span>
+  <span class="pi">-</span> <span class="s">ISOLATED=false</span>
+</code></pre></div></div>
+
+<p>You can also define exclusions to the build matrix:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">exclude</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">1.9.3</span>
+    <span class="na">gemfile</span><span class="pi">:</span> <span class="s">gemfiles/Gemfile.rails-2.3.x</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">ISOLATED=true</span>
+  <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">jruby</span>
+    <span class="na">gemfile</span><span class="pi">:</span> <span class="s">gemfiles/Gemfile.rails-2.3.x</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">ISOLATED=true</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>All build matrixes are currently limited to a maximum of <strong>200 jobs</strong> for both private and public repositories. If you are on an open-source plan, please remember that Travis CI provides this service free of charge to the community. So please only specify the matrix you <em>actually need</em>.</p>
+</blockquote>
+
+<h3 id="排除任務">排除任務</h3>
+
+<p>If the jobs you want to exclude from the build matrix share the same matrix
+parameters, you can specify only those and omit the varying parts.</p>
+
+<p>Suppose you have:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="na">rvm</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">1.9.3</span>
+<span class="pi">-</span> <span class="s">2.0.0</span>
+<span class="pi">-</span> <span class="s">2.1.0</span>
+<span class="na">env</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">DB=mongodb</span>
+<span class="pi">-</span> <span class="s">DB=redis</span>
+<span class="pi">-</span> <span class="s">DB=mysql</span>
+<span class="na">gemfile</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">Gemfile</span>
+<span class="pi">-</span> <span class="s">gemfiles/rails4.gemfile</span>
+<span class="pi">-</span> <span class="s">gemfiles/rails31.gemfile</span>
+<span class="pi">-</span> <span class="s">gemfiles/rails32.gemfile</span>
+</code></pre></div></div>
+
+<p>This results in a 3×3×4 build matrix. To exclude all jobs which have <code class="highlighter-rouge">rvm</code> value <code class="highlighter-rouge">2.0.0</code> <em>and</em>
+<code class="highlighter-rouge">gemfile</code> value <code class="highlighter-rouge">Gemfile</code>, you can write:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">exclude</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">2.0.0</span>
+    <span class="na">gemfile</span><span class="pi">:</span> <span class="s">Gemfile</span>
+</code></pre></div></div>
+
+<p>Which is equivalent to:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">exclude</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">2.0.0</span>
+    <span class="na">gemfile</span><span class="pi">:</span> <span class="s">Gemfile</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">DB=mongodb</span>
+  <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">2.0.0</span>
+    <span class="na">gemfile</span><span class="pi">:</span> <span class="s">Gemfile</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">DB=redis</span>
+  <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">2.0.0</span>
+    <span class="na">gemfile</span><span class="pi">:</span> <span class="s">Gemfile</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">DB=mysql</span>
+</code></pre></div></div>
+
+<h4 id="用-env-值排除任務">用 <code class="highlighter-rouge">env</code> 值排除任務</h4>
+
+<p>When excluding jobs with <code class="highlighter-rouge">env</code> values, the value must match
+<em>exactly</em>.</p>
+
+<p>For example,</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="na">rvm</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">1.9.3</span>
+<span class="pi">-</span> <span class="s">2.0.0</span>
+<span class="pi">-</span> <span class="s">2.1.0</span>
+<span class="na">env</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">DB=mongodb SUITE=all</span>
+<span class="pi">-</span> <span class="s">DB=mongodb SUITE=compact</span>
+<span class="pi">-</span> <span class="s">DB=redis</span>
+<span class="pi">-</span> <span class="s">DB=mysql</span>
+<span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">exclude</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">1.9.3</span>
+      <span class="na">env</span><span class="pi">:</span> <span class="s">DB=mongodb</span>
+</code></pre></div></div>
+
+<p>defines a 3×4 matrix, because the <code class="highlighter-rouge">env</code> value does not match with
+any job defined in the matrix.</p>
+
+<p>To exclude all Ruby 1.9.3 jobs with <code class="highlighter-rouge">DB=mongodb</code> set, write:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="na">rvm</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">1.9.3</span>
+<span class="pi">-</span> <span class="s">2.0.0</span>
+<span class="pi">-</span> <span class="s">2.1.0</span>
+<span class="na">env</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">DB=mongodb SUITE=all</span>
+<span class="pi">-</span> <span class="s">DB=mongodb SUITE=compact</span>
+<span class="pi">-</span> <span class="s">DB=redis</span>
+<span class="pi">-</span> <span class="s">DB=mysql</span>
+<span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">exclude</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">1.9.3</span>
+      <span class="na">env</span><span class="pi">:</span> <span class="s">DB=mongodb SUITE=all</span> <span class="c1"># not 'env: DB=mongodb  SUITE=all' or 'env: SUITE=all DB=mongodb'</span>
+    <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">1.9.3</span>
+      <span class="na">env</span><span class="pi">:</span> <span class="s">DB=mongodb SUITE=compact</span> <span class="c1"># not 'env: SUITE=compact DB=mongodb'</span>
+</code></pre></div></div>
+
+<h3 id="明確地包含任務">明確地包含任務</h3>
+
+<p>It is also possible to include entries into the matrix with <code class="highlighter-rouge">matrix.include</code>:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">include</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">ruby-head</span>
+    <span class="na">gemfile</span><span class="pi">:</span> <span class="s">gemfiles/Gemfile.rails-3.2.x</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">ISOLATED=false</span>
+</code></pre></div></div>
+
+<p>This adds a particular job to the build matrix which has already been populated.</p>
+
+<p>This is useful if you want to only test the latest version of a dependency together with the latest version of the runtime.</p>
+
+<p>You can use this method to create a build matrix containing only specific combinations.
+For example,</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">python</span>
+<span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">include</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">python</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2.7"</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">TEST_SUITE=suite_2_7</span>
+  <span class="pi">-</span> <span class="na">python</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.3"</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">TEST_SUITE=suite_3_3</span>
+  <span class="pi">-</span> <span class="na">python</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pypy"</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">TEST_SUITE=suite_pypy</span>
+<span class="na">script</span><span class="pi">:</span> <span class="s">./test.py $TEST_SUITE</span>
+</code></pre></div></div>
+
+<p>creates a build matrix with 3 jobs, which runs test suite for each version
+of Python.</p>
+
+<h4 id="明確地包含任務繼承在陣列中第一個值">明確地包含任務繼承在陣列中第一個值</h4>
+
+<p>The jobs which are explicitly included inherit the first value of the expansion
+keys defined.</p>
+
+<p>In this example with a 3-job Python build matrix, each job in <code class="highlighter-rouge">matrix.include</code>
+has the <code class="highlighter-rouge">python</code> value set to <code class="highlighter-rouge">'3.5'</code>.
+You can explicitly set the python version for a specific entry:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">python</span>
+<span class="na">python</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">3.5'</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">3.4'</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">2.7'</span>
+<span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">include</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">python</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.5'</span> <span class="c1"># this is not strictly necessary</span>
+      <span class="na">env</span><span class="pi">:</span> <span class="s">EXTRA_TESTS=true</span>
+    <span class="pi">-</span> <span class="na">python</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.4'</span>
+      <span class="na">env</span><span class="pi">:</span> <span class="s">EXTRA_TESTS=true</span>
+<span class="na">script</span><span class="pi">:</span> <span class="s">env $EXTRA_TESTS ./test.py $TEST_SUITE</span>
+</code></pre></div></div>
+
+<h3 id="允許失敗的行">允許失敗的行</h3>
+
+<p>You can define rows that are allowed to fail in the build matrix. Allowed
+failures are items in your build matrix that are allowed to fail without causing
+the entire build to fail. This lets you add in experimental and
+preparatory builds to test against versions or configurations that you are not
+ready to officially support.</p>
+
+<p>Define allowed failures in the build matrix as key/value pairs:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">allow_failures</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">rvm</span><span class="pi">:</span> <span class="s">1.9.3</span>
+</code></pre></div></div>
+
+<h4 id="用-allow_failures-匹配任務">用 <code class="highlighter-rouge">allow_failures</code> 匹配任務</h4>
+
+<p>When matching jobs against the definitions given in <code class="highlighter-rouge">allow_failures</code>, <em>all</em>
+conditions in <code class="highlighter-rouge">allow_failures</code> must be met exactly, and
+all the keys in <code class="highlighter-rouge">allow_failures</code> element must exist in the
+top level of the build matrix (i.e., not in <code class="highlighter-rouge">matrix.include</code>).</p>
+
+<h5 id="allow_failures-範例"><code class="highlighter-rouge">allow_failures</code> 範例</h5>
+
+<p>Consider</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">ruby</span>
+
+<span class="na">rvm</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">2.0.0</span>
+<span class="pi">-</span> <span class="s">2.1.6</span>
+
+<span class="na">env</span><span class="pi">:</span>
+  <span class="na">global</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">SECRET_VAR1=SECRET1</span>
+  <span class="na">matrix</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">SECRET_VAR2=SECRET2</span>
+
+<span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">allow_failures</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">env</span><span class="pi">:</span> <span class="s">SECRET_VAR1=SECRET1 SECRET_VAR2=SECRET2</span>
+</code></pre></div></div>
+
+<p>Here, no job is allowed to fail because no job has the <code class="highlighter-rouge">env</code> value
+<code class="highlighter-rouge">SECRET_VAR1=SECRET1 SECRET_VAR2=SECRET2</code>.</p>
+
+<p>Next,</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">php</span>
+<span class="na">php</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">5.6</span>
+<span class="pi">-</span> <span class="s">7.0</span>
+<span class="na">env</span><span class="pi">:</span> <span class="c1"># important!</span>
+<span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">include</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">php</span><span class="pi">:</span> <span class="s">7.0</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">KEY=VALUE</span>
+  <span class="na">allow_failures</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">php</span><span class="pi">:</span> <span class="s">7.0</span>
+    <span class="na">env</span><span class="pi">:</span> <span class="s">KEY=VALUE</span>
+</code></pre></div></div>
+
+<p>Without the top-level <code class="highlighter-rouge">env</code>, no job will be allowed to fail.</p>
+
+<h3 id="快速完成">快速完成</h3>
+
+<p>If some rows in the build matrix are allowed to fail, the build won’t be marked as finished until they have completed.</p>
+
+<p>To mark the build as finished as soon as possible, add <code class="highlighter-rouge">fast_finish: true</code> to the <code class="highlighter-rouge">matrix</code> section of your <code class="highlighter-rouge">.travis.yml</code> like this:</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">matrix</span><span class="pi">:</span>
+  <span class="na">fast_finish</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Now, the build result will be determined as soon as all the required jobs finish, based on these results, while the rest of the <code class="highlighter-rouge">allow_failures</code> jobs continue to run.</p>
+
+<h2 id="實做複雜的建構步驟">實做複雜的建構步驟</h2>
+
+<p>If you have a complex build environment that is hard to configure in the <code class="highlighter-rouge">.travis.yml</code>, consider moving the steps into a separate shell script.
+The script can be a part of your repository and can easily be called from the <code class="highlighter-rouge">.travis.yml</code>.</p>
+
+<p>Consider a scenario where you want to run more complex test scenarios, but only for builds that aren’t coming from pull requests. A shell script might be:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">set</span> <span class="nt">-ev</span>
+bundle <span class="nb">exec </span>rake:units
+<span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">TRAVIS_PULL_REQUEST</span><span class="k">}</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"false"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+  </span>bundle <span class="nb">exec </span>rake <span class="nb">test</span>:integration
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>Note the <code class="highlighter-rouge">set -ev</code> at the top. The <code class="highlighter-rouge">-e</code> flag causes the script to exit as soon as one command returns a non-zero exit code. This can be handy if you want whatever script you have to exit early. It also helps in complex installation scripts where one failed command wouldn’t otherwise cause the installation to fail.</p>
+
+<p>The <code class="highlighter-rouge">-v</code> flag makes the shell print all lines in the script before executing them, which helps identify which steps failed.</p>
+
+<p>To run that script from your <code class="highlighter-rouge">.travis.yml</code>:</p>
+
+<ol>
+  <li>Save it in your repository as <code class="highlighter-rouge">scripts/run-tests.sh</code>.</li>
+  <li>Make it executable by running <code class="highlighter-rouge">chmod ugo+x scripts/run-tests.sh</code>.</li>
+  <li>Commit it to your repository.</li>
+  <li>Add it to your <code class="highlighter-rouge">.travis.yml</code>:
+    <div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">script</span><span class="pi">:</span> <span class="s">./scripts/run-tests.sh</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="這樣怎有用或是說-為你什麼你不該在建構步驟用-exit">這樣怎有用？（或是說， 為你什麼你不該在建構步驟用 <code class="highlighter-rouge">exit</code>）</h3>
+
+<p>The steps specified in the build lifecycle are compiled into a single bash script and executed on the worker.</p>
+
+<p>When overriding these steps, do not use <code class="highlighter-rouge">exit</code> shell built-in command.
+Doing so will run the risk of terminating the build process without giving Travis a chance to
+perform subsequent tasks.</p>
+
+<p>Using <code class="highlighter-rouge">exit</code> inside a custom script which will be invoked from during a build is fine.</p>
+
+<h2 id="自定義主機名稱">自定義主機名稱</h2>
+
+<p>If your build requires setting up custom hostnames, you can specify a single host or a
+list of them in your .travis.yml. Travis CI will automatically setup the
+hostnames in <code class="highlighter-rouge">/etc/hosts</code> for both IPv4 and IPv6.</p>
+
+<div data-file=".travis.yml" class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">addons</span><span class="pi">:</span>
+  <span class="na">hosts</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">travis.test</span>
+  <span class="pi">-</span> <span class="s">joshkalderimis.com</span>
+</code></pre></div></div>
+
+<h2 id="我可以使用什麼儲存庫供應商或版本控制系統">我可以使用什麼儲存庫供應商或版本控制系統？</h2>
+
+<p>Build and test your open source and private repositories hosted on GitHub on <a href="https://travis-ci.com/">travis-ci.com</a>.</p>
+
+<p>Travis CI currently does not support git repositories hosted on Bitbucket or GitLab, or other version control systems such as Mercurial.</p>
+
+<h2 id="故障排除">故障排除</h2>
+
+<p>Check out the list of <a href="/user/common-build-problems/">common build problems</a>.</p>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>

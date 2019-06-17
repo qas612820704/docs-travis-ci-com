@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customizing Travis CI Enterprise Build Images - Travis CI</title>
+<link rel="stylesheet" href="/assets/stylesheets/main.css">
+<link rel="alternate" type="application/rss+xml" title="Travis CI Build Environment Updates" href="http://docs.travis-ci.com/feed.build-env-updates.xml">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" defer></script>
+<script src="/assets/javascripts/site.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/main.js" type="text/javascript" charset="utf-8" defer></script>
+<script src="/assets/javascripts/prism.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24868285-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <header class="top">
+  <div class="row topbar">
+    <h1 id="logo" class="logo">
+  <a href="http://travis-ci.org/" title="Travis CI">Travis</a>
+</h1>
+    <nav>
+      <ul id="navigation" class="navigation">
+        <li><a href="http://blog.travis-ci.com">Blog</a></li>
+        <li><a href="/">Docs</a></li>
+        <li class="toggle"><button type="button" id="toggle-menu" class="button--teal">Menu</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+      <div id="content" class="row">
+
+        <div id="sidebar" class="sidebar">
+  <div>
+    <!-- <h2>Search</h2> -->
+    <div class="searchbox">
+      <form>
+        <input type="text" id="st-search-input" class="searchbox-input" placeholder="Search the docs" />
+      </form>
+      <script type="text/javascript">
+      var Swiftype = window.Swiftype || {};
+        (function() {
+          Swiftype.key = 'tXvDDzd4fNTBnLvxfEyx';
+
+      Swiftype.searchSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          Swiftype.autocompleteSearchFields = {
+            "page": ["title, body, tags"]
+          };
+          /** DO NOT EDIT BELOW THIS LINE **/
+          var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+          script.src = "//swiftype.com/embed.js";
+          var entry = document.getElementsByTagName('script')[0];
+          document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+        }());
+      </script>
+    </div>
+  </div>
+
+  <section class="sidebar-navigation">
+    <nav>
+      <h3>Travis CI Enterprise</h3>
+      <ul>
+        <li><a href="/user/enterprise/">About Travis CI Enterprise</a></li>
+        
+          <li><a href="/user/enterprise/prerequisites/">System Prerequisites</a></li>
+        
+          <li><a href="/user/enterprise/installation/">Installation</a></li>
+        
+          <li><a href="/user/enterprise/upgrading/">Upgrading</a></li>
+        
+          <li><a href="/user/enterprise/build-images/">Customizing Build Images</a></li>
+        
+          <li><a href="/user/enterprise/custom-queues/">Custom Queues</a></li>
+        
+          <li><a href="/user/enterprise/worker-configuration/">Worker Configuration</a></li>
+        
+          <li><a href="/user/enterprise/worker-cli-commands/">Worker Start & Debug Containers</a></li>
+        
+          <li><a href="/user/enterprise/platform-tips/">Platform Administration Tips</a></li>
+        
+          <li><a href="/user/enterprise/trusty/">Trusty Build Environment</a></li>
+        
+          <li><a href="/user/enterprise/precise/">Precise (Legacy) Build Environment</a></li>
+        
+          <li><a href="/user/enterprise/operations-manual/">Operations Manual</a></li>
+        
+      </ul>
+      <h3>Travis CI Docs</h3>
+      <ul>
+        <li><a href="/">Travis CI Docs</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="sidebar-notice">
+    <p>This documentation site is open source.
+      The <a href="https://github.com/travis-ci/docs-travis-ci-com">README in our Git repository</a> explains how to contribute.</p>
+  </section>
+
+</div><!-- /#sidebar -->
+
+
+        <main id="main" class="main" data-swiftype-index='true'>
+          
+            <aside class="improve-page"><a href="https://github.com/travis-ci/docs-travis-ci-com/edit/master/user/enterprise/build-images.md" target="_blank" title="Edit this page on GitHub" class="button-pen" data-proofer-ignore>Improve this page on GitHub</a></aside>
+            <h1 class="title">Customizing Travis CI Enterprise Build Images</h1>
+          
+          <p>With Travis CI Enterprise, you can configure your build images to suit your
+development process and improve the build environment and performance.</p>
+
+<div id="toc"></div>
+
+<h2 id="customizing-build-images">Customizing build images</h2>
+
+<p>After pulling the build images from
+<a href="https://quay.io/organization/travisci">quay.io</a> either through
+<a href="/user/enterprise/installation">installation</a> or manually, make sure
+they’ve been re-tagged to <code class="highlighter-rouge">travis:[language]</code>. Once this configuration is in
+place, you can fully customize these images according to your needs.</p>
+
+<p><strong>Note</strong>: you’ll need to re-apply your customizations after
+upgrading build images from <a href="https://quay.io/organization/travisci">quay.io</a>.</p>
+
+<h3 id="ubuntu-trusty-build-environments">Ubuntu Trusty build environments</h3>
+
+<p>For Ubuntu Trusty build environments we ship three Docker images in total. Depending on the user’s <code class="highlighter-rouge">.travis.yml</code> configuration we will pick the corresponding image to run the build.</p>
+
+<p>We’re shipping the same Docker build images as we use on travis-ci.com. The base image, <code class="highlighter-rouge">connie</code> contains all databases and frameworks preinstalled, such as postgresql, mysql, memcached, pyenv, rvm, gimme. Though there are no interpreters available. Based on <code class="highlighter-rouge">connie</code> there is <code class="highlighter-rouge">garnet</code>, which adds the following programming languages:</p>
+
+<ul>
+  <li>Ruby</li>
+  <li>Node.js</li>
+  <li>Go</li>
+  <li>PHP</li>
+  <li>Python</li>
+  <li>Java / JVM</li>
+</ul>
+
+<p>The third image, <code class="highlighter-rouge">amethyst</code>, additionaly ships with Android, Erlang, Haskell and Perl preinstalled.</p>
+
+<blockquote>
+  <p>Any modification to one of these images will be available for other languages as well.</p>
+</blockquote>
+
+<h3 id="ubuntu-precise-build-environments-deprecated">Ubuntu Precise build environments (deprecated)</h3>
+
+<p>In the Ubuntu Precise environment we’re shipping a separate Docker image for each language we support. There we support the same languages as in our current Trusty environment.</p>
+
+<h3 id="how-to-customize">How to customize</h3>
+
+<p>The process is to:</p>
+
+<ul>
+  <li>start a Docker container based on one of the default build images
+<code class="highlighter-rouge">travis:[language]</code>,</li>
+  <li>run your customizations inside that container, and</li>
+  <li>commit the container to a Docker image with the original
+<code class="highlighter-rouge">travis:language name (tag)</code>.</li>
+</ul>
+
+<p>For example, in order to install a particular Ruby version which is not
+available on the default <code class="highlighter-rouge">travis:ruby</code> image, and make it persistent,
+you can run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      docker -H tcp://0.0.0.0:4243 run -it --name travis_ruby travis:ruby su travis -l -c 'rvm install [version]'
+      docker -H tcp://0.0.0.0:4243 commit travis_ruby travis:ruby
+      docker -H tcp://0.0.0.0:4243 rm travis_ruby
+</code></pre></div></div>
+
+<h2 id="enabling-docker-builds">Enabling Docker Builds</h2>
+
+<h3 id="worker-machine-configuration">Worker machine configuration</h3>
+
+<p>To build docker images on Travis CI Enterprise, add the following to <code class="highlighter-rouge">/etc/default/travis-worker</code> on all your Workers:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    export TRAVIS_WORKER_DOCKER_PRIVILEGED="true"
+</code></pre></div></div>
+
+<h4 id="configuration-for-docker-builds-in-trusty-build-environments">Configuration for Docker Builds in Trusty Build Environments</h4>
+
+<p>With Trusty build images a few additional steps are required. Since <code class="highlighter-rouge">docker-ce</code> can’t run on its own inside another Docker container, it’ll connect to the Host’s Docker daemon to execute the respective commands.</p>
+
+<blockquote>
+  <p>For non-AWS deployments, please make sure that the worker machine has a private IP address configured on one of its interfaces.</p>
+</blockquote>
+
+<p>On Amazon EC2 each machine has a private IP address by default. That address will be used to connect to the Docker daemon.</p>
+
+<p>To get the address, please run <code class="highlighter-rouge">ifconfig</code> in your terminal. For EC2 Virtual Machines, usually <code class="highlighter-rouge">eth0</code> interface is correct.</p>
+
+<p>Now the Docker daemon needs to listen to that address. Please open <code class="highlighter-rouge">/etc/default/docker</code>. In this file, you’ll find the <code class="highlighter-rouge">DOCKER_OPTS</code> variable. This is read by Docker during service startup. In there please configure the additional host like this (We’re using <code class="highlighter-rouge">172.31.7.199</code> as example here):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DOCKER_OPTS="-H tcp://172.31.7.199:4243 -H tcp://127.0.0.1:4243 -H unix:///var/run/docker.sock ..."
+</code></pre></div></div>
+
+<p>After that, both Docker and travis-worker have to be restarted. For Docker, please run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo restart docker
+</code></pre></div></div>
+
+<p>For travis-worker, you can find the instructions <a href="https://docs.travis-ci.com/user/enterprise/worker-cli-commands/#Stopping-and-Starting-the-Worker">here</a>.</p>
+
+<h3 id="updates-to-your-travisyml-files">Updates to your .travis.yml files</h3>
+
+<h4 id="trusty-build-containers">Trusty build containers</h4>
+
+<blockquote>
+  <p>Please note: This solution utilizes the Docker daemon from the host machine - any containers and images you pull and run through your build need to be cleaned up manually.</p>
+</blockquote>
+
+<p>Add the following to your <code class="highlighter-rouge">.travis.yml</code> configuration:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>install:
+  - sudo apt-get update
+  - sudo apt-get install -y curl software-properties-common apt-transport-https ca-certificates
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu trusty stable"
+  - sudo apt-get update
+  - sudo apt-get install -y docker-ce
+  - sudo docker -H &lt;IP&gt;:4243 pull ubuntu
+script:
+  - sudo docker -H &lt;IP&gt;:4243 run ubuntu date
+
+</code></pre></div></div>
+
+<h4 id="precise-build-containers-legacy">Precise build containers (legacy)</h4>
+
+<p>Add the following to any <code class="highlighter-rouge">.travis.yml</code> files for repositories which would like to use Docker:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    install:
+          - sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+          - echo "deb https://apt.dockerproject.org/repo ubuntu-precise main" | sudo tee /etc/apt/sources.list.d/docker.list
+          - sudo apt-get update
+          - sudo apt-get install docker-engine
+</code></pre></div></div>
+
+<p>For example, if you want to create a new repository and test out Docker support, you can create a <code class="highlighter-rouge">.travis.yml</code> file which looks like the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    install:
+          - sudo apt-get update
+          - sudo apt-get install apt-transport-https ca-certificates
+          - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+          - echo "deb https://apt.dockerproject.org/repo ubuntu-precise main" | sudo tee /etc/apt/sources.list.d/docker.list
+          - sudo apt-get update
+          - sudo apt-get install docker-engine
+          - sudo docker pull ubuntu
+
+          script:
+          - sudo docker run ubuntu date
+</code></pre></div></div>
+
+<h2 id="contact-enterprise-support">Contact Enterprise Support</h2>
+
+<p>To get in touch with us, please write a message to 
+<a href="mailto:enterprise@travis-ci.com">enterprise@travis-ci.com</a>. If possible, 
+please include as much of the following as you can:</p>
+
+<ul>
+  <li>Description of the problem - what are you observing?</li>
+  <li>Which steps did you try already?</li>
+  <li>A support bundle (You can get it from <code class="highlighter-rouge">https://yourdomain:8800/support</code>)</li>
+  <li>Log files from all workers (They can be found at <code class="highlighter-rouge">/var/log/upstart/travis-worker.log</code> - please include as many as you can retrieve).</li>
+  <li>If a build failed or errored, a text file of the build log</li>
+</ul>
+
+<p>Have you made any customizations to your setup? While we may be able to see some 
+information (such as hostname, IaaS provider, and license expiration), there 
+are many other things we can’t see which could lead to something not working. 
+Therefore , we’d like to ask you to also answer the questions below in your 
+support request (if applicable):</p>
+
+<ul>
+  <li>How many machines are you using?</li>
+  <li>Do you use configuration management tools (Chef, Puppet)?</li>
+  <li>Which other services do interface with Travis CI Enterprise?</li>
+  <li>Do you use Travis CI Enterprise together with github.com or GitHub Enterprise?</li>
+  <li>If you’re using GitHub Enterprise, which version of it?</li>
+</ul>
+
+<p>We’re looking forward to helping!</p>
+
+        </main>
+      </div><!-- /#content -->
+
+      <footer class="footer">
+  <div class="inner row">
+    <div class="footer-elem">
+      <div class="travis-footer">
+        <img alt="The Travis CI logo" src="/images/ui/footer-logo.svg"></div>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">&copy;Travis CI, GmbH</h3>
+      <address>Rigaer Straße 8<br>10247 Berlin, Germany</address>
+      <ul>
+        <li><a href="https://docs.travis-ci.com/imprint.html" title="Imprint">Imprint</a></li>
+        <li><a href="https://travisci.workable.com/" title="Jobs at Travis CI">Jobs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Help</h3>
+      <ul>
+        <li><a href="https://docs.travis-ci.com" title="Travis CI Docs">Documentation</a></li>
+        <li><a href="https://blog.travis-ci.com/" title="Travis CI Blog">Blog</a></li>
+        <li><a href="mailto:support@travis-ci.com" title="Email Travis CI support">Email</a></li>
+        <li><a href="https://twitter.com/travisci" title="Travis CI on Twitter">Twitter</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-elem">
+      <h3 class="footer-title">Travis CI Status</h3>
+      <ul>
+        <li><div class="status-circle status">Status:</div>
+          <a href="http://www.traviscistatus.com/">Travis CI Status</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div><!-- /.wrapper -->
+  </body>
+</html>
